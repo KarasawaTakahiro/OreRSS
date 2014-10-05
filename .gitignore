@@ -36,3 +36,4 @@ desktop.ini
 /fuel/app/tmp/
 composer.phar
 /fuel/app/config/
+*.swp
