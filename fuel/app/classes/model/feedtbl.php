@@ -17,6 +17,7 @@ class Model_Feedtbl extends \Model
         return $query->execute();
     }
 
+    // $url: feed url
     public static function get_id_from_url($url){
         $query = \DB::select('id')->from(TABLE_FEED)
                                   ->where('url', '=', $url)
@@ -46,15 +47,6 @@ class Model_Feedtbl extends \Model
         return $query->execute()->as_array();
     }
 
-    public static function is_unregistered($rss_url){
-        $query = \DB::select('id')->from(TABLE_FEED)->where('url', '=', $url)->execute();
-
-        if(0 === $query->count()){
-            return true;
-        }else{
-            return false;
-        }
-    }
 
 }
 
