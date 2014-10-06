@@ -4,11 +4,11 @@
  */
 
 return array(
-	'default' => array(
-		'connection'  => array(
-			'dsn'        => 'mysql:host=localhost;dbname=orerss',
-			'username'   => 'root',
-			'password'   => '',
-		),
-	),
-);
+        'default' => array(
+            'connection'  => array(
+                'dsn'        => 'mysql:host=localhost;dbname=orerss',
+                'username'   => 'root',
+                'password'   => '',
+                ),
+            ),
+        );

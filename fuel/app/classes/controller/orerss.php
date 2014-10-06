@@ -6,9 +6,9 @@ class Controller_Orerss extends Controller{
         return Response::forge(View_Smarty::forge('orerss/index'));
     }
 
-    public function action_registNewFeed($mylistid){
+    public function post_registNewFeed($mylist_url){
         $rss = new \Model_Rss();
-        $rss->regist_new_feed($mylistid);
+        $rss->regist_new_feed($mylist_url);
     }
 
 

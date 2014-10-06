@@ -1,1 +1,1 @@
-mysql -u root -o orerss
+mysql -u root -A orerss

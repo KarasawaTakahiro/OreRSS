@@ -3,7 +3,7 @@
 define('RSSURL_FRONT', 'http://www.nicovideo.jp/mylist/');
 define('RSSURL_BACK', '?rss=2.0');
 
-class Model_Rss //extends \Model
+class Model_Rss extends \Model
 {
 
     /*
@@ -11,11 +11,14 @@ class Model_Rss //extends \Model
     */
     private function convert_url($url){
         // URLからマイリスIDを抜き取る
-        //preg_match('/mylist\/\d+$/', $url, $matches);
-        //preg_match('/\d+$/', $matches[0], $m);
-        //$id = $m[0];
-        $id = $url;
+        preg_match('/mylist\/\d+$/', $url, $matches);
+        preg_match('/\d+$/', $matches[0], $m);
+        $id = $m[0];
         return RSSURL_FRONT.$id.RSSURL_BACK;
+    }
+
+    private function convert_datetime($datetime){
+        return strftime('%Y%m%d%H%M%S', strtotime((string)$datetime));
     }
 
     /*
@@ -48,7 +51,7 @@ class Model_Rss //extends \Model
         \Model_Feedtbl::set($rss_url, $feed_data->title);
         $id = \Model_Feedtbl::get_id_from_url($rss_url);
         foreach($feed_data->item as $item){
-            \Model_Itemtbl::set($item->title, $item->link, $item->pubDate, $item->$id, $item->guid);
+            \Model_Itemtbl::set($item->title, $item->link, self::convert_datetime($item->pubDate), $item->$id, $item->guid);
         }
     }
 
