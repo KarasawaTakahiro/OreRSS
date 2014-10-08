@@ -30,6 +30,18 @@ class Model_Feedtbl extends \Model
         }
     }
 
+    public static function get_url_from_id($id){
+        $query = \DB::select('url')->from(TABLE_FEED)
+                                  ->where('id', '=', $id)
+                                  ->execute();
+
+        if(0 < count($query->as_array())){
+            return $query->as_array()[0]['url'];
+        }else{
+            return null;
+        }
+    }
+
     public static function set_unread($id){
         $query = \DB::update(TABLE_FEED)->value('exist_unread', true)->where('id', '=', $id);
         return $query->execute();
