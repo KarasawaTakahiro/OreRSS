@@ -38,7 +38,7 @@ class Model_Rss extends \Model
     /*
         1つのfeedを更新する
     */
-    private function update_feed($feed_id){
+    public function update_feed($feed_id){
         $update_num = 0;
 
         $url = \Model_Feedtbl::get_url_from_id($feed_id);
@@ -46,16 +46,17 @@ class Model_Rss extends \Model
             return null;
         }
 
-        $channels = self::parse(self::get_feed($url));
-        foreach($channels as $channel){
-            if(is_registered_item_at($url, $channel->guid)){
+        $items = self::get_items(self::get_feed($url));
+
+        foreach($items as $item){
+            if(self::is_registered_item_at($url, $item->guid)){
                 continue;
             }else{
-                self::regist_item($feed_id, $channel->title, $channel->link, $channel->pubDate, $channel->guid);
-                update_num = update_num + 1;
+                self::regist_item($feed_id, $item->title, $item->link, $item->pubDate, $item->guid);
+                $update_num += 1;
             }
         }
-
+        return $update_num;
     }
 
 
@@ -78,7 +79,7 @@ class Model_Rss extends \Model
         $item_guidか$item_urlのどちらか以上をを渡す
     */
     public static function is_registered_item_at($rss_url, $item_guid=null, $item_url=null){
-        $query = \DB::select('id')->from(TABLE_ITEM)->join(TABLE_FEED)->on(TABLE_ITEM.'.feed_id', '=', TABLE_FEED.'.id')->where('url', '=', $rss_url);
+        $query = \DB::select(TABLE_ITEM.'.id')->from(TABLE_ITEM)->join(TABLE_FEED)->on(TABLE_ITEM.'.feed_id', '=', TABLE_FEED.'.id')->where('url', '=', $rss_url);
         if($item_guid){
             $query->where('guid', '=', $item_guid);
         }else if($item_url){
@@ -97,7 +98,7 @@ class Model_Rss extends \Model
         マイリストのURLからRSSのURLに変換する
     */
     private function convert_url($url){
-         URLからマイリスIDを抜き取る
+        // URLからマイリスIDを抜き取る
         preg_match('/mylist\/\d+$/', $url, $matches);
         preg_match('/\d+$/', $matches[0], $m);
         $id = $m[0];
@@ -122,10 +123,22 @@ class Model_Rss extends \Model
     }
 
     /*
-        feedをパースして、channel内を古い順に返す
+        feedをパースして、channel内を返す
     */
     private function parse($feed_data){
-        return array_reverse(simplexml_load_string($feed_data)->channel);
+        return simplexml_load_string($feed_data)->channel;
+    }
+
+    /*
+        
+    */
+    private function get_items($feed_data){
+        $items = array();
+        foreach(self::parse($feed_data)->item as $item){
+            array_push($items, $item);
+        }
+        array_reverse($items);
+        return $items;
     }
 
     /*
