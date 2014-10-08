@@ -9,6 +9,16 @@ class Model_Feedtbl extends \Model
         return $query->execute()->as_array();
     }
 
+    public static function get_all_feed_ids(){
+        $ids = array();
+        $query = \DB::select('id')->from(TABLE_FEED);
+            foreach($query->execute()->as_array() as $id){
+                array_push($ids, $id['id']);
+            }
+
+        return $ids;
+    }
+
     public static function set($url, $title){
         $query = \DB::insert(TABLE_FEED)->set(array(
                                     'url'      => $url,

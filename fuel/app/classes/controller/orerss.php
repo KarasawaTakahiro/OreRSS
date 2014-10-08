@@ -12,10 +12,10 @@ class Controller_Orerss extends Controller{
         $rss->regist_new_feed($mylist_url);
     }
 
-    // テストコード
+    // テストコード 
     public function action_updateFeed($feed_id){
         echo '<pre>';
-        var_dump((new \Model_Rss())->update_feed($feed_id));
+        var_dump((new \Model_Rss())->update());
         echo '</pre>';
     }
 

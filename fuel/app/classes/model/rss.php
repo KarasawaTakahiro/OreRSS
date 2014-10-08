@@ -33,25 +33,40 @@ class Model_Rss extends \Model
 
     /*
         全てのfeedを更新する
+        新しいitemの総数を返す
     */
+    public function update(){
+        $num = 0;   // 新規総数
+        // DBから全てのフィードのidを取得
+        foreach(\Model_Feedtbl::get_all_feed_ids() as $feed_id){
+            $num += self::update_feed($feed_id);    // フィードを更新
+        }
+
+        return $num;
+    }
 
     /*
         1つのfeedを更新する
+        新しいitemの総数を返す
     */
-    public function update_feed($feed_id){
-        $update_num = 0;
+    private function update_feed($feed_id){
+        $update_num = 0;    // 新規総数
 
+        // idからフィードのURLを取得
         $url = \Model_Feedtbl::get_url_from_id($feed_id);
         if(! $url){
             return null;
         }
 
+        // フィードの全itemを取得
         $items = self::get_items(self::get_feed($url));
 
         foreach($items as $item){
             if(self::is_registered_item_at($url, $item->guid)){
+                // 登録済み
                 continue;
             }else{
+                // 未登録により新規登録
                 self::regist_item($feed_id, $item->title, $item->link, $item->pubDate, $item->guid);
                 $update_num += 1;
             }
