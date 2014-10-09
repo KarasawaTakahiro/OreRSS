@@ -6,6 +6,10 @@ class Controller_Orerss extends Controller{
         return Response::forge(View_Smarty::forge('orerss/index'));
     }
 
+    // フィード一覧ページ
+    public function action_feed($feed_id){
+    }
+
     // テストコード
     public function action_registNewFeed($mylist_url){
         $rss = new \Model_Rss();
