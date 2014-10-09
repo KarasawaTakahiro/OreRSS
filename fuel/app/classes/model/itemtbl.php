@@ -9,6 +9,14 @@ class Model_Itemtbl extends \Model
         return $query->execute()->as_array();
     }
 
+    public static function get_itemlist_column_from_feed_id($feed_id){
+        $query = \DB::select('title', 'link', 'already_read', 'pub_date')
+                      ->from(TABLE_ITEM)
+                      ->where('feed_id', '=', $feed_id)
+                      ->order_by('pub_date');
+        return $query->execute()->as_array();
+    }
+
     public static function set($title, $url, $pub_date, $feed_id, $guid){
         $query = \DB::insert(TABLE_ITEM)->set(array(
                                     'title'     => $title,

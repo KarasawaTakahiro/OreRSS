@@ -7,7 +7,7 @@ class Controller_Orerss extends Controller{
             items = array(
                 // 1 item
                 array(
-                    title=>'', link='', unread=bool, pubDate='', 
+                    title=>'', link='', already_read=bool, pubDate='', 
                 ),
                 array(...),
             )
@@ -15,8 +15,8 @@ class Controller_Orerss extends Controller{
 
         $data = array(
             'items' => array(
-                array('title' => 'hoge', 'link' => 'http', 'unread' => true, 'pubDate' => '2014/10/10 10:10:10'),
-                array('title' => 'hoge', 'link' => 'http', 'unread' => false, 'pubDate' => '2014/10/10 10:10:10'),
+                array('title' => 'hoge', 'link' => 'http', 'already_read' => true, 'pubDate' => '2014/10/10 10:10:10'),
+                array('title' => 'hoge', 'link' => 'http', 'already_read' => false, 'pubDate' => '2014/10/10 10:10:10'),
             )
         );
 
@@ -25,6 +25,10 @@ class Controller_Orerss extends Controller{
 
     // フィード一覧ページ
     public function action_feed($feed_id){
+        $data = array(
+            'items' => Model_Itemtbl::get_itemlist_column_from_feed_id($feed_id),
+        );
+        return Response::forge(View_Smarty::forge('orerss/index', $data));
     }
 
     // テストコード

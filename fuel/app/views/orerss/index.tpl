@@ -48,8 +48,8 @@
                     <div class="col-md-8 col-md-push-4 col-lg-8 col-lg-push-4" style="background-color: #4432aa;">
                         <!-- right pain -->
                         <div class="row">
-                                {include file='./feed_parts.tpl' items=$items}
-                            </div>
+                          {include file='./feed_parts.tpl' items=$items}
+                        </div>
                     </div>
                     <div class="col-md-4 col-md-pull-8 col-lg-4 col-lg-pull-8" style="background-color: #999999;">
                         <!-- left pain -->
