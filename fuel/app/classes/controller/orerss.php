@@ -3,14 +3,24 @@
 class Controller_Orerss extends Controller{
     public function action_index(){
         /*
-            array(
+            // feed
+            items = array(
+                // 1 item
                 array(
                     title=>'', link='', unread=bool, pubDate='', 
-                )
+                ),
+                array(...),
             )
         */
 
-        return Response::forge(View_Smarty::forge('orerss/index'));
+        $data = array(
+            'items' => array(
+                array('title' => 'hoge', 'link' => 'http', 'unread' => true, 'pubDate' => '2014/10/10 10:10:10'),
+                array('title' => 'hoge', 'link' => 'http', 'unread' => false, 'pubDate' => '2014/10/10 10:10:10'),
+            )
+        );
+
+        return Response::forge(View_Smarty::forge('orerss/index', $data));
     }
 
     // フィード一覧ページ

@@ -47,13 +47,8 @@
                 <div class="row">
                     <div class="col-md-8 col-md-push-4 col-lg-8 col-lg-push-4" style="background-color: #4432aa;">
                         <!-- right pain -->
-                            <div class="row">
-                                <div class="col-md-10 col-lg-10" style="background-color: #893234;">
-                                    <p>Title</p>
-                                </div>
-                                <div class="col-md-2 col-lg-2" style="background-color: #893432;">
-                                    <p>pubDate</p>
-                                </div>
+                        <div class="row">
+                                {include file='./feed_parts.tpl' items=$items}
                             </div>
                     </div>
                     <div class="col-md-4 col-md-pull-8 col-lg-4 col-lg-pull-8" style="background-color: #999999;">
