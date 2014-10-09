@@ -2,6 +2,13 @@
 
 class Controller_Orerss extends Controller{
     public function action_index(){
+        /*
+            array(
+                array(
+                    title=>'', link='', unread=bool, pubDate='', 
+                )
+            )
+        */
 
         return Response::forge(View_Smarty::forge('orerss/index'));
     }

@@ -24,7 +24,8 @@
                         <a class="navbar-brand" href="#">Brand</a>
                         <p class="navbar-text">a information</p>
                         <a class="navbar-icon" href="#">
-                        <button type="submit" class="btn btn-default navbar-btn navbar-right"><span class="glyphicon glyphicon-refresh"></span></button>
+                            <button type="submit" class="btn btn-default navbar-btn navbar-right"><span class="glyphicon glyphicon-refresh"></span></button>
+                        </a>
                     </div>
 
                     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -48,18 +49,10 @@
                         <!-- right pain -->
                             <div class="row">
                                 <div class="col-md-10 col-lg-10" style="background-color: #893234;">
-                                    <p><a href="#">Dash Board</a></p>
-                                    <p><b>fjieoa;</b></p>
-                                    <p><b>fjieoa;</b></p>
-                                    <p>fjieoa;</p>
-                                    <p>jfioea;</p>
+                                    <p>Title</p>
                                 </div>
                                 <div class="col-md-2 col-lg-2" style="background-color: #893432;">
-                                    <p><a href="#">Dash Board</a></p>
-                                    <p><b>fjieoa;</b></p>
-                                    <p><b>fjieoa;</b></p>
-                                    <p>fjieoa;</p>
-                                    <p>jfioea;</p>
+                                    <p>pubDate</p>
                                 </div>
                             </div>
                     </div>
