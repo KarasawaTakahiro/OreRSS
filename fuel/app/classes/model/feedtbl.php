@@ -52,6 +52,26 @@ class Model_Feedtbl extends \Model
         }
     }
 
+    // 未読を含むフィードリストを返す
+    public static function get_feed_list_unread(){
+      $query = \DB::select('id', 'title')->from(TABLE_FEED)
+                                         ->where('exist_unread', '=', true)
+                                         ->order_by('timestamp')
+                                         ->execute();
+
+      return $query->as_array();
+    }
+
+    // 既読を含むフィードリストを返す
+    public static function get_feed_list_read(){
+      $query = \DB::select('id', 'title')->from(TABLE_FEED)
+                                         ->where('exist_unread', '=', false)
+                                         ->order_by('timestamp')
+                                         ->execute();
+
+      return $query->as_array();
+    }
+
     public static function set_unread($id){
         $query = \DB::update(TABLE_FEED)->value('exist_unread', true)->where('id', '=', $id);
         return $query->execute();

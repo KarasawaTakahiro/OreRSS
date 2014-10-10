@@ -46,20 +46,11 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 col-md-push-4 col-lg-8 col-lg-push-4" style="background-color: #4432aa;">
-                        <!-- right pain -->
-                        <div class="row">
-                          {include file='./feed_parts.tpl' items=$items}
-                        </div>
+                      <!-- right pain -->
+                      {include file='./feed_parts.tpl' items=$items}
                     </div>
-                    <div class="col-md-4 col-md-pull-8 col-lg-4 col-lg-pull-8" style="background-color: #999999;">
-                        <!-- left pain -->
-                        <p><a href="#">Dash Board</a></p>
-                        <p><b>fjieoa;</b></p>
-                        <p><b>fjieoa;</b></p>
-                        <hr>
-                        <p>fjieoa;</p>
-                        <p>jfioea;</p>
-                    </div>
+                    <!-- left pain -->
+                    {include file='./feed_list.tpl' feed_list_unread=$feed_list.unread feed_list_read=$feed_list.read}
                 </div>
             </div>
         </div>
