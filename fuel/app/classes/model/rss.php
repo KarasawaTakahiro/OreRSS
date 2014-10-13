@@ -112,10 +112,10 @@ class Model_Rss extends \Model
     /*
         マイリストのURLからRSSのURLに変換する
     */
-    private function convert_url($url){
+    public static function convert_url($url){
         // URLからマイリスIDを抜き取る
-        preg_match('/mylist\/\d+$/', $url, $matches);
-        preg_match('/\d+$/', $matches[0], $m);
+        preg_match('/mylist\/\d+/', $url, $matches);
+        preg_match('/\d+/', $matches[0], $m);
         $id = $m[0];
         return RSSURL_FRONT.$id.RSSURL_BACK;
     }

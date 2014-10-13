@@ -3,10 +3,10 @@
     <p>Title</p>
     {foreach $items as $item}
       <p>
-      {if $item.already_read == true}
-        <a href="{$item.link}" target="_blank">{$item.title}</a>
+      {if $item.already_read == false}
+        <a class="unread" href="{$item.link}" target="_blank" onclick="mark_read(this, {$item.id})">{$item.title}</a>
       {else}
-        <b> <a href="{$item.link}" target="_blank">{$item.title}</a> </b>
+        <a href="{$item.link}" target="_blank">{$item.title}</a>
       {/if}
       </p>
     {/foreach}
@@ -16,10 +16,10 @@
     <p>pubDate</p>
     {foreach $items as $item}
       <p>
-        {if $item.already_read == true}
-          {$item.pub_date}
-        {else}
+        {if $item.already_read == false}
           <b>{$item.pub_date}</b>
+        {else}
+          {$item.pub_date}
         {/if}
       </p>
     {/foreach}

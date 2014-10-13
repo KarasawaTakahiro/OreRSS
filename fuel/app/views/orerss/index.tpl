@@ -67,6 +67,10 @@
         {Asset::js('jquery-2.1.1.min.js')}
         <!-- Latest compiled and minified JavaScript -->
         {Asset::js('bootstrap.min.js')}
+
+        {Asset::js('rss.js')}
+
+        {Asset::css('rss.css')}
     </body>
 </html>
 

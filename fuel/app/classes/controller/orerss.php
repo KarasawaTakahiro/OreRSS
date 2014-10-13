@@ -17,14 +17,14 @@ class Controller_Orerss extends Controller{
             'feed_list' => array('unread' =>  Model_Feedtbl::get_feed_list_unread(),
                                  'read'   => Model_Feedtbl::get_feed_list_read(),
                                  ),
-            'items'     => Model_Itemtbl::get_itemlist_column_from_feed_id(1),
+            'items'     => Model_Itemtbl::get_all_unread_itemlist(),
         );
 
         return Response::forge(View_Smarty::forge('orerss/index', $data));
     }
 
     // item一覧ページ
-    public function action_feed($feed_id){
+    public function get_feed($feed_id){
         $data = array(
             'feed_list' => array('unread' =>  Model_Feedtbl::get_feed_list_unread(),
                                  'read'   => Model_Feedtbl::get_feed_list_read(),
@@ -33,6 +33,15 @@ class Controller_Orerss extends Controller{
         );
         return Response::forge(View_Smarty::forge('orerss/index', $data));
     }
+
+    public function post_markRead($item_id){
+      if(0 < \Model_Itemtbl::set_already_read($item_id, true)){
+        return true;
+      }else{
+        return false;
+      }
+    }
+
 
     // テストコード
     public function action_registNewFeed($mylist_url){
