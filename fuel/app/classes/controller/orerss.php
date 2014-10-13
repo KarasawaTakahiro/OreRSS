@@ -43,7 +43,8 @@ class Controller_Orerss extends Controller{
     }
 
     public function post_autoreadRead($feed_id, $item_id){
-      \Model_Itemtbl::setRead($feed_id, $item_id);
+      $changed = \Model_Itemtbl::setRead($feed_id, $item_id);
+      return json_encode($changed);
     }
 
 

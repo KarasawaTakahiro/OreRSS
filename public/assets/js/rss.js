@@ -14,7 +14,13 @@ function autoMark(feed_id, item_id){
   $.ajax({
     url: '/orerss/autoreadRead/'+feed_id+'/'+item_id,
     async: true,
-    method: 'POST'
+    method: 'POST',
+    dataType: 'json',
+    success: function(list){
+      for(var i=0; i<list.length; i++){
+        $("#"+list[i]).css('fontWeight', 'normal');
+      }
+    },
   });
 
 }
