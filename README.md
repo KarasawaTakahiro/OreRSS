@@ -1,2 +1,6 @@
-##FuelPHP
-* Version: 1.7.2
+#俺RSS
+俺用RSS
+
+- nginx
+- php-fpm
+- fuelphp
