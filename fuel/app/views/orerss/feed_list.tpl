@@ -3,7 +3,7 @@
                         <p><a href="/orerss">Dash Board</a></p>
                         <div id="feed-list-unread">
                           {foreach $feed_list_unread as $feed}
-                            <p><b><a href="/orerss/feed/{$feed.id}">{$feed.title}</a></b></p>
+                            <p><a class="unread" href="/orerss/feed/{$feed.id}">{$feed.title}</a></p>
                           {/foreach}
                         </div>
                         <hr>

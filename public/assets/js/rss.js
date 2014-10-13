@@ -1,5 +1,13 @@
-// 既読をつける
 
+$(function(){
+
+  registNewFeed();
+  console.log("listener");
+
+});
+
+
+// 既読をつける
 function mark_read(obj, item_id){
   $.ajax({
     url: '/orerss/markRead/'+item_id,
@@ -24,4 +32,28 @@ function autoMark(feed_id, item_id){
   });
 
 }
+
+var registNewFeed = function(){
+  $("#registNewFeed").submit(function(){
+    alert('registNewFeed');
+    var newFeedUrl = $(this).find("input[id=new-feed-url]").val();
+    alert(newFeedUrl);
+
+    if(0 < newFeedUrl.length){
+      $ajax({
+        url: '/orerss/registNewFeed/'+newFeedUrl,
+        async: true,
+        type: 'POST',
+        dataType: 'json',
+        success: function(json){
+          if(json !== NULL){
+            var data = $.parseJSON(json);
+            $("#feed-list-unread").append('<p><a class="unread" href="/orerss/feed' + data.id + '" >' + data.name + '</a></p>');
+          }
+        },
+      });
+    }
+    return false;
+  });
+};
 

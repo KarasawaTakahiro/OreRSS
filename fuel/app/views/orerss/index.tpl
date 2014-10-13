@@ -30,11 +30,12 @@
 
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                        <form class="navbar-form navbar-right" role="search">
+                        <form class="navbar-form navbar-right" action="#" method="post">
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Append">
+                                <input type="text" class="form-control" id="new-feed-url">
                             </div>
-                            <button type="submit" class="btn btn-default">Append</button>
+
+                            <input type="submit" class="btn btn-default" id="registNewFeed" name="feed_url" value="Append" />
                         </form>
                     </div><!-- /.navbar-collapse -->
                 </div><!-- /.container-fluid -->

@@ -17,18 +17,20 @@ class Model_Rss extends \Model
 
         // 既に登録済み
         if(self::is_registered_feed($feed_url)){
-            return;
+            return null;
         }
 
         \Model_Feedtbl::set($feed_url, $feed_data->title);
         $id = \Model_Feedtbl::get_id_from_url($feed_url);
         if($id == null){
             // DBから参照失敗
-            return;
+            return null;
         }
         foreach($feed_data->item as $item){
             self::regist_item($id, $item->title, $item->link, $item->pubDate, $item->guid);
         }
+
+        return array('title' => $feed_data->title, 'id' => $id);
     }
 
     /*

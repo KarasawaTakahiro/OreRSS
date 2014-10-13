@@ -47,11 +47,8 @@ class Controller_Orerss extends Controller{
       return json_encode($changed);
     }
 
-
-    // テストコード
-    public function action_registNewFeed($mylist_url){
-        $rss = new \Model_Rss();
-        $rss->regist_new_feed($mylist_url);
+    public function post_registNewFeed($feed_url){
+      return json_encode(\Model_Rss::regist_new_feed($feed_url));
     }
 
     // テストコード 
