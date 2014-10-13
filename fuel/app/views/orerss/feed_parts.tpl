@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-md-9 col-lg-9" style="background-color: #893234;">
+  <div class="col-md-8 col-lg-8" style="background-color: #883234;">
     <p>Title</p>
     {foreach $items as $item}
       <p>
@@ -12,7 +12,7 @@
     {/foreach}
   </div>
   
-  <div class="col-md-3 col-lg-3" style="background-color: #893432;">
+  <div class="col-md-3 col-lg-3" style="background-color: #893433;">
     <p>pubDate</p>
     {foreach $items as $item}
       <p>
@@ -24,4 +24,15 @@
       </p>
     {/foreach}
   </div>
+
+  <div class="col-md-1 col-lg-1" style="background-color: #832932;">
+  <p>read</p>
+  {foreach $items as $item}
+    <p>
+        <a onclick="autoMark({$item.feed_id}, {$item.id})"><span class="glyphicon glyphicon-upload"></a>
+    </p>
+  {/foreach}
+  </div>
+
+
 </div>
