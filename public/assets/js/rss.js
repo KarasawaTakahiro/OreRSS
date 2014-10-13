@@ -8,3 +8,14 @@ function mark_read(obj, item_id){
   });
   $(obj).css('fontWeight', 'normal');
 }
+
+function autoMark(feed_id, item_id){
+  console.log('autoMark');
+  $.ajax({
+    url: '/orerss/autoreadRead/'+feed_id+'/'+item_id,
+    async: true,
+    method: 'POST'
+  });
+
+}
+

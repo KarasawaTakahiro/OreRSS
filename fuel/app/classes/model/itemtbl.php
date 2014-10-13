@@ -66,13 +66,20 @@ class Model_Itemtbl extends \Model
        指定のitemよりも古い物を全て見たとする
      */
     public static function setRead($feed_id, $item_id){
-      $pub_date = \DB::select('pub_date')->where('id', '=', $item_id)
+      $pub_date = \DB::select('pub_date')->from(TABLE_ITEM)->where('id', '=', $item_id)
         ->execute()[0]['pub_date'];
-      $query = \DB::update(TABLE_ITEM)->value('already_read', $already_read)
+      $query = \DB::select('id', 'title', 'pub_date')->from(TABLE_ITEM)
         ->where('feed_id', '=', $feed_id)
-        ->where('id', '<=', $item_id)
         ->where('pub_date', '<=', $pub_date)
+        ->where('already_read', '=', false)
         ->execute();
+      $res = array();
+      foreach($query->as_array() as $col){
+        \Model_Itemtbl::set_already_read($col['id'], true);
+        array_push($res, $col['id']);
+      }
+      return $res;
+
     }
 
 }

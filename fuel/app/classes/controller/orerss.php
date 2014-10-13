@@ -42,6 +42,10 @@ class Controller_Orerss extends Controller{
       }
     }
 
+    public function post_autoreadRead($feed_id, $item_id){
+      \Model_Itemtbl::setRead($feed_id, $item_id);
+    }
+
 
     // テストコード
     public function action_registNewFeed($mylist_url){
