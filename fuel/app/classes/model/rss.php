@@ -122,6 +122,18 @@ class Model_Rss extends \Model
         return RSSURL_FRONT.$id.RSSURL_BACK;
     }
 
+    /*
+      マイリストのURLからマイリストIDを取得する
+    */
+    public static function pick_mylist_id($url){
+        preg_match('/mylist\/\d+/', $url, $matches);
+        preg_match('/\d+/', $matches[0], $m);
+        return $m[0];
+    }
+
+    /*
+      日付をmysql用に変換
+    */
     private function convert_datetime($datetime){
         return strftime('%Y%m%d%H%M%S', strtotime((string)$datetime));
     }

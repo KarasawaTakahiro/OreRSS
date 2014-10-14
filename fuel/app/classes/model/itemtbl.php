@@ -32,7 +32,7 @@ class Model_Itemtbl extends \Model
         foreach($query->as_array() as &$item){
             // linkの情報をマイリストの連続再生URLに変更
             $item['link'] = Model_Url::gen_continuous_playback_url(
-                                Model_Rss::convert_url(
+                                Model_Rss::pick_mylist_id(
                                     Model_Feedtbl::get_url_from_id($item['feed_id'])
                                 ),
                                 $item['link']

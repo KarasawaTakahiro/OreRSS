@@ -35,7 +35,7 @@ class Controller_Orerss extends Controller{
                                  'read'   => Model_Feedtbl::get_feed_list_read(),
                                  ),
             // 指定フィードのitemリスト
-            'items'     => Model_Itemtbl::get_itemlist_column_from_feed_id($feed_id),
+            'items'     => Model_Url::convert_continuous_playback_url(Model_Itemtbl::get_itemlist_column_from_feed_id($feed_id)),
         );
         return Response::forge(View_Smarty::forge('orerss/index', $data));
     }
