@@ -47,8 +47,10 @@ class Controller_Orerss extends Controller{
       return json_encode($changed);
     }
 
-    public function post_registNewFeed($feed_url){
-      return json_encode(\Model_Rss::regist_new_feed($feed_url));
+    public function post_registNewFeed(){
+      $feed_url = Input::post('url');
+      $res = json_encode((new \Model_Rss())->regist_new_feed($feed_url));
+      return $res;
     }
 
     // テストコード 

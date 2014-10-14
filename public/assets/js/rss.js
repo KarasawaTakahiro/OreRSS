@@ -1,8 +1,8 @@
 
 $(function(){
+  console.log("listener");
 
   registNewFeed();
-  console.log("listener");
 
 });
 
@@ -35,25 +35,25 @@ function autoMark(feed_id, item_id){
 
 var registNewFeed = function(){
   $("#registNewFeed").submit(function(){
-    alert('registNewFeed');
-    var newFeedUrl = $(this).find("input[id=new-feed-url]").val();
-    alert(newFeedUrl);
+      var newFeedUrl = $(this).find("input[id=new-feed-url]").val();
 
-    if(0 < newFeedUrl.length){
-      $ajax({
-        url: '/orerss/registNewFeed/'+newFeedUrl,
-        async: true,
-        type: 'POST',
-        dataType: 'json',
-        success: function(json){
-          if(json !== NULL){
-            var data = $.parseJSON(json);
-            $("#feed-list-unread").append('<p><a class="unread" href="/orerss/feed' + data.id + '" >' + data.name + '</a></p>');
-          }
-        },
-      });
-    }
-    return false;
+      if(0 < newFeedUrl.length){
+        $.ajax({
+          url: '/orerss/registNewFeed/',
+          async: true,
+          type: 'POST',
+          data: {'url':newFeedUrl},
+          dataType: 'json',
+          success: function(data){
+            if(data !== null){
+              $("#feed-list-unread").append('<p><a class="unread" href="/orerss/feed/' + data.id + '" >' + data.title[0] + '</a></p>');
+              }
+          },
+        });  // ajax
+      }else{
+        console.log("else");
+      }
+      return false;
   });
 };
 
