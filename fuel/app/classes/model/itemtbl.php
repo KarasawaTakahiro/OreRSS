@@ -50,23 +50,50 @@ class Model_Itemtbl extends \Model
         return $query->as_array()[0]['pub_date'];
     }
 
+    // idのfeed_idを取得
+    public static function get_feed_id($id){
+        $query = \DB::select('feed_id')->from(TABLE_ITEM)
+                                       ->where('id', '=', $id)
+                                       ->execute();
+        return $query->as_array()[0]['feed_id'];
+    }
+
     // 新規登録
     public static function set($title, $url, $pub_date, $feed_id, $guid){
         $query = \DB::insert(TABLE_ITEM)->set(array(
                                     'title'     => $title,
-                                    'link'  => $url,
+                                    'link'      => $url,
                                     'pub_date'  => $pub_date,
                                     'feed_id'   => $feed_id,
                                     'guid'      => $guid
               ));
-        return $query->execute();
+        $num = $query->execute();
+
+        // feedの情報を変更
+        Model_Feedtbl::set_unread($feed_id);
+
+        return $num;
     }
 
-    //  idの既読情報を書き換える
-    public static function set_already_read($id, $already_read=false){
-      $query = \DB::update(TABLE_ITEM)->value('already_read', $already_read)
-        ->where('id', '=', $id);
-      return $query->execute();
+    //  idの既読情報を既読にする
+    public static function set_already_read($id){
+      $query = \DB::update(TABLE_ITEM)->value('already_read', true)
+                                      ->where('id', '=', $id);
+      $num = $query->execute();
+
+      if(0 < $num){
+        // feedの未読が0ならfeedの既読値を変更
+        $feed_id = self::get_feed_id($id);
+        $query = \DB::select()->from(TABLE_ITEM)->where('already_read', false)->execute();
+        if(count($query->as_array() === 0)){
+          Model_Feedtbl::set_already_read($feed_id);
+        }
+      }else{
+        // クエリの実行に失敗
+        return 0;
+      }
+
+      return $num;
     }
 
     // 指定のitemよりも古い物を全て見たとする
