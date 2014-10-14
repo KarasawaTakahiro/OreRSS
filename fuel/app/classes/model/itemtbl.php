@@ -15,7 +15,7 @@ class Model_Itemtbl extends \Model
         $query = \DB::select('id', 'title', 'link', 'already_read', 'pub_date', 'feed_id')
                       ->from(TABLE_ITEM)
                       ->where('feed_id', '=', $feed_id)
-                      ->order_by('pub_date')
+                      ->order_by('pub_date', 'desc')
                       ->execute();
         return $query->as_array();
     }
