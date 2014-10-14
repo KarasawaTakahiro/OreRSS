@@ -4,11 +4,13 @@ define('TABLE_FEED', 'feed');
 
 class Model_Feedtbl extends \Model
 {
+    // idから全てのカラムを取得する
     public static function get_all_column_from_id($id){
         $query = \DB::select()->from(TABLE_FEED)->where('id', '=', $id);
         return $query->execute()->as_array();
     }
 
+    // 全てのフィードのidを取得
     public static function get_all_feed_ids(){
         $ids = array();
         $query = \DB::select('id')->from(TABLE_FEED);
@@ -19,6 +21,7 @@ class Model_Feedtbl extends \Model
         return $ids;
     }
 
+    // データの新規登録
     public static function set($url, $title){
         $query = \DB::insert(TABLE_FEED)->set(array(
                                     'url'      => $url,
@@ -27,6 +30,7 @@ class Model_Feedtbl extends \Model
         return $query->execute();
     }
 
+    // フィードのURLからidを取得する
     // $url: feed url
     public static function get_id_from_url($url){
         $query = \DB::select('id')->from(TABLE_FEED)
@@ -40,6 +44,7 @@ class Model_Feedtbl extends \Model
         }
     }
 
+    // idからフィードのURLを取得
     public static function get_url_from_id($id){
         $query = \DB::select('url')->from(TABLE_FEED)
                                   ->where('id', '=', $id)
@@ -62,7 +67,7 @@ class Model_Feedtbl extends \Model
       return $query->as_array();
     }
 
-    // 既読を含むフィードリストを返す
+    // 既読のみのフィードリストを返す
     public static function get_feed_list_read(){
       $query = \DB::select('id', 'title')->from(TABLE_FEED)
                                          ->where('exist_unread', '=', false)
@@ -72,16 +77,19 @@ class Model_Feedtbl extends \Model
       return $query->as_array();
     }
 
+    // idのカラムを未読にする
     public static function set_unread($id){
         $query = \DB::update(TABLE_FEED)->value('exist_unread', true)->where('id', '=', $id);
         return $query->execute();
     }
 
+    // idのカラムを既読にする
     public static function set_already_read($id){
         $query = \DB::update(TABLE_FEED)->value('exist_unread', false)->where('id', '=', $id);
         return $query->execute();
     }
 
+    // ルールに従ってソートしたフィードリストを返す
     public static function get_sorted_data_from_id($id){
         $query = \DB::select()->from(TABLE_FEED)->where('id', '=', $id)
                               ->order_by('timestamp')
