@@ -51,7 +51,7 @@ class Model_Rss extends \Model
         1つのfeedを更新する
         新しいitemの総数を返す
     */
-    public function update_feed($feed_id){
+    private function update_feed($feed_id){
         $update_num = 0;    // 新規総数
 
         // idからフィードのURLを取得

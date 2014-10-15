@@ -69,49 +69,32 @@ var registNewFeed = function(){
 
 var feedRefresh = function(){
   $("#btn-refresh").click( function(){
-      var feedUpdate = function(feed_id, feed_title){
-        info(feed_title);   // infoの更新
-        $.ajax({
-          url: '/orerss/getFeedData',
-          async: true,
-          type: 'POST',
-          data: {'feed_id':feed_id},
-          dataType: 'json',
-        }).done(function (data){
+    var btn = $("#btn-refresh");    // ボタンオブジェクトを取得
+    var icon = btn.children();      // ボタンの中身を退避
+    var load_gif = '<img src="assets/img/feed_refresh.gif" />';   // 更新中の中身
 
-        }).fail(function (){
-        });
-      };
+    btn.attr("disabled", true);   // ボタンを無効化
+    btn.empty();                  // ボタンの中身を消す
+    btn.append(load_gif);         // 中身を差し替え
 
-      // ajaxでfeedのデータを取得
-      var getFeedDatas = function(){
-        $.ajax({
-          url: '/orerss/getFeedData',
-          async: false,
-          type: 'POST',
-          dataType: 'json',
-        }).done(function(data){
-          console.log("success");
-          feedUpdate();
-        }).fail(function(){
-          return null;
-        });   // ajax
-      };
+    // ajaxでfeedのデータを取得
+    $.ajax({
+      url: '/orerss/updateFeed',
+      async: true,
+      type: 'POST',
+      dataType: 'json',
+    }).done(function(data){
+      console.log("success: " + data.update_num);
+      location.reload();
+    }).fail(function(){
+      btn.empty();                  // ボタンの中身を消す
+      btn.append(icon);             // 中身を差し替え
+    }).always(function(){
+      $("#btn-refresh").attr("disabled", false);
+      console.log("complete");
+    });   // ajax
 
-      console.log(feedDatas);
 
-      /*
-      $.ajax({
-        url: '/orerss/updateFeed',
-        async: true,
-        type: 'POST',
-        data: {'feed_id':feed_id},   // feedのURLを引数にする
-        dataType: 'json',
-        success: function(data){
-        }
-      });
-      */
-    }
-  );
+  });
 };
 

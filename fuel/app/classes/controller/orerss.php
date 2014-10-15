@@ -64,14 +64,8 @@ class Controller_Orerss extends Controller{
 
     // feedを更新する - ajax
     public function post_updateFeed(){
-        $feed_id = Input::post('feed_id');
-        $updated = (new Model_Rss())->update_feed($feed_id);
+        $updated = (new Model_Rss())->update();
         return json_encode(array('update_num' => $updated));
-    }
-
-    // 全feedの情報を取得 - ajax
-    public function post_getFeedData(){
-        return json_encode(Model_Rss::get_data_for_update());
     }
 
 }
