@@ -71,7 +71,7 @@ var feedRefresh = function(){
   $("#btn-refresh").click( function(){
     var btn = $("#btn-refresh");    // ボタンオブジェクトを取得
     var icon = btn.children();      // ボタンの中身を退避
-    var load_gif = '<img src="assets/img/feed_refresh.gif" />';   // 更新中の中身
+    var load_gif = '<img src="/assets/img/feed_refresh.gif" />';   // 更新中の中身
 
     btn.attr("disabled", true);   // ボタンを無効化
     btn.empty();                  // ボタンの中身を消す
