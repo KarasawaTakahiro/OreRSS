@@ -3,8 +3,13 @@
 $(function(){
   // 新規登録用ボタンのリスナを登録
   registNewFeed();
+  // 更新用ボタンのリスナを登録
+  feedRefresh();
 
 });
+
+function info(text){
+}
 
 
 // 既読をつける
@@ -60,5 +65,53 @@ var registNewFeed = function(){
 
       return false;   // submitの動作を無効化
   });
+};
+
+var feedRefresh = function(){
+  $("#btn-refresh").click( function(){
+      var feedUpdate = function(feed_id, feed_title){
+        info(feed_title);   // infoの更新
+        $.ajax({
+          url: '/orerss/getFeedData',
+          async: true,
+          type: 'POST',
+          data: {'feed_id':feed_id},
+          dataType: 'json',
+        }).done(function (data){
+
+        }).fail(function (){
+        });
+      };
+
+      // ajaxでfeedのデータを取得
+      var getFeedDatas = function(){
+        $.ajax({
+          url: '/orerss/getFeedData',
+          async: false,
+          type: 'POST',
+          dataType: 'json',
+        }).done(function(data){
+          console.log("success");
+          feedUpdate();
+        }).fail(function(){
+          return null;
+        });   // ajax
+      };
+
+      console.log(feedDatas);
+
+      /*
+      $.ajax({
+        url: '/orerss/updateFeed',
+        async: true,
+        type: 'POST',
+        data: {'feed_id':feed_id},   // feedのURLを引数にする
+        dataType: 'json',
+        success: function(data){
+        }
+      });
+      */
+    }
+  );
 };
 

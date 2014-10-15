@@ -62,14 +62,17 @@ class Controller_Orerss extends Controller{
       return $res;
     }
 
-    // テストコード フィードの更新
-    public function action_updateFeed($feed_id){
-        echo '<pre>';
-        var_dump((new \Model_Rss())->update());
-        echo '</pre>';
+    // feedを更新する - ajax
+    public function post_updateFeed(){
+        $feed_id = Input::post('feed_id');
+        $updated = (new Model_Rss())->update_feed($feed_id);
+        return json_encode(array('update_num' => $updated));
     }
 
-
+    // 全feedの情報を取得 - ajax
+    public function post_getFeedData(){
+        return json_encode(Model_Rss::get_data_for_update());
+    }
 
 }
 

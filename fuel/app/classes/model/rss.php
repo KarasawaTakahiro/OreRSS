@@ -51,13 +51,13 @@ class Model_Rss extends \Model
         1つのfeedを更新する
         新しいitemの総数を返す
     */
-    private function update_feed($feed_id){
+    public function update_feed($feed_id){
         $update_num = 0;    // 新規総数
 
         // idからフィードのURLを取得
         $url = \Model_Feedtbl::get_url_from_id($feed_id);
         if(! $url){
-            return null;
+            return 0;
         }
 
         // フィードの全itemを取得
@@ -74,6 +74,16 @@ class Model_Rss extends \Model
             }
         }
         return $update_num;
+    }
+
+    // feedの更新用のデータを取得
+    public static function get_data_for_update(){
+        $data = array();
+        foreach(Model_Feedtbl::get_all_feed_ids() as $id){
+            $column = Model_Feedtbl::get_all_column_from_id($id);
+            array_push($data, array('id' => $column[0]['id'], 'title' => $column[0]['title']));
+        }
+        return $data;
     }
 
 

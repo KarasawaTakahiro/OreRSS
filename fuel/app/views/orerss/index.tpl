@@ -34,7 +34,7 @@
                             </div>
                             <input type="submit" class="btn btn-default" name="feed_url" value="Append" />
                         </form>
-                        <button type="button" class="btn btn-default navbar-btn navbar-right"><span class="glyphicon glyphicon-refresh"></span></button>
+                        <button type="button" id ="btn-refresh" class="btn btn-default navbar-btn navbar-right"><span class="glyphicon glyphicon-refresh"></span></button>
                     </div><!-- /.navbar-collapse -->
 
                 </div><!-- /.container-fluid -->
