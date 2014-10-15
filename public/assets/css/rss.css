@@ -1,3 +1,69 @@
+#left-pain {
+  background-color: #b2b2b2;
+}
+
+#right-pain {
+  background-color: #b2b2b2;
+}
+
+body{
+  color: #000000;
+  background-color: #b2b2b2;
+}
+
+hr {
+  border-top: 1px solid #e5e5e5;
+  border-bottom: 1px solid #ffffff;
+}
+
 .unread {
   font-weight : bold;
-  }
+}
+
+ul {
+  background-color: #ffffff;
+}
+
+.item-title {
+  width: 550px;
+}
+
+.item-pubDate {
+  width: 150px;
+  color: #c4c4c4;
+}
+
+.item-read {
+  width: 15px;
+  text-align: right;
+}
+
+.item-title>a{
+  color: #ff7b00;
+}
+
+#feed-list-unread {
+  background-color: #ffffff;
+}
+
+#feed-list-unread ul {
+  background-color: #000000;
+}
+
+#feed-list-read {
+  background-color: #ffffff;
+}
+
+#dashboard {
+  background-color: #ffffff;
+  text-align: center;
+}
+
+#feed-list-unread a, #feed-list-read a{
+  color: #ff5400;
+}
+
+#dashboard a{
+  color: #ff0000;
+}
+
