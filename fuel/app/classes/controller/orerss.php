@@ -68,5 +68,10 @@ class Controller_Orerss extends Controller{
         return json_encode(array('update_num' => $updated));
     }
 
+    // Ringからfeedを更新する
+    public function get_updateRing(){
+        (new Model_Rss())->update();
+    }
+
 }
 
