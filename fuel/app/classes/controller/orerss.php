@@ -1,6 +1,7 @@
 <?php
 
-class Controller_Orerss extends Controller{
+class Controller_Orerss extends Controller
+{
 
     // index 兼 Dashboard
     public function action_index(){
@@ -59,6 +60,7 @@ class Controller_Orerss extends Controller{
 
         if($userid){    // ログイン成功
             Session::set('userid', $userid);
+            Session::set('nickname', $nickname);
             Response::redirect('/orerss/');
         }else{                  // ログイン失敗
             Response::redirect('/orerss/login');
@@ -95,6 +97,7 @@ class Controller_Orerss extends Controller{
 
         if($userid != null){    // ログイン成功
             Session::set('userid', $userid);
+            Session::set('nickname', $nickname);
             Response::redirect('/orerss/');
         }else{                  // ログイン失敗
             Response::redirect('/orerss/signup');
