@@ -26,6 +26,8 @@
         {Asset::css('bootstrap.css')}
         {Asset::css('bootstrap-theme.min.css')}
 
+        {Asset::css('login.css')}
+
     </body>
 </html>
 
