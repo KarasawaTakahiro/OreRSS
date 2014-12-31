@@ -67,6 +67,16 @@ class Controller_Orerss extends Controller{
 
     }
 
+    /*
+     * 新規登録
+     */
+    public function get_signup()
+    {
+        $data = array();
+
+        return Response::forge(View_Smarty::forge('orerss/signup', $data));
+    }
+
     // itemに既読をつける - ajax用API
     public function post_markRead($item_id){
       if(0 < \Model_Itemtbl::set_already_read($item_id, true)){
