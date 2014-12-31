@@ -59,12 +59,16 @@ class Model_Feedtbl extends \Model
 
     // 未読を含むフィードリストを返す
     public static function get_feed_list_unread(){
-      $query = \DB::select('id', 'title')->from(TABLE_FEED)
-                                         ->where('exist_unread', '=', true)
-                                         ->order_by('timestamp')
-                                         ->execute();
+        $query = \DB::select('feed.id', 'feed.title')->from('feed')
+                                                     ->join('item')
+                                                     ->on('feed.id', '=', 'item.feed_id')
+                                                     ->join('watch')
+                                                     ->on('watch.item_id', '=', 'item.id')
+                                                     ->where('watched', '=', false)
+                                                     ->group_by('feed.title')
+                                                     ->order_by('watch.modified_at');
 
-      return $query->as_array();
+        var_dump($query->execute()->as_array());
     }
 
     // 既読のみのフィードリストを返す
