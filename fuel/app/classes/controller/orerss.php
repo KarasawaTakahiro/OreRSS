@@ -55,9 +55,9 @@ class Controller_Orerss extends Controller{
     public function post_login(){
 
         // DB問い合わせ
-        $userid = Model_User::login(Input::get('nickname'), Input::get('passwd'));
+        $userid = Model_User::login(Input::post('nickname'), Input::post('passwd'));
 
-        if($userid != null){    // ログイン成功
+        if($userid){    // ログイン成功
             Session::set('userid', $userid);
             Response::redirect('/orerss/');
         }else{                  // ログイン失敗
