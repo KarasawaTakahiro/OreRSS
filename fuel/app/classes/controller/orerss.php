@@ -3,8 +3,8 @@
 class Controller_Orerss extends Controller
 {
 
-    // index 兼 Dashboard
-    public function action_index(){
+    // Dashboard
+    public function get_dashboard(){
         /*
             // feed
             items = array(
