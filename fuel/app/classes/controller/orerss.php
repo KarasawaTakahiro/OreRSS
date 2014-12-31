@@ -49,6 +49,24 @@ class Controller_Orerss extends Controller{
         return Response::forge(View_Smarty::forge('orerss/login', $data));
     }
 
+    /*
+     * ログイン
+     */
+    public function post_login(){
+
+        // DB問い合わせ
+        $userid = Model_User::getUserId(Input::get('nickname'), Input::get('passwd'));
+
+        if($userid != null){    // ログイン成功
+            Session::set('userid', $userid);
+            //Response::redirect('');
+        }else{                  // ログイン成功
+        }
+
+        echo 'fjiwo';
+
+    }
+
     // itemに既読をつける - ajax用API
     public function post_markRead($item_id){
       if(0 < \Model_Itemtbl::set_already_read($item_id, true)){
