@@ -61,7 +61,7 @@ class Controller_Orerss extends Controller
         if($userid){    // ログイン成功
             Session::set('userid', $userid);
             Session::set('nickname', $nickname);
-            Response::redirect('/orerss/');
+            Response::redirect('/orerss/dashboard');
         }else{                  // ログイン失敗
             Response::redirect('/orerss/login');
         }
@@ -98,7 +98,7 @@ class Controller_Orerss extends Controller
         if($userid != null){    // ログイン成功
             Session::set('userid', $userid);
             Session::set('nickname', $nickname);
-            Response::redirect('/orerss/');
+            Response::redirect('/orerss/dashboard');
         }else{                  // ログイン失敗
             Response::redirect('/orerss/signup');
         }
