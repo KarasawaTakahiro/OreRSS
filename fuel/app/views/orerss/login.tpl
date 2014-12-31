@@ -6,7 +6,7 @@
     <body>
         <div class="signin">
             <form class="form-signin" action="/orerss/login" method="POST">
-                <h2 class="form-signin-heading">ログインしてください</h2>
+                <h2 class="form-signin-heading">ログイン</h2>
                 <label for="inputNickname" class="sr-only">ニックネーム</label>
                 <input type="text" id="inputNickname" class="form-control" placeholder="ニックネーム" required autofocus>
                 <label for="inputPassword" class="sr-only">パスワード</label>
@@ -16,7 +16,8 @@
                         <input type="checkbox" value="remember-me">ログインを保存
                     </label>
                 </div>
-                <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+                <button id="btn_login" class="btn btn-lg btn-primary btn-block" type="submit">ログイン</button>
+                <button id="btn_signup" class="btn btn-sm btn-primary btn-block" type="submit">新規登録</button>
             </form>
         </div>
 
@@ -27,6 +28,7 @@
         {Asset::css('bootstrap-theme.min.css')}
 
         {Asset::css('login.css')}
+        {Asset::js('login.js')}
 
     </body>
 </html>
