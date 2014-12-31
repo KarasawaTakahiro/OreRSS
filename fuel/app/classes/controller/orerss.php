@@ -40,6 +40,15 @@ class Controller_Orerss extends Controller{
         return Response::forge(View_Smarty::forge('orerss/index', $data));
     }
 
+    /*
+     * ログインページ
+     */
+    public function get_login(){
+        $data = array();
+
+        return Response::forge(View_Smarty::forge('orerss/login', $data));
+    }
+
     // itemに既読をつける - ajax用API
     public function post_markRead($item_id){
       if(0 < \Model_Itemtbl::set_already_read($item_id, true)){
