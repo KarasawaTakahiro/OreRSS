@@ -81,22 +81,23 @@ class Controller_Orerss extends Controller{
      */
     public function post_signup()
     {
-        $nickname = Input::get('nickname');
-        $passwd = Input::get('passwd');
+        $nickname = Input::post('nickname');
+        $passwd = Input::post('passwd');
+
 
         // DB問い合わせ
-        if(Model_User::isUnique($nickname)){                    // ユニークか
-            Model_User::add($nickname, $passwd);                // 新規登録
-            $userid = Model_User::login($nickname, $passwd);    // ログイン
-            Response::redirect('/orerss/');
-        }else{
-            // リトライ
+        if(Model_User::isUnique($nickname) == false){                    // ユニークか
             Response::redirect('/orerss/signup');
         }
 
+        Model_User::add($nickname, $passwd);                // 新規登録
+        $userid = Model_User::login($nickname, $passwd);    // ログイン
+
         if($userid != null){    // ログイン成功
             Session::set('userid', $userid);
-        }else{                  // ログイン成功
+            Response::redirect('/orerss/');
+        }else{                  // ログイン失敗
+            Response::redirect('/orerss/signup');
         }
     }
 
