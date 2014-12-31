@@ -55,15 +55,14 @@ class Controller_Orerss extends Controller{
     public function post_login(){
 
         // DB問い合わせ
-        $userid = Model_User::getUserId(Input::get('nickname'), Input::get('passwd'));
+        $userid = Model_User::login(Input::get('nickname'), Input::get('passwd'));
 
         if($userid != null){    // ログイン成功
             Session::set('userid', $userid);
-            //Response::redirect('');
-        }else{                  // ログイン成功
+            Response::redirect('/orerss/');
+        }else{                  // ログイン失敗
+            Response::redirect('/orerss/login');
         }
-
-        echo 'fjiwo';
 
     }
 
@@ -75,6 +74,30 @@ class Controller_Orerss extends Controller{
         $data = array();
 
         return Response::forge(View_Smarty::forge('orerss/signup', $data));
+    }
+
+    /*
+     * 新規登録POST
+     */
+    public function post_signup()
+    {
+        $nickname = Input::get('nickname');
+        $passwd = Input::get('passwd');
+
+        // DB問い合わせ
+        if(Model_User::isUnique($nickname)){                    // ユニークか
+            Model_User::add($nickname, $passwd);                // 新規登録
+            $userid = Model_User::login($nickname, $passwd);    // ログイン
+            Response::redirect('/orerss/');
+        }else{
+            // リトライ
+            Response::redirect('/orerss/signup');
+        }
+
+        if($userid != null){    // ログイン成功
+            Session::set('userid', $userid);
+        }else{                  // ログイン成功
+        }
     }
 
     // itemに既読をつける - ajax用API
