@@ -24,7 +24,7 @@ class Controller_Orerss extends Controller
                                  'read'   => Model_Feedtbl::get_feed_list_read($userid),     // 未読を含まない
                                  ),
             // 未読のitem全てのリスト
-            'items'     => Model_Itemtbl::get_all_unread_itemlist(),
+            'items'     => Model_Itemtbl::get_all_unread_itemlist($userid),
         );
 
         return Response::forge(View_Smarty::forge('orerss/index', $data));

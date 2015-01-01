@@ -21,11 +21,12 @@ class Model_Itemtbl extends \Model
     }
 
     // 全ての未読itemをソートして取得
-    public static function get_all_unread_itemlist(){
+    public static function get_all_unread_itemlist($userid){
         $query = \DB::select('item.id', 'title', 'link', 'watched', 'item.pub_date', 'feed_id')
             ->from('watch')
             ->join(TABLE_ITEM)->on('watch.item_id', '=', 'item.id')
                       ->where('watched', '=', false)
+                      ->where('user_id', '=', $userid)
                       ->order_by('item.pub_date')
                       ->execute();
 
