@@ -58,27 +58,66 @@ class Model_Feedtbl extends \Model
     }
 
     // 未読を含むフィードリストを返す
-    public static function get_feed_list_unread(){
+    public static function get_feed_list_unread($userid)
+    {
         $query = \DB::select('feed.id', 'feed.title')->from('feed')
                                                      ->join('item')
                                                      ->on('feed.id', '=', 'item.feed_id')
                                                      ->join('watch')
                                                      ->on('watch.item_id', '=', 'item.id')
+                                                     ->join('user')
+                                                     ->on('user.id', '=', 'watch.user_id')
                                                      ->where('watched', '=', false)
-                                                     ->group_by('feed.title')
+                                                     ->where('user.id', '=', $userid)
+                                                     ->group_by('feed.id')
                                                      ->order_by('watch.modified_at');
 
-        var_dump($query->execute()->as_array());
+        return $query->execute()->as_array();
     }
 
     // 既読のみのフィードリストを返す
-    public static function get_feed_list_read(){
-      $query = \DB::select('id', 'title')->from(TABLE_FEED)
-                                         ->where('exist_unread', '=', false)
-                                         ->order_by('timestamp')
-                                         ->execute();
+    public static function get_feed_list_read($userid){
+        $unwatch = \DB::select('feed.id', 'feed.title')->from('feed')
+                                                     ->join('item')
+                                                     ->on('feed.id', '=', 'item.feed_id')
+                                                     ->join('watch')
+                                                     ->on('watch.item_id', '=', 'item.id')
+                                                     ->join('user')
+                                                     ->on('user.id', '=', 'watch.user_id')
+                                                     ->where('watched', '=', false)
+                                                     ->where('user.id', '=', $userid)
+                                                     ->group_by('feed.id')
+                                                     ->order_by('watch.modified_at')
+                                                     ->execute()
+                                                     ->as_array();
 
-      return $query->as_array();
+        $watched = \DB::select('feed.id', 'feed.title')->from('feed')
+                                                     ->join('item')
+                                                     ->on('feed.id', '=', 'item.feed_id')
+                                                     ->join('watch')
+                                                     ->on('watch.item_id', '=', 'item.id')
+                                                     ->join('user')
+                                                     ->on('user.id', '=', 'watch.user_id')
+                                                     ->where('watched', '=', true)
+                                                     ->where('user.id', '=', $userid)
+                                                     ->group_by('feed.id')
+                                                     ->order_by('watch.modified_at')
+                                                     ->execute()
+                                                     ->as_array();
+
+        $i = 0;
+        foreach($watched as $w){
+            foreach($unwatch as $un){
+                if($w['id'] == $un['id']){
+                    unset($watched[$i]);      // 参照を解除
+                    break;
+                }
+            }
+            $i += 1;
+        }
+
+        return $watched;
+
     }
 
     // idのカラムを未読にする
