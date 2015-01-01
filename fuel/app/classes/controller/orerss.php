@@ -16,10 +16,12 @@ class Controller_Orerss extends Controller
             )
         */
 
+        $userid = Session::get('userid');
+
         $data = array(
             // 取得済みのフィードリスト
-            'feed_list' => array('unread' =>  Model_Feedtbl::get_feed_list_unread(),  // 未読を含む
-                                 'read'   => Model_Feedtbl::get_feed_list_read(),     // 未読を含まない
+            'feed_list' => array('unread' =>  Model_Feedtbl::get_feed_list_unread($userid),  // 未読を含む
+                                 'read'   => Model_Feedtbl::get_feed_list_read($userid),     // 未読を含まない
                                  ),
             // 未読のitem全てのリスト
             'items'     => Model_Itemtbl::get_all_unread_itemlist(),
@@ -29,11 +31,14 @@ class Controller_Orerss extends Controller
     }
 
     // item一覧ページ
-    public function get_feed($feed_id){
+    public function get_feed($feed_id)
+    {
+        $userid = Session::get('userid');
+
         $data = array(
             // 取得済みのフィードリスト
-            'feed_list' => array('unread' =>  Model_Feedtbl::get_feed_list_unread(),
-                                 'read'   => Model_Feedtbl::get_feed_list_read(),
+            'feed_list' => array('unread' =>  Model_Feedtbl::get_feed_list_unread($userid),
+                                 'read'   => Model_Feedtbl::get_feed_list_read($userid),
                                  ),
             // 指定フィードのitemリスト
             'items'     => Model_Url::convert_continuous_playback_url(Model_Itemtbl::get_itemlist_column_from_feed_id($feed_id)),
