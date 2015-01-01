@@ -5,10 +5,21 @@
             <li class="item-title">タイトル</li><li class="item-pubDate">更新日</li><li class="item-read">既読</li>
         </ul>
         -->
+        {*
+        items = array(
+            array(
+                'already_read'  => bool,
+                'id'            => int,
+                'link'          => str,
+                'title'         => str,
+                'pub_date'      => str
+                )
+        )
+        *}
         {foreach $items as $item}
           <ul class="list-inline">
             <li class="item-title">
-            {if $item.already_read == false}
+            {if $item.watched == false}
               <a class="unread" id="{$item.id}"href="{$item.link}" target="_blank" onclick="mark_read(this, {$item.id})">{$item.title}</a>
             {else}
               <a id="{$item.id}" href="{$item.link}" target="_blank">{$item.title}</a>
