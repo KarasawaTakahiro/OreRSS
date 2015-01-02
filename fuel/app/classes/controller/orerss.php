@@ -112,11 +112,12 @@ class Controller_Orerss extends Controller
 
     // itemに既読をつける - ajax用API
     public function post_markRead($item_id){
-      if(0 < \Model_Itemtbl::set_already_read($item_id, true)){
-        return true;
-      }else{
-        return false;
-      }
+        $userid = Session::get('userid');
+        if(0 < \Model_Watch::set_watched($userid, $item_id)){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     // automark用 既読にする - ajax用API

@@ -15,4 +15,17 @@ class Model_Watch extends \Model
         $num = $query->execute();
         return $num;
     }
+
+    /*
+     * 既読をつける
+     *
+     * 既読をつけた数を返す
+     */
+    public static function set_watched($userId, $itemId)
+    {
+        return \DB::update(TABLE_WATCH)->value('watched', true)
+            ->where('user_id', '=', $userId)
+            ->where('item_id', '=', $itemId)
+            ->execute();
+    }
 }
