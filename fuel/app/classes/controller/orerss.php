@@ -59,9 +59,10 @@ class Controller_Orerss extends Controller
      * ログイン
      */
     public function post_login(){
+        $nickname = Input::post('nickname');
 
         // DB問い合わせ
-        $userid = Model_User::login(Input::post('nickname'), Input::post('passwd'));
+        $userid = Model_User::login($nickname, Input::post('passwd'));
 
         if($userid){    // ログイン成功
             Session::set('userid', $userid);
@@ -127,7 +128,9 @@ class Controller_Orerss extends Controller
     // フィードの新規登録 - ajax用API
     public function post_registNewFeed(){
       $feed_url = Input::post('url');
-      $res = json_encode((new \Model_Rss())->regist_new_feed($feed_url));
+      $userId = Session::get('userid');
+
+      $res = json_encode((new \Model_Rss())->regist_new_feed($userId, $feed_url));
       return $res;
     }
 
