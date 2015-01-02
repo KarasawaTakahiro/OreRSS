@@ -22,7 +22,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="/orerss">俺RSS</a>
+                        <a class="navbar-brand" href="/orerss">俺RSS => {$nickname}RSS</a>
                     </div>
 
                     <!-- グローバルナビの中身 -->

@@ -54,4 +54,22 @@ class Model_User extends \Model
         }
     }
 
+    /*
+     * ニックネームを得る
+     */
+    public static function get_nickname($id)
+    {
+        $query = \DB::select('nickname')->from('user')
+            ->where('id', '=', $id)
+            ->execute()
+            ->as_array();
+
+        if(count($query) < 1){
+            return null;
+        }else{
+            return $query[0]['nickname'];
+        }
+
+    }
+
 }

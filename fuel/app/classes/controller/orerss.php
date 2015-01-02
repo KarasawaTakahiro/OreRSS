@@ -25,6 +25,7 @@ class Controller_Orerss extends Controller
                                  ),
             // 未読のitem全てのリスト
             'items'     => Model_Itemtbl::get_all_unread_itemlist($userid),
+            'nickname'  => Model_User::get_nickname($userid),
         );
 
         return Response::forge(View_Smarty::forge('orerss/index', $data));
@@ -42,6 +43,7 @@ class Controller_Orerss extends Controller
                                  ),
             // 指定フィードのitemリスト
             'items'     => Model_Url::convert_continuous_playback_url(Model_Itemtbl::get_itemlist_column_from_feed_id_with_watched($feed_id, $userid)),
+            'nickname'  => Model_User::get_nickname($userid),
         );
         return Response::forge(View_Smarty::forge('orerss/index', $data));
     }
