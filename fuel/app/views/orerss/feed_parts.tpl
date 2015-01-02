@@ -8,11 +8,11 @@
         {*
         items = array(
             array(
-                'already_read'  => bool,
-                'id'            => int,
-                'link'          => str,
-                'title'         => str,
-                'pub_date'      => str
+                'watched'   => bool,
+                'id'        => int,
+                'link'      => str,
+                'title'     => str,
+                'pub_date'  => str
                 )
         )
         *}

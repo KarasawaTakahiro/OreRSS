@@ -108,7 +108,7 @@ class Model_Rss extends \Model
         フィードが登録済み
     */
     public static function is_registered_feed($rss_url){
-        $id = \Model_Feedtbl::get_id_from_url($rss_url);
+        $id = \Model_Feedtbl::get_id_from_url(self::convert_url($rss_url));
 
         if($id == null){
             return false;

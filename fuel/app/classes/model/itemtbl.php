@@ -10,13 +10,30 @@ class Model_Itemtbl extends \Model
         return $query->execute()->as_array();
     }
 
-    // フィードに属するitemをソートして取得する
-    public static function get_itemlist_column_from_feed_id($feed_id){
-        $query = \DB::select('id', 'title', 'link', 'modified_at', 'pub_date', 'feed_id', 'guid')
+    /*
+     * フィードに属するitemをソートして取得する
+     */
+    public static function get_itemlist_column_from_feed_id($feed_id)
+    {
+        $query = \DB::select('item.id', 'title', 'link', 'item.modified_at', 'item.pub_date', 'feed_id', 'guid')
                       ->from(TABLE_ITEM)
                       ->where('feed_id', '=', $feed_id)
                       ->order_by('pub_date', 'desc')
                       ->execute();
+        return $query->as_array();
+    }
+
+    /*
+     * フィードに属するitemをソートして取得する
+     */
+    public static function get_itemlist_column_from_feed_id_with_watched($feed_id, $userid) {
+        $query = \DB::select('item.id', 'title', 'link', 'item.modified_at', 'item.pub_date', 'feed_id', 'guid', 'watched')
+            ->from(TABLE_ITEM)
+            ->join('watch')->on('watch.item_id', '=', 'item.id')
+            ->where('feed_id', '=', $feed_id)
+            ->where('watch.user_id', '=', $userid)
+            ->order_by('pub_date', 'desc')
+            ->execute();
         return $query->as_array();
     }
 
@@ -25,10 +42,10 @@ class Model_Itemtbl extends \Model
         $query = \DB::select('item.id', 'title', 'link', 'watched', 'item.pub_date', 'feed_id')
             ->from('watch')
             ->join(TABLE_ITEM)->on('watch.item_id', '=', 'item.id')
-                      ->where('watched', '=', false)
-                      ->where('user_id', '=', $userid)
-                      ->order_by('item.pub_date')
-                      ->execute();
+            ->where('watched', '=', false)
+            ->where('user_id', '=', $userid)
+            ->order_by('item.pub_date')
+            ->execute();
 
         $res = array();
         foreach($query->as_array() as &$item){
