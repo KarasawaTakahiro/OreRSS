@@ -10,29 +10,42 @@ class Model_Rss extends \Model
     /*
         マイリストのURLをもらって、feedとitemを登録する
     */
-    public function regist_new_feed($url){
+    public function regist_new_feed($userId, $url){
         $feed_url = self::convert_url($url);
         $feed = self::get_feed($feed_url);
-        $feed_data = self::parse($feed);
 
-        // 既に登録済み
-        if(self::is_registered_feed($feed_url)){
-            return null;
-        }
 
         // feedの新規登録
-        \Model_Feedtbl::set($feed_url, $feed_data->title);
-        $id = \Model_Feedtbl::get_id_from_url($feed_url);
-        if($id == null){
-            // DBから参照失敗
-            return null;
-        }
-        // itemの新規登録
-        foreach($feed_data->item as $item){
-            self::regist_item($id, $item->title, $item->link, $item->pubDate, $item->guid);
+        if(self::is_registered_feed($feed_url) == false){
+            // 未登録の時
+            $feed_channel = self::parse($feed);
+            \Model_Feedtbl::set($feed_url, $feed_channel->title);
+            $id = \Model_Feedtbl::get_id_from_url($feed_url);       // feedのidを取得
+            if($id == null) return null;                            // DBから参照失敗
+
+            foreach($feed_channel->item as $item){
+                // itemの新規登録
+                $itemId = self::regist_item($id, $item->title, $item->link, $item->pubDate, $item->guid);
+                // 視聴情報の登録
+                Model_Watch::add($itemId, $userId);
+            }
+            return array('title' => $feed_channel->title, 'id' => $id);
+        }else{
+            // マイリストが登録済み
+            $id = \Model_Feedtbl::get_id_from_url($feed_url);       // feedのidを取得
+            $feed_channel = \Model_Rss::get_localdata_channel_format($id);
+
+            if($id == null) return null;                            // DBから参照失敗
+
+            foreach($feed_channel['item'] as $item){
+                // itemの新規登録
+                $itemId = self::regist_item($id, $item['title'], $item['link'], $item['pub_date'], $item['guid']);
+                // 視聴情報の登録
+                Model_Watch::add($itemId, $userId);
+            }
+            return array('title' => $feed_channel['title'], 'id' => $id);
         }
 
-        return array('title' => $feed_data->title, 'id' => $id);
     }
 
     /*
@@ -184,13 +197,28 @@ class Model_Rss extends \Model
 
     /*
         itemを登録する
+
+        登録に成功したらidを返す
     */
     private function regist_item($feed_id, $title, $link, $pubDate, $guid){
-            \Model_Itemtbl::set($title, $link, self::convert_datetime($pubDate), $feed_id, $guid);
-            \Model_Feedtbl::set_unread($feed_id);
+        // itemを新規登録
+        if(\Model_Itemtbl::set($title, $link, self::convert_datetime($pubDate), $feed_id, $guid)){
 
+            return \Model_Itemtbl::get_id_from_guid($guid);     // idを返す
+        }else{
+            return null;
+        }
     }
 
+    /*
+     * DBの情報をRSS2.0のchannel風にして返す
+     */
+    public static function get_localdata_channel_format($feedId)
+    {
+        $res = Model_Feedtbl::get_all_column_from_id($feedId)[0];
+        $res['item'] = Model_itemtbl::get_itemlist_column_from_feed_id($feedId);
+        return $res;
+    }
 
 
 }

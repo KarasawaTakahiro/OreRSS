@@ -12,7 +12,7 @@ class Model_Itemtbl extends \Model
 
     // フィードに属するitemをソートして取得する
     public static function get_itemlist_column_from_feed_id($feed_id){
-        $query = \DB::select('id', 'title', 'link', 'already_read', 'pub_date', 'feed_id')
+        $query = \DB::select('id', 'title', 'link', 'modified_at', 'pub_date', 'feed_id', 'guid')
                       ->from(TABLE_ITEM)
                       ->where('feed_id', '=', $feed_id)
                       ->order_by('pub_date', 'desc')
@@ -72,7 +72,7 @@ class Model_Itemtbl extends \Model
         $num = $query->execute();
 
         // feedの情報を変更
-        Model_Feedtbl::set_unread($feed_id);
+        //Model_Feedtbl::set_unread($feed_id);
 
         return $num;
     }
@@ -118,6 +118,19 @@ class Model_Itemtbl extends \Model
       }
       return $res;
 
+    }
+
+    // idを得る
+    public static function get_id_from_guid($guid)
+    {
+        $query = \DB::select('id')->from(TABLE_ITEM)
+            ->where('guid', '=', $guid)
+            ->execute();
+        if(count($query) < 1){
+            return null;
+        }else{
+            return $query[0]['id'];
+        }
     }
 
 }
