@@ -20,12 +20,14 @@ class Model_Rss extends \Model
             return null;
         }
 
+        // feedの新規登録
         \Model_Feedtbl::set($feed_url, $feed_data->title);
         $id = \Model_Feedtbl::get_id_from_url($feed_url);
         if($id == null){
             // DBから参照失敗
             return null;
         }
+        // itemの新規登録
         foreach($feed_data->item as $item){
             self::regist_item($id, $item->title, $item->link, $item->pubDate, $item->guid);
         }
