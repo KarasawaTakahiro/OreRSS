@@ -25,5 +25,31 @@ class Model_Pull extends \Model
             'pub_date'  => Date::time()->format('mysql'),
         ))->execute();
     }
+
+    /*
+     * 指定したfeedを購読しているユーザの情報を返す
+     */
+    public static function get_pull_users($feedid, $userid)
+    {
+        $query = \DB::select('nickname', 'user.id')->from('pull')
+            ->join('feed')->on('feed.id', '=', 'pull.feed_id')
+            ->join('user')->on('user.id', '=', 'pull.user_id')
+            ->where('pull.feed_id', '=', $feedid)
+            ->execute()
+            ->as_array();
+
+        $res = array();
+        foreach($query as $col){
+            if($col['id'] != $userid){
+                $user = array(
+                    'nickname'  => $col['nickname'],
+                    'id'        => $col['id']
+                );
+                array_push($res, $user);
+            }
+        }
+
+        return $res;
+    }
 }
 
