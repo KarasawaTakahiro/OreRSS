@@ -22,6 +22,7 @@ class Model_Rss extends \Model
             \Model_Feedtbl::set($feed_url, $feed_channel->title);
             $id = \Model_Feedtbl::get_id_from_url($feed_url);       // feedのidを取得
             if($id == null) return null;                            // DBから参照失敗
+            Model_Pull::add($id, $userId);
 
             foreach($feed_channel->item as $item){
                 // itemの新規登録
@@ -36,6 +37,7 @@ class Model_Rss extends \Model
             $feed_channel = \Model_Rss::get_localdata_channel_format($id);
 
             if($id == null) return null;                            // DBから参照失敗
+            Model_Pull::add($id, $userId);
 
             foreach($feed_channel['item'] as $item){
                 // itemの新規登録
