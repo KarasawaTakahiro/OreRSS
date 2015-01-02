@@ -122,7 +122,7 @@ class Controller_Orerss extends Controller
 
     // automark用 既読にする - ajax用API
     public function post_automarkRead($feed_id, $item_id){
-      $changed = \Model_Itemtbl::setRead($feed_id, $item_id);
+      $changed = \Model_Itemtbl::setRead($feed_id, $item_id, Session::get('userid'));
       return json_encode($changed);
     }
 

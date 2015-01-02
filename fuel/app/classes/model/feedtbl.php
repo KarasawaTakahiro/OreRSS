@@ -128,8 +128,11 @@ class Model_Feedtbl extends \Model
 
     // idのカラムを既読にする
     public static function set_already_read($id){
+        /*
         $query = \DB::update(TABLE_FEED)->value('exist_unread', false)->where('id', '=', $id);
         return $query->execute();
+         */
+        return null;
     }
 
     // ルールに従ってソートしたフィードリストを返す

@@ -95,15 +95,22 @@ class Model_Itemtbl extends \Model
     }
 
     //  idの既読情報を既読にする
-    public static function set_already_read($id){
-      $query = \DB::update(TABLE_ITEM)->value('already_read', true)
-                                      ->where('id', '=', $id);
+    public static function set_already_read($id, $userid)
+    {
+        $query = \DB::update(TABLE_ITEM)
+            ->join('watch')->on('watch.item_id', '=', 'item.id')
+            ->value('watched', true)
+            ->where('item.id', '=', $id);
       $num = $query->execute();
 
       if(0 < $num){
         // feedの未読が0ならfeedの既読値を変更
         $feed_id = self::get_feed_id($id);
-        $query = \DB::select()->from(TABLE_ITEM)->where('already_read', false)->execute();
+        $query = \DB::select()->from(TABLE_ITEM)
+            ->join('watch')->on('watch.item_id', '=', 'item.id')
+            ->where('watched', '=', false)
+            ->where('user_id', '=', $userid)
+            ->execute();
         if(count($query->as_array() === 0)){
           Model_Feedtbl::set_already_read($feed_id);
         }
@@ -116,24 +123,26 @@ class Model_Itemtbl extends \Model
     }
 
     // 指定のitemよりも古い物を全て見たとする
-    public static function setRead($feed_id, $item_id){
-      // 指定itemのpubDateを取得する
-      $pub_date = \DB::select('pub_date')->from(TABLE_ITEM)->where('id', '=', $item_id)
-        ->execute()[0]['pub_date'];
-      // 対象となるカラムを取得
-      $query = \DB::select('id', 'title', 'pub_date')->from(TABLE_ITEM)
-        ->where('feed_id', '=', $feed_id)
-        ->where('pub_date', '<=', $pub_date)
-        ->where('already_read', '=', false)
-        ->execute();
+    public static function setRead($feed_id, $item_id, $userid){
+        // 指定itemのpubDateを取得する
+        $pub_date = \DB::select('pub_date')->from(TABLE_ITEM)->where('id', '=', $item_id)
+            ->execute()[0]['pub_date'];
+        // 対象となるカラムを取得
+        $query = \DB::select('item.id', 'item.title', 'item.pub_date')->from(TABLE_ITEM)
+            ->join('watch')->on('watch.item_id', '=','item.id')
+            ->where('feed_id', '=', $feed_id)
+            ->where('item.pub_date', '<=', $pub_date)
+            ->where('watched', '=', false)
+            ->where('user_id', '=', $userid)
+            ->execute();
 
-      // 情報の書き換え
-      $res = array();
-      foreach($query->as_array() as $col){
-        \Model_Itemtbl::set_already_read($col['id'], true);
-        array_push($res, $col['id']);
-      }
-      return $res;
+        // 情報の書き換え
+        $res = array();
+        foreach($query->as_array() as $col){
+            \Model_Itemtbl::set_already_read($col['id'], $userid);
+            array_push($res, $col['id']);
+        }
+        return $res;
 
     }
 
