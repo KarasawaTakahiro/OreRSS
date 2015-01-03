@@ -89,6 +89,20 @@ class Controller_Orerss extends Controller
     }
 
     /*
+     * ユーザページ
+     */
+    public function get_user($vuserid)
+    {
+        $userid = Session::get('userid');
+
+        $data = array();
+        $data['mylists'] = Model_Feedtbl::get_user_pull($vuserid);
+        $data['nickname'] = Model_User::get_nickname($userid);
+
+        return Response::forge(View_Smarty::forge('orerss/user', $data));
+    }
+
+    /*
      * 新規登録POST
      */
     public function post_signup()
