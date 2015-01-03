@@ -103,6 +103,15 @@ class Controller_Orerss extends Controller
     }
 
     /*
+     * ログアウト
+     */
+    public function get_logout()
+    {
+        Session::delete('userid');
+        Response::redirect('/orerss/login');
+    }
+
+    /*
      * 新規登録POST
      */
     public function post_signup()
