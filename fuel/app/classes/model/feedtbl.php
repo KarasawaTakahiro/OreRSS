@@ -143,6 +143,22 @@ class Model_Feedtbl extends \Model
         return $query->execute()->as_array();
     }
 
+    /*
+     * 指定ユーザが購読しているfeedを返す
+     * タイトルとfeedid
+     */
+    public static function get_user_pull($userid)
+    {
+        $query = \DB::select('feed.id', 'feed.title')->from('feed')
+            ->join('pull')->on('feed.id', '=', 'pull.feed_id')
+            ->join('user')->on('user.id', '=', 'pull.user_id')
+            ->where('user.id', '=', $userid)
+            ->execute()
+            ->as_array();
+
+        return $query;
+    }
+
 
 }
 
