@@ -67,7 +67,9 @@ class Controller_Orerss extends Controller_Template
             'userlist'  => Model_Pull::get_pull_users($feed_id, $userid),
         );
 
-        return Response::forge(View_Smarty::forge('orerss/feed', $data));
+        $this->template->nickname = null;
+        $this->template->contents = View_Smarty::forge('orerss/feed', $data);
+        $this->template->assets = '';
     }
 
     /*
@@ -75,7 +77,10 @@ class Controller_Orerss extends Controller_Template
      */
     public function get_login(){
         $data = array();
-        return Response::forge(View_Smarty::forge('orerss/login', $data));
+
+        $this->template->nickname = null;
+        $this->template->contents = View_Smarty::forge('orerss/login', $data);
+        $this->template->assets = '';
     }
 
     /*
@@ -84,7 +89,10 @@ class Controller_Orerss extends Controller_Template
     public function get_signup()
     {
         $data = array();
-        return Response::forge(View_Smarty::forge('orerss/signup', $data));
+
+        $this->template->nickname = null;
+        $this->template->contents = View_Smarty::forge('orerss/signup', $data);
+        $this->template->assets = '';
     }
 
     /*
@@ -98,7 +106,9 @@ class Controller_Orerss extends Controller_Template
         $data['mylists'] = Model_Feedtbl::get_user_pull($vuserid);
         $data['nickname'] = Model_User::get_nickname($userid);
 
-        return Response::forge(View_Smarty::forge('orerss/user', $data));
+        $this->template->nickname = null;
+        $this->template->contents = View_Smarty::forge('orerss/user', $data);
+        $this->template->assets = '';
     }
 
     /*

@@ -1,10 +1,4 @@
 
-<!DOCTYPE html>
-
-<html lang="ja">
-    <head>
-    </head>
-    <body>
         <div class="signin">
             <form class="form-signin" action="/orerss/signup" method="POST">
                 <h2 class="form-signin-heading">新規登録</h2>
@@ -35,7 +29,4 @@
 
         {Asset::css('login.css')}
         {Asset::js('login.js')}
-
-    </body>
-</html>
 

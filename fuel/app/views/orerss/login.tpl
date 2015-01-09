@@ -1,9 +1,3 @@
-<!DOCTYPE html>
-
-<html lang="ja">
-    <head>
-    </head>
-    <body>
         <div class="signin">
             <form class="form-signin" action="/orerss/login" method="POST">
                 <h2 class="form-signin-heading">ログイン</h2>
@@ -34,6 +28,4 @@
         {Asset::css('login.css')}
         {Asset::js('login.js')}
 
-    </body>
-</html>
 
