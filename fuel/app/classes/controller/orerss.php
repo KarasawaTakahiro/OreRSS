@@ -39,7 +39,7 @@ class Controller_Orerss extends Controller
             'nickname'  => Model_User::get_nickname($userid),
         );
 
-        return Response::forge(View_Smarty::forge('orerss/index', $data));
+        return Response::forge(View_Smarty::forge('orerss/dashboard', $data));
     }
 
     /*
