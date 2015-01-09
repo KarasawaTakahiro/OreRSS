@@ -3,6 +3,11 @@
 class Controller_Orerss extends Controller
 {
 
+    public function get_index()
+    {
+        Response::redirect('/orerss/login');
+    }
+
     // Dashboard
     public function get_dashboard(){
         /*
