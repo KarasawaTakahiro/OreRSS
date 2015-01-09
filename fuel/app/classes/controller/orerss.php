@@ -1,6 +1,6 @@
 <?php
 
-class Controller_Orerss extends Controller
+class Controller_Orerss extends Controller_Template
 {
 
     /*
@@ -8,6 +8,9 @@ class Controller_Orerss extends Controller
      */
     public function get_index()
     {
+        $this->template->nickname = null;
+        $this->template->contents = '';
+        $this->template->assets = '';
         Response::redirect('/orerss/login');
     }
 
@@ -39,7 +42,9 @@ class Controller_Orerss extends Controller
             'nickname'  => Model_User::get_nickname($userid),
         );
 
-        return Response::forge(View_Smarty::forge('orerss/dashboard', $data));
+        $this->template->nickname = null;
+        $this->template->contents = View_Smarty::forge('orerss/dashboard', $data);
+        $this->template->assets = '';
     }
 
     /*
