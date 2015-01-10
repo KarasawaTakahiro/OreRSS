@@ -1,19 +1,15 @@
-
 <!DOCTYPE html>
 <html lang="ja">
     <head>
         <meta charset="utf-8" />
-
         <title>俺RSS</title>
     </head>
 
     <body>
-
         <!-- header -->
         <header>
             <nav class="navbar navbar-default" role="navigation">
                 <div class="container-fluid">
-
                     <!-- スマホサイズで表示される -->
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">

@@ -1,6 +1,6 @@
 
                         <div id="dashboard">
-                          <p><b><a href="/orerss">Dash Board</a></b></p>
+                          <p><b><a href="/orerss/dashboard">Dash Board</a></b></p>
                         </div>
                         <div id="feed-list-unread">
                           {foreach $feed_list_unread as $feed}

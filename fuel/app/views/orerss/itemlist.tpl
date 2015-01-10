@@ -1,10 +1,5 @@
 <div class="row">
   <div class="col-md-8 col-lg-12" id="right-pain">
-        <!--
-        <ul class="list-inline">
-            <li class="item-title">タイトル</li><li class="item-pubDate">更新日</li><li class="item-read">既読</li>
-        </ul>
-        -->
         {*
         items = array(
             array(
