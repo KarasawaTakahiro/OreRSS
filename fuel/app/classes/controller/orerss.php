@@ -3,6 +3,8 @@
 class Controller_Orerss extends Controller_Template
 {
 
+// --- get ----------------------------------------------------------------------------
+
     /*
      * インデックスページ
      */
@@ -18,19 +20,16 @@ class Controller_Orerss extends Controller_Template
      * dashboard
      * 未視聴動画一覧ページ
      * ログイン後はここに飛ぶ
+     *      // feed
+     *      items = array(
+     *          // 1 item
+     *          array(
+     *              title=>'', link='', already_read=bool, pub_date='', 
+     *          ),
+     *          array(...),
+     *      )
      */
     public function get_dashboard(){
-        /*
-            // feed
-            items = array(
-                // 1 item
-                array(
-                    title=>'', link='', already_read=bool, pub_date='', 
-                ),
-                array(...),
-            )
-        */
-
         $userid = Session::get('userid');
 
         $data = array(
@@ -43,7 +42,7 @@ class Controller_Orerss extends Controller_Template
         );
 
 
-        $this->template->nickname = null;
+        $this->template->nickname = $this->help_nickname();
         $this->template->contents = View_Smarty::forge('orerss/dashboard', $data);
         $this->template->js = array('jquery-2.1.1.min.js', 'bootstrap.min.js', 'rss.js');
         $this->template->css = array('bootstrap.min.css', 'bootstrap.min.css', 'rss.css');
@@ -70,7 +69,7 @@ class Controller_Orerss extends Controller_Template
             'userlist'  => Model_Pull::get_pull_users($feed_id, $userid),
         );
 
-        $this->template->nickname = null;
+        $this->template->nickname = $this->help_nickname();
         $this->template->contents = View_Smarty::forge('orerss/feed', $data);
         $this->template->js = array('jquery-2.1.1.min.js', 'bootstrap.min.js', 'rss.js');
         $this->template->css = array('bootstrap.min.css', 'bootstrap.min.css', 'rss.css');
@@ -82,7 +81,7 @@ class Controller_Orerss extends Controller_Template
     public function get_login(){
         $data = array();
 
-        $this->template->nickname = null;
+        $this->template->nickname = $this->help_nickname();
         $this->template->contents = View_Smarty::forge('orerss/login', $data);
         $this->template->js = array('jquery-2.1.1.min.js', 'bootstrap.min.js');
         $this->template->css = array('bootstrap.min.css', 'bootstrap.min.css');
@@ -95,7 +94,7 @@ class Controller_Orerss extends Controller_Template
     {
         $data = array();
 
-        $this->template->nickname = null;
+        $this->template->nickname = $this->help_nickname();
         $this->template->contents = View_Smarty::forge('orerss/signup', $data);
         $this->template->js = array('jquery-2.1.1.min.js', 'bootstrap.min.js');
         $this->template->css = array('bootstrap.min.css', 'bootstrap.min.css');
@@ -112,7 +111,7 @@ class Controller_Orerss extends Controller_Template
         $data['mylists'] = Model_Feedtbl::get_user_pull($vuserid);
         $data['nickname'] = Model_User::get_nickname($userid);
 
-        $this->template->nickname = null;
+        $this->template->nickname = $this->help_nickname();
         $this->template->contents = View_Smarty::forge('orerss/user', $data);
         $this->template->js = array('jquery-2.1.1.min.js', 'bootstrap.min.js');
         $this->template->css = array('bootstrap.min.css', 'bootstrap.min.css');
@@ -223,7 +222,17 @@ class Controller_Orerss extends Controller_Template
     }
 
 // --- help ---------------------------------------------------------------------
-    
+
+    /*
+     * セッションからユーザIDを取得してニックネームを取得する
+     */
+    private function help_nickname(){
+        if(Session::get('userid') != null){
+            return Model_User::get_nickname(Session::get('userid'));
+        }else{
+            return null;
+        }
+    }
 
 }
 
