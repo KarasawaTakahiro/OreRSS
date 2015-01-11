@@ -58,7 +58,7 @@ class Model_Rss extends \Model
         $num = 0;   // 新規総数
         // DBから全てのフィードのidを取得
         foreach(\Model_Feedtbl::get_all_feed_ids() as $feed_id){
-            $num += self::update_feed($feed_id);    // フィードを更新
+            $res = self::update_feed($feed_id);     // フィードを更新
         }
 
         return $num;
@@ -77,8 +77,9 @@ class Model_Rss extends \Model
             return 0;
         }
 
-        // フィードの全itemを取得
-        $items = self::get_items(self::get_feed($url));
+        $res = self::get_feed($url);        // フィードの全itemを取得
+        if($res == null) return 0;          // フィードが404
+        $items = self::get_items($res);     // フィードの取得が成功
 
         foreach($items as $item){
             if(self::is_registered_item_at($url, $item->guid)){
@@ -167,15 +168,24 @@ class Model_Rss extends \Model
 
     /*
         RSS URLを元にfeedのデータを取得する
+        データの取得に失敗した場合はnullを返す
     */
     private function get_feed($rssurl){
         $context = stream_context_create(array(
             'http'=>array(
-                'user_agent' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.143 Safari/537.36'
+                'user_agent' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.143 Safari/537.36',
+                'ignore_errors' => true,
                 )
             )
         );
-        return file_get_contents($rssurl, false, $context);
+        $content = file_get_contents($rssurl, false, $context);
+
+        $pos = strpos($http_response_header[0], '404');
+        if($pos !== false){     // 404
+            return null;
+        }else{                  // 404じゃない時
+            return $content;
+        }
     }
 
     /*
