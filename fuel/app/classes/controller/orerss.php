@@ -29,7 +29,10 @@ class Controller_Orerss extends Controller_Template
      *          array(...),
      *      )
      */
-    public function get_dashboard(){
+    public function get_dashboard()
+    {
+        self::help_isLogin();
+
         $userid = Session::get('userid');
 
         $data = array(
@@ -38,7 +41,7 @@ class Controller_Orerss extends Controller_Template
                                  'read'   => Model_Feedtbl::get_feed_list_read($userid),        // 未読を含まない
                                  ),
             'items'     => Model_Itemtbl::get_all_unread_itemlist($userid),                     // 未読のitem全てのリスト
-            'nickname'  => Model_User::get_nickname($userid),
+            'nickname'  => help_nickname(),
         );
 
 
@@ -56,6 +59,8 @@ class Controller_Orerss extends Controller_Template
      */
     public function get_feed($feed_id)
     {
+        self::help_isLogin();
+
         $userid = Session::get('userid');
 
         $data = array(
@@ -65,7 +70,7 @@ class Controller_Orerss extends Controller_Template
                                  ),
             // 指定フィードのitemリスト
             'items'     => Model_Url::convert_continuous_playback_url(Model_Itemtbl::get_itemlist_column_from_feed_id_with_watched($feed_id, $userid)),
-            'nickname'  => Model_User::get_nickname($userid),
+            'nickname'  => help_nickname(),
             'userlist'  => Model_Pull::get_pull_users($feed_id, $userid),
         );
 
@@ -78,7 +83,9 @@ class Controller_Orerss extends Controller_Template
     /*
      * ログインページ
      */
-    public function get_login(){
+    public function get_login()
+    {
+        self::help_isLogout();
         $data = array();
 
         $this->template->nickname = $this->help_nickname();
@@ -92,6 +99,7 @@ class Controller_Orerss extends Controller_Template
      */
     public function get_signup()
     {
+        self::help_isLogout();
         $data = array();
 
         $this->template->nickname = $this->help_nickname();
@@ -105,6 +113,8 @@ class Controller_Orerss extends Controller_Template
      */
     public function get_user($vuserid)
     {
+        self::help_isLogin();
+
         $userid = Session::get('userid');
 
         $data = array();
@@ -231,6 +241,26 @@ class Controller_Orerss extends Controller_Template
             return Model_User::get_nickname(Session::get('userid'));
         }else{
             return null;
+        }
+    }
+
+    /*
+     * ログイン状態でアクセスすべきページで呼ぶ
+     */
+    private function help_isLogin()
+    {
+        if(Session::get('userid') == null){
+            Response::redirect('/orerss/login');
+        }
+    }
+
+    /*
+     * ログアウト状態でアクセスすべきページで呼ぶ
+     */
+    private function help_isLogout()
+    {
+        if(Session::get('userid') != null){
+            Response::redirect('/orerss/logout');
         }
     }
 
