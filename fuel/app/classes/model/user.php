@@ -44,7 +44,7 @@ class Model_User extends \Model
                               ->where('nickname', '=', $nickname);
         $res = $query->execute();                           // クエリを実行
 
-        if($res == null) return null;                       // DBにない
+        if(count($res) == 0) return null;                   // DBにない
 
         $arr = $res->as_array();                            // 配列化
         if(password_verify($passwd, $arr[0]['passwd'])){    // passwdの照合
