@@ -14,7 +14,6 @@ class Model_Rss extends \Model
         $feed_url = self::convert_url($url);
         $feed = self::get_feed($feed_url);
 
-
         // feedの新規登録
         if(self::is_registered_feed($feed_url) == false){
             // 未登録の時
@@ -22,8 +21,8 @@ class Model_Rss extends \Model
             \Model_Feedtbl::set($feed_url, $feed_channel->title);
             $id = \Model_Feedtbl::get_id_from_url($feed_url);       // feedのidを取得
             if($id == null) return null;                            // DBから参照失敗
-            Model_Pull::add($id, $userId);
 
+            Model_Pull::add($id, $userId);
             foreach($feed_channel->item as $item){
                 // itemの新規登録
                 $itemId = self::regist_item($id, $item->title, $item->link, $item->pubDate, $item->guid);
@@ -31,21 +30,21 @@ class Model_Rss extends \Model
                 Model_Watch::add($itemId, $userId);
             }
             return array('title' => $feed_channel->title, 'id' => $id);
-        }else{
-            // マイリストが登録済み
+        }else{      // マイリストがシステムに登録済み
             $id = \Model_Feedtbl::get_id_from_url($feed_url);       // feedのidを取得
-            $feed_channel = \Model_Rss::get_localdata_channel_format($id);
-
             if($id == null) return null;                            // DBから参照失敗
-            Model_Pull::add($id, $userId);
+            if(Model_Pull::is_pull($userId, $id))return  array();   // 購読済みかどうか
 
-            foreach($feed_channel['item'] as $item){
+            $feed_channel = \Model_Rss::get_localdata_channel_format($id);  // ローカルのデータを取得
+            if($feed_channel == null) return null;                  // 参照失敗
+            Model_Pull::add($id, $userId);                          // 購読
+            foreach($feed_channel['item'] as $item){                // 動画情報を登録
                 // itemの新規登録
                 $itemId = self::regist_item($id, $item['title'], $item['link'], $item['pub_date'], $item['guid']);
                 // 視聴情報の登録
                 Model_Watch::add($itemId, $userId);
             }
-            return array('title' => $feed_channel['title'], 'id' => $id);
+            return array('title' => array($feed_channel['title']), 'id' => $id);
         }
 
     }
@@ -104,9 +103,8 @@ class Model_Rss extends \Model
         return $data;
     }
 
-
     /*
-        フィードが登録済み
+        フィードがローカルに登録済みか
     */
     public static function is_registered_feed($rss_url){
         $id = \Model_Feedtbl::get_id_from_url(self::convert_url($rss_url));

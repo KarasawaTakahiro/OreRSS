@@ -51,5 +51,24 @@ class Model_Pull extends \Model
 
         return $res;
     }
+
+    /*
+     * ユーザがフィードを購読しているか
+     */
+    public static function is_pull($userid, $feedid)
+    {
+        $query = \DB::select()->from('pull')
+            ->where('feed_id', '=', $feedid)
+            ->where('user_id', '=', $userid)
+            ->execute()
+            ->as_array();
+
+        if(count($query) == 0){
+            return false;
+        }else{
+            return true;
+        }
+    }
+
 }
 
