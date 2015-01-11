@@ -42,9 +42,11 @@ class Controller_Orerss extends Controller_Template
             'nickname'  => Model_User::get_nickname($userid),
         );
 
+
         $this->template->nickname = null;
         $this->template->contents = View_Smarty::forge('orerss/dashboard', $data);
-        $this->template->assets = '';
+        $this->template->assets = $this::help_asset(array('rss.js', 'rss.css'));
+
     }
 
     /*
@@ -69,7 +71,7 @@ class Controller_Orerss extends Controller_Template
 
         $this->template->nickname = null;
         $this->template->contents = View_Smarty::forge('orerss/feed', $data);
-        $this->template->assets = '';
+        $this->template->assets = $this::help_asset(array('rss.js', 'rss.css'));
     }
 
     /*
@@ -213,6 +215,27 @@ class Controller_Orerss extends Controller_Template
      */
     public function get_updateRing(){
         (new Model_Rss())->update();
+    }
+
+// --- help ---------------------------------------------------------------------
+    
+    /*
+     * Assetの配列からHTMLを生成
+     */
+    private function help_asset($assets)
+    {
+        $res = '';
+
+        foreach($assets as $asset){
+            $ext = explode('.', $asset)[1];
+            if($ext == 'js'){
+                $res = $res.Asset::js($asset);
+            }else if($ext == 'css'){
+                $res = $res.Asset::css($asset);
+            }
+        }
+
+        return $res;
     }
 
 }

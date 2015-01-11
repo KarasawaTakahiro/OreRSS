@@ -13,6 +13,3 @@
             </div>
         </div>
 
-        {Asset::js('rss.js')}
-        {Asset::css('rss.css')}
-
