@@ -12,11 +12,6 @@
                 <label for="inputPassword" class="sr-only">パスワードの再入力</label>
                 <input type="password" id="inputPassword" class="form-control" name="passwd-re" placeholder="パスワードの再入力" required>
 
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" name="remember-me" value="remember-me">ログインを保存
-                    </label>
-                </div>
                 <button id="btn_login" class="btn btn-lg btn-primary btn-block" type="submit">登録</button>
             </form>
         </div>
