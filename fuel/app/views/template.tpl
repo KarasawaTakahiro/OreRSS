@@ -28,6 +28,9 @@
                     <!-- グローバルナビの中身 -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <p id="information" class="navbar-text"></p>
+                        <a href="/orerss/logout">
+                            <button type="button" id ="btn-logout" class="btn btn-default navbar-btn navbar-right"><span class="glyphicon glyphicon-log-out"></span></button>
+                        </a>
                         <form class="navbar-form navbar-right" id="registNewFeed" action="#" method="post">
                             <div class="form-group">
                                 <input type="text" class="form-control" id="new-feed-url">
