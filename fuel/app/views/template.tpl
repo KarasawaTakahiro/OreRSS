@@ -50,15 +50,14 @@
         <footer>
         </footer>
 
-        <!-- Latest compiled and minified CSS -->
-        {Asset::css('bootstrap.min.css')}
-        <!-- Optional theme -->
-        {Asset::css('bootstrap-theme.min.css')}
-        <!-- jQuery -->
-        {Asset::js('jquery-2.1.1.min.js')}
-        <!-- Latest compiled and minified JavaScript -->
-        {Asset::js('bootstrap.min.js')}
-        {$assets}
+        {foreach $js as $i}
+        {Asset::js($i)}
+        {/foreach}
+
+        {foreach $css as $i}
+        {Asset::css($i)}
+        {/foreach}
+
     </body>
 </html>
 

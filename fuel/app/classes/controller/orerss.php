@@ -45,7 +45,8 @@ class Controller_Orerss extends Controller_Template
 
         $this->template->nickname = null;
         $this->template->contents = View_Smarty::forge('orerss/dashboard', $data);
-        $this->template->assets = $this::help_asset(array('rss.js', 'rss.css'));
+        $this->template->js = array('jquery-2.1.1.min.js', 'bootstrap.min.js', 'rss.js');
+        $this->template->css = array('bootstrap.min.css', 'bootstrap.min.css', 'rss.css');
 
     }
 
@@ -219,24 +220,6 @@ class Controller_Orerss extends Controller_Template
 
 // --- help ---------------------------------------------------------------------
     
-    /*
-     * Assetの配列からHTMLを生成
-     */
-    private function help_asset($assets)
-    {
-        $res = '';
-
-        foreach($assets as $asset){
-            $ext = explode('.', $asset)[1];
-            if($ext == 'js'){
-                $res = $res.Asset::js($asset);
-            }else if($ext == 'css'){
-                $res = $res.Asset::css($asset);
-            }
-        }
-
-        return $res;
-    }
 
 }
 
