@@ -19,13 +19,3 @@
             </form>
         </div>
 
-        {Asset::js('jquery-2.1.1.min.js')}
-        {Asset::js('bootstrap.min.js')}
-
-        {Asset::css('bootstrap.css')}
-        {Asset::css('bootstrap-theme.min.css')}
-
-        {Asset::css('login.css')}
-        {Asset::js('login.js')}
-
-
