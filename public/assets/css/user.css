@@ -1,0 +1,29 @@
+.unread {
+  font-weight : bold;
+}
+
+ul {
+  background-color: #ffffff;
+}
+
+.nickname {
+  position: relative;
+  left: 100px;
+  font-size: x-large;
+}
+
+.item-mylist {
+  width: 560px;
+}
+
+.item-mylist > a{
+  color: #00bbbb;
+}
+
+.icon-info > span{
+    color: #00aaaa;
+}
+
+.icon-pull {
+    color: #ee0000;
+}
