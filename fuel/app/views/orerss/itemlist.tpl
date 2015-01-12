@@ -15,7 +15,7 @@
           <ul class="list-inline">
             <li class="item-title">
             {if $item.watched == false}
-              <a class="unread" id="{$item.id}"href="{$item.link}" target="_blank" onclick="mark_read(this, {$item.id})">{$item.title}</a>
+              <a class="unread" id="{$item.id}" href="{$item.link}" target="_blank" onclick="mark_read(this, {$item.id})">{$item.title}</a>
             {else}
               <a id="{$item.id}" href="{$item.link}" target="_blank">{$item.title}</a>
             {/if}

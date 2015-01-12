@@ -26,19 +26,21 @@
                     </div>
 
                     <!-- グローバルナビの中身 -->
+                    {if $nickname != null}
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <p id="information" class="navbar-text"></p>
                         <a href="/orerss/logout">
-                            <button type="button" id ="btn-logout" class="btn btn-default navbar-btn navbar-right"><span class="glyphicon glyphicon-log-out"></span></button>
+                            <button type="button" id ="btn-logout" class="btn btn-default navbar-btn navbar-right" title="ログアウト"><span class="glyphicon glyphicon-log-out"></span></button>
                         </a>
                         <form class="navbar-form navbar-right" id="registNewFeed" action="#" method="post">
                             <div class="form-group">
-                                <input type="text" class="form-control" id="new-feed-url">
+                                <input type="text" class="form-control" id="new-feed-url" title="マイリストURLを入力">
                             </div>
-                            <input type="submit" class="btn btn-default" name="feed_url" value="Append" />
+                            <input type="submit" class="btn btn-default" name="feed_url" value="PULL" title="追加"/>
                         </form>
-                        <button type="button" id ="btn-refresh" class="btn btn-default navbar-btn navbar-right"><span class="glyphicon glyphicon-refresh"></span></button>
+                        <button type="button" id ="btn-refresh" class="btn btn-default navbar-btn navbar-right" title="更新"><span class="glyphicon glyphicon-refresh"></span></button>
                     </div><!-- /.navbar-collapse -->
+                    {/if}
 
                 </div><!-- /.container-fluid -->
             </nav>
