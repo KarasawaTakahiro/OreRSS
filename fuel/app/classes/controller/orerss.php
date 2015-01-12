@@ -117,14 +117,21 @@ class Controller_Orerss extends Controller_Template
 
         $userid = Session::get('userid');
 
-        $data = array();
-        $data['mylists'] = Model_Feedtbl::get_user_pull($vuserid);
-        $data['nickname'] = self::help_nickname();
+        $data = array(
+            'mylists' => Model_Feedtbl::get_user_pull($vuserid),
+            'nickname' => self::help_nickname(),
+            'vuser_nickname' => Model_User::get_nickname($vuserid),
+            // 取得済みのフィードリスト
+            'feed_list' => array(
+                'unread' =>  Model_Feedtbl::get_feed_list_unread($userid),     // 未読を含む
+                'read'   => Model_Feedtbl::get_feed_list_read($userid),        // 未読を含まない
+            ),
+        );
 
-        $this->template->nickname = $this->help_nickname();
+        $this->template->nickname = self::help_nickname();
         $this->template->contents = View_Smarty::forge('orerss/user', $data);
         $this->template->js = array('jquery-2.1.1.min.js', 'bootstrap.min.js');
-        $this->template->css = array('bootstrap.min.css', 'bootstrap.min.css');
+        $this->template->css = array('bootstrap.min.css', 'bootstrap.min.css', 'rss.css', 'user.css');
     }
 
     /*
