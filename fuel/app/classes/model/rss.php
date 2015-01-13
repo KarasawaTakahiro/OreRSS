@@ -11,15 +11,15 @@ class Model_Rss extends \Model
         マイリストのURLをもらって、feedとitemを登録する
     */
     public function regist_new_feed($userId, $url){
-        $feed_url = self::convert_url($url);                        // RSS2.0に変換
-        $feed = self::get_feed($feed_url);                          // 問い合わせ
+        $mylist_url = self::pickup_url($url);                       // マイリストURLを生成
+        $feed = self::get_feed(self::convert_url($mylist_url));     // 問い合わせ
 
         // feedの新規登録
-        if(self::is_registered_feed($feed_url) == false){
+        if(self::is_registered_feed($mylist_url) == false){
             // 未登録の時
             $feed_channel = self::parse($feed);
-            \Model_Feedtbl::set($feed_url, $feed_channel->title);
-            $id = \Model_Feedtbl::get_id_from_url($feed_url);       // feedのidを取得
+            \Model_Feedtbl::set($mylist_url, $feed_channel->title);
+            $id = \Model_Feedtbl::get_id_from_url($mylist_url);     // feedのidを取得
             if($id == null) return null;                            // DBから参照失敗
 
             Model_Pull::add($id, $userId);
@@ -31,7 +31,7 @@ class Model_Rss extends \Model
             }
             return array('title' => $feed_channel->title, 'id' => $id);
         }else{      // マイリストがシステムに登録済み
-            $id = \Model_Feedtbl::get_id_from_url($feed_url);       // feedのidを取得
+            $id = \Model_Feedtbl::get_id_from_url($mylist_url);     // feedのidを取得
             if($id == null) return null;                            // DBから参照失敗
             if(Model_Pull::is_pull($userId, $id))return  array();   // 購読済みかどうか
 
