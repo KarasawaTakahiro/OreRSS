@@ -21,7 +21,7 @@
             {/if}
             </li>
             <li class="item-pubDate">{$item.pub_date}</li>
-            <li class="item-read"><a href="#" onclick="autoMark({$item.feed_id}, {$item.id})"><span class="glyphicon glyphicon-upload"></a></li>
+            <li class="item-read"><a href="#" onclick="autoMark({$item.feed_id}, {$item.id})"><span class="glyphicon glyphicon-download"></a></li>
           </ul>
         {/foreach}
   </div>
