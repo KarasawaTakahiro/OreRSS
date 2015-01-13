@@ -11,8 +11,8 @@ class Model_Rss extends \Model
         マイリストのURLをもらって、feedとitemを登録する
     */
     public function regist_new_feed($userId, $url){
-        $feed_url = self::convert_url($url);
-        $feed = self::get_feed($feed_url);
+        $feed_url = self::convert_url($url);                        // RSS2.0に変換
+        $feed = self::get_feed($feed_url);                          // 問い合わせ
 
         // feedの新規登録
         if(self::is_registered_feed($feed_url) == false){
