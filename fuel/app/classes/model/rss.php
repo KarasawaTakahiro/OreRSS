@@ -141,13 +141,13 @@ class Model_Rss extends \Model
         マイリストのURLからRSSのURLに変換する
     */
     public static function convert_url($url){
-        return self::pickup($url).RSSURL_BACK;          // RSSフィードのURLに変換
+        return self::pickup_url($url).RSSURL_BACK;       // RSSフィードのURLに変換
     }
 
     /*
      * マイリストのURLを抽出する
      */
-    public static function pickup($url){
+    public static function pickup_url($url){
         // URLからマイリスIDを抜き取る
         preg_match('/mylist\/\d+/', $url, $matches);
         preg_match('/\d+/', $matches[0], $m);
