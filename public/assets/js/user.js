@@ -2,6 +2,9 @@ $(function(){
     bind_smartPush();
 });
 
+/*
+ * ユーザページのマイリストから購読する
+ */
 var smartPush = function(mylistUrl){
     $.ajax({
         url:'/orerss/registNewFeed',
@@ -18,9 +21,13 @@ var smartPush = function(mylistUrl){
     });
 };
 
+/*
+ * バインド
+ */
 var bind_smartPush = function(){
     $(".smart-push").click(function(){
-        smartPush($this.attr("href"));
+        console.log($(this).attr("href"));
+        smartPush($(this).attr("href"));
         return false;                   // ページ遷移無効
     });
 };
