@@ -12,11 +12,11 @@ class Model_Rss extends \Model
     */
     public function regist_new_feed($userId, $url){
         $mylist_url = self::pickup_url($url);                       // マイリストURLを生成
-        $feed = self::get_feed(self::convert_url($mylist_url));     // 問い合わせ
 
         // feedの新規登録
         if(self::is_registered_feed($mylist_url) == false){
             // 未登録の時
+            $feed = self::get_feed(self::convert_url($mylist_url));     // 問い合わせ
             $feed_channel = self::parse($feed);
             \Model_Feedtbl::set($mylist_url, $feed_channel->title);
             $id = \Model_Feedtbl::get_id_from_url($mylist_url);     // feedのidを取得
@@ -107,7 +107,7 @@ class Model_Rss extends \Model
         フィードがローカルに登録済みか
     */
     public static function is_registered_feed($rss_url){
-        $id = \Model_Feedtbl::get_id_from_url(self::convert_url($rss_url));
+        $id = \Model_Feedtbl::get_id_from_url($rss_url);
 
         if($id == null){
             return false;
