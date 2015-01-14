@@ -11,6 +11,11 @@
                 )
         )
         *}
+        <ul class="list-inline">
+            <li id="desc-item-title">動画タイトル</li>
+            <li id="desc-item-pubDate">投稿日</li>
+            <li id="desc-item-read">チェック</li>
+        </ul>
         {foreach $items as $item}
           <ul class="list-inline">
             <li class="item-title">

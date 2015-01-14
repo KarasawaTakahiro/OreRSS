@@ -42,6 +42,23 @@ ul {
   color: #ff7b00;
 }
 
+#desc-item-title {
+  position: relative;
+  width: 75%;
+  color: #d6d6d6;
+}
+
+#desc-item-pubDate {
+  position: relative;
+  width: 15%;
+  color: #d6d6d6;
+}
+
+#desc-item-read {
+  text-align: right;
+  color: #d6d6d6;
+}
+
 #feed-list-unread {
   background-color: #ffffff;
 }
