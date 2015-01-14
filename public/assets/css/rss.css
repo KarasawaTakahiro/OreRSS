@@ -25,17 +25,17 @@ ul {
 }
 
 .item-title {
-  width: 550px;
+  width: 68%;
 }
 
 .item-pubDate {
-  width: 150px;
+  width: 20%;
   color: #c4c4c4;
 }
 
 .item-read {
-  width: 15px;
-  text-align: right;
+  width: 10%;
+  text-align: center;
 }
 
 .item-title>a{
@@ -43,19 +43,18 @@ ul {
 }
 
 #desc-item-title {
-  position: relative;
-  width: 75%;
+  width: 68%;
   color: #d6d6d6;
 }
 
 #desc-item-pubDate {
-  position: relative;
-  width: 15%;
+  width: 20%;
   color: #d6d6d6;
 }
 
 #desc-item-read {
-  text-align: right;
+  width: 10%;
+  text-align: center;
   color: #d6d6d6;
 }
 
