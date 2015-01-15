@@ -39,7 +39,10 @@
                             <div class="form-group">
                                 <input type="text" class="form-control" id="new-feed-url" title="マイリストURLを入力" placeholder="マイリストURLを入力">
                             </div>
-                            <input type="submit" class="btn btn-default" name="feed_url" value="PULL" title="追加"/>
+                            <button type="submit" class="btn btn-default" name="feed_url" title="追加">
+                                <p class="nav-btn-icon"><span class="glyphicon glyphicon-plus"></span></p>
+                                <p class="nav-btn-text">PULL</p>
+                            </button>
                         </form>
                         <button type="button" id ="btn-refresh" class="btn btn-default navbar-btn navbar-right" title="更新">
                             <p class="nav-btn-icon"><span class="glyphicon glyphicon-refresh"></span></p>
