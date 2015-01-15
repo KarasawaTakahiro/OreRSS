@@ -13,11 +13,21 @@ ul {
 }
 
 .item-mylist {
-  width: 560px;
+  width: 72%;
 }
 
 .item-mylist > a{
   color: #00bbbb;
+}
+
+.item-pullnum {
+    width: 9%;
+    text-align: center;
+}
+
+.icon-info{
+    width: 10%;
+    text-align: center;
 }
 
 .icon-info > span{
@@ -25,14 +35,9 @@ ul {
 }
 
 .icon-pull {
+    width: 7%;
     color: #ee0000;
-}
-
-.user-list-item {
-    border: solid 1px gray;
-    border-radius: 10px / 10px;
-    padding: 10px;
-    margin: 2px 0px;
+    text-align: center;
 }
 
 #desc-item-title {
