@@ -18,11 +18,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        {if $nickname != null}
-                        <a class="navbar-brand" href="/orerss">俺RSS(α) => {$nickname}RSS</a>
-                        {else}
-                        <a class="navbar-brand" href="/orerss">俺RSS(α)</a>
-                        {/if}
+                        <a class="navbar-brand" href="/orerss/dashboard">{if $nickname != null}俺RSS(α) => {$nickname}RSS{else}俺RSS(α){/if}</a>
                     </div>
 
                     <!-- グローバルナビの中身 -->
