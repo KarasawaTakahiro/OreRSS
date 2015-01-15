@@ -45,7 +45,8 @@ function autoMark(feed_id, item_id){
 // feed新規登録
 var registNewFeed = function(){
   $("#registNewFeed").submit(function(){    // submitにバインド
-      var newFeedUrl = $(this).find("input[id=new-feed-url]").val();    // テキストボックスの値を取得
+      var tbox = $(this).find("input[id=new-feed-url]");
+      var newFeedUrl = tbox.val();    // テキストボックスの値を取得
 
       if(0 < newFeedUrl.length){
         $.ajax({
@@ -58,6 +59,7 @@ var registNewFeed = function(){
             // リスト一覧に追加
             if(data !== null){
               $("#feed-list-unread").append('<p><a class="unread" href="/orerss/feed/' + data.id + '" >' + data.title[0] + '</a></p>');
+              tbox.val("");
             }
           },
         });  // ajax
