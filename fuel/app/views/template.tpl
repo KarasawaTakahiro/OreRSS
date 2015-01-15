@@ -2,7 +2,7 @@
 <html lang="ja">
     <head>
         <meta charset="utf-8" />
-        <title>俺RSS</title>
+        <title>俺RSS(α)</title>
     </head>
 
     <body>
@@ -19,9 +19,9 @@
                             <span class="icon-bar"></span>
                         </button>
                         {if $nickname != null}
-                        <a class="navbar-brand" href="/orerss">俺RSS => {$nickname}RSS</a>
+                        <a class="navbar-brand" href="/orerss">俺RSS(α) => {$nickname}RSS</a>
                         {else}
-                        <a class="navbar-brand" href="/orerss">俺RSS</a>
+                        <a class="navbar-brand" href="/orerss">俺RSS(α)</a>
                         {/if}
                     </div>
 
