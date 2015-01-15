@@ -37,7 +37,7 @@
                         </a>
                         <form class="navbar-form navbar-right" id="registNewFeed" action="#" method="post">
                             <div class="form-group">
-                                <input type="text" class="form-control" id="new-feed-url" title="マイリストURLを入力">
+                                <input type="text" class="form-control" id="new-feed-url" title="マイリストURLを入力" placeholder="マイリストURLを入力">
                             </div>
                             <input type="submit" class="btn btn-default" name="feed_url" value="PULL" title="追加"/>
                         </form>
