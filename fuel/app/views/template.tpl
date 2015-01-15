@@ -30,7 +30,10 @@
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <p id="information" class="navbar-text"></p>
                         <a href="/orerss/logout">
-                            <button type="button" id ="btn-logout" class="btn btn-default navbar-btn navbar-right" title="ログアウト"><span class="glyphicon glyphicon-log-out"></span></button>
+                            <button type="button" id ="btn-logout" class="btn btn-default navbar-btn navbar-right" title="ログアウト">
+                                <p class="nav-btn-icon"><span class="glyphicon glyphicon-log-out"></span></p>
+                                <p class="nav-btn-text">ログアウト</p>
+                                </button>
                         </a>
                         <form class="navbar-form navbar-right" id="registNewFeed" action="#" method="post">
                             <div class="form-group">
