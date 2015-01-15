@@ -58,23 +58,69 @@ class Model_Feedtbl extends \Model
     }
 
     // 未読を含むフィードリストを返す
-    public static function get_feed_list_unread(){
-      $query = \DB::select('id', 'title')->from(TABLE_FEED)
-                                         ->where('exist_unread', '=', true)
-                                         ->order_by('timestamp')
-                                         ->execute();
+    public static function get_feed_list_unread($userid)
+    {
+        $query = \DB::select('feed.id', 'feed.title')->from('feed')
+                                                     ->join('item')
+                                                     ->on('feed.id', '=', 'item.feed_id')
+                                                     ->join('watch')
+                                                     ->on('watch.item_id', '=', 'item.id')
+                                                     ->join('user')
+                                                     ->on('user.id', '=', 'watch.user_id')
+                                                     ->join('pull')
+                                                     ->on('pull.feed_id', '=', 'feed.id')
+                                                     ->on('pull.user_id', '=', 'user.id')
+                                                     ->where('watched', '=', false)
+                                                     ->where('user.id', '=', $userid)
+                                                     ->group_by('feed.id')
+                                                     ->order_by('watch.modified_at');
 
-      return $query->as_array();
+        return $query->execute()->as_array();
     }
 
     // 既読のみのフィードリストを返す
-    public static function get_feed_list_read(){
-      $query = \DB::select('id', 'title')->from(TABLE_FEED)
-                                         ->where('exist_unread', '=', false)
-                                         ->order_by('timestamp')
-                                         ->execute();
+    public static function get_feed_list_read($userid){
+        $unwatch = \DB::select('feed.id', 'feed.title')->from('feed')
+                                                     ->join('item')
+                                                     ->on('feed.id', '=', 'item.feed_id')
+                                                     ->join('watch')
+                                                     ->on('watch.item_id', '=', 'item.id')
+                                                     ->join('user')
+                                                     ->on('user.id', '=', 'watch.user_id')
+                                                     ->where('watched', '=', false)
+                                                     ->where('user.id', '=', $userid)
+                                                     ->group_by('feed.id')
+                                                     ->order_by('watch.modified_at')
+                                                     ->execute()
+                                                     ->as_array();
 
-      return $query->as_array();
+        $watched = \DB::select('feed.id', 'feed.title')->from('feed')
+                                                     ->join('item')
+                                                     ->on('feed.id', '=', 'item.feed_id')
+                                                     ->join('watch')
+                                                     ->on('watch.item_id', '=', 'item.id')
+                                                     ->join('user')
+                                                     ->on('user.id', '=', 'watch.user_id')
+                                                     ->where('watched', '=', true)
+                                                     ->where('user.id', '=', $userid)
+                                                     ->group_by('feed.id')
+                                                     ->order_by('watch.modified_at')
+                                                     ->execute()
+                                                     ->as_array();
+
+        $i = 0;
+        foreach($watched as $w){
+            foreach($unwatch as $un){
+                if($w['id'] == $un['id']){
+                    unset($watched[$i]);      // 参照を解除
+                    break;
+                }
+            }
+            $i += 1;
+        }
+
+        return $watched;
+
     }
 
     // idのカラムを未読にする
@@ -85,8 +131,11 @@ class Model_Feedtbl extends \Model
 
     // idのカラムを既読にする
     public static function set_already_read($id){
+        /*
         $query = \DB::update(TABLE_FEED)->value('exist_unread', false)->where('id', '=', $id);
         return $query->execute();
+         */
+        return null;
     }
 
     // ルールに従ってソートしたフィードリストを返す
@@ -95,6 +144,22 @@ class Model_Feedtbl extends \Model
                               ->order_by('timestamp')
                               ->order_by('exist_unread');
         return $query->execute()->as_array();
+    }
+
+    /*
+     * 指定ユーザが購読しているfeedを返す
+     * タイトルとfeedid
+     */
+    public static function get_user_pull($userid)
+    {
+        $query = \DB::select('feed.id', 'feed.title', 'feed.url')->from('feed')
+            ->join('pull')->on('feed.id', '=', 'pull.feed_id')
+            ->join('user')->on('user.id', '=', 'pull.user_id')
+            ->where('user.id', '=', $userid)
+            ->execute()
+            ->as_array();
+
+        return $query;
     }
 
 

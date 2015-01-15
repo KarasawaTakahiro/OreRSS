@@ -1,0 +1,61 @@
+.unread {
+  font-weight : bold;
+}
+
+ul {
+  background-color: #ffffff;
+}
+
+.nickname {
+  position: relative;
+  left: 100px;
+  font-size: x-large;
+}
+
+.item-mylist {
+  width: 72%;
+}
+
+.item-mylist > a{
+  color: #00bbbb;
+}
+
+.item-pullnum {
+    width: 9%;
+    text-align: center;
+}
+
+.icon-info{
+    width: 10%;
+    text-align: center;
+}
+
+.icon-info > span{
+    color: #00aaaa;
+}
+
+.icon-pull {
+    width: 7%;
+    color: #ee0000;
+    text-align: center;
+}
+
+#desc-item-title {
+    width: 72%;
+    color: #d6d6d6;
+}
+
+#desc-item-pullnum {
+    width: 9%;
+    color: #d6d6d6;
+}
+
+#desc-item-info {
+    width: 10%;
+    color: #d6d6d6;
+}
+
+#desc-item-pull {
+    width: 7%;
+    color: #d6d6d6;
+}

@@ -10,27 +10,43 @@ class Model_Rss extends \Model
     /*
         マイリストのURLをもらって、feedとitemを登録する
     */
-    public function regist_new_feed($url){
-        $feed_url = self::convert_url($url);
-        $feed = self::get_feed($feed_url);
-        $feed_data = self::parse($feed);
+    public function regist_new_feed($userId, $url){
+        $mylist_url = self::pickup_url($url);                       // マイリストURLを生成
 
-        // 既に登録済み
-        if(self::is_registered_feed($feed_url)){
-            return null;
+        // feedの新規登録
+        if(self::is_registered_feed($mylist_url) == false){
+            // 未登録の時
+            $feed = self::get_feed(self::convert_url($mylist_url));     // 問い合わせ
+            $feed_channel = self::parse($feed);
+            \Model_Feedtbl::set($mylist_url, $feed_channel->title);
+            $id = \Model_Feedtbl::get_id_from_url($mylist_url);     // feedのidを取得
+            if($id == null) return null;                            // DBから参照失敗
+
+            Model_Pull::add($id, $userId);
+            foreach($feed_channel->item as $item){
+                // itemの新規登録
+                $itemId = self::regist_item($id, $item->title, $item->link, $item->pubDate, $item->guid);
+                // 視聴情報の登録
+                Model_Watch::add($itemId, $userId);
+            }
+            return array('title' => $feed_channel->title, 'id' => $id);
+        }else{      // マイリストがシステムに登録済み
+            $id = \Model_Feedtbl::get_id_from_url($mylist_url);     // feedのidを取得
+            if($id == null) return null;                            // DBから参照失敗
+            if(Model_Pull::is_pull($userId, $id))return  array();   // 購読済みかどうか
+
+            $feed_channel = \Model_Rss::get_localdata_channel_format($id);  // ローカルのデータを取得
+            if($feed_channel == null) return null;                  // 参照失敗
+            Model_Pull::add($id, $userId);                          // 購読
+            foreach($feed_channel['item'] as $item){                // 動画情報を登録
+                // itemの新規登録
+                $itemId = self::regist_item($id, $item['title'], $item['link'], $item['pub_date'], $item['guid']);
+                // 視聴情報の登録
+                Model_Watch::add($itemId, $userId);
+            }
+            return array('title' => array($feed_channel['title']), 'id' => $id);
         }
 
-        \Model_Feedtbl::set($feed_url, $feed_data->title);
-        $id = \Model_Feedtbl::get_id_from_url($feed_url);
-        if($id == null){
-            // DBから参照失敗
-            return null;
-        }
-        foreach($feed_data->item as $item){
-            self::regist_item($id, $item->title, $item->link, $item->pubDate, $item->guid);
-        }
-
-        return array('title' => $feed_data->title, 'id' => $id);
     }
 
     /*
@@ -41,7 +57,7 @@ class Model_Rss extends \Model
         $num = 0;   // 新規総数
         // DBから全てのフィードのidを取得
         foreach(\Model_Feedtbl::get_all_feed_ids() as $feed_id){
-            $num += self::update_feed($feed_id);    // フィードを更新
+            $res = self::update_feed($feed_id);     // フィードを更新
         }
 
         return $num;
@@ -60,8 +76,9 @@ class Model_Rss extends \Model
             return 0;
         }
 
-        // フィードの全itemを取得
-        $items = self::get_items(self::get_feed($url));
+        $res = self::get_feed($url);        // フィードの全itemを取得
+        if($res == null) return 0;          // フィードが404
+        $items = self::get_items($res);     // フィードの取得が成功
 
         foreach($items as $item){
             if(self::is_registered_item_at($url, $item->guid)){
@@ -86,9 +103,8 @@ class Model_Rss extends \Model
         return $data;
     }
 
-
     /*
-        フィードが登録済み
+        フィードがローカルに登録済みか
     */
     public static function is_registered_feed($rss_url){
         $id = \Model_Feedtbl::get_id_from_url($rss_url);
@@ -125,11 +141,18 @@ class Model_Rss extends \Model
         マイリストのURLからRSSのURLに変換する
     */
     public static function convert_url($url){
+        return self::pickup_url($url).RSSURL_BACK;       // RSSフィードのURLに変換
+    }
+
+    /*
+     * マイリストのURLを抽出する
+     */
+    public static function pickup_url($url){
         // URLからマイリスIDを抜き取る
         preg_match('/mylist\/\d+/', $url, $matches);
         preg_match('/\d+/', $matches[0], $m);
         $id = $m[0];
-        return RSSURL_FRONT.$id.RSSURL_BACK;
+        return RSSURL_FRONT.$id;                        // マイリストのURLに変換
     }
 
     /*
@@ -150,15 +173,24 @@ class Model_Rss extends \Model
 
     /*
         RSS URLを元にfeedのデータを取得する
+        データの取得に失敗した場合はnullを返す
     */
     private function get_feed($rssurl){
         $context = stream_context_create(array(
             'http'=>array(
-                'user_agent' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.143 Safari/537.36'
+                'user_agent' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.143 Safari/537.36',
+                'ignore_errors' => true,
                 )
             )
         );
-        return file_get_contents($rssurl, false, $context);
+        $content = file_get_contents($rssurl, false, $context);
+
+        $pos = strpos($http_response_header[0], '404');
+        if($pos !== false){     // 404
+            return null;
+        }else{                  // 404じゃない時
+            return $content;
+        }
     }
 
     /*
@@ -182,13 +214,28 @@ class Model_Rss extends \Model
 
     /*
         itemを登録する
+
+        登録に成功したらidを返す
     */
     private function regist_item($feed_id, $title, $link, $pubDate, $guid){
-            \Model_Itemtbl::set($title, $link, self::convert_datetime($pubDate), $feed_id, $guid);
-            \Model_Feedtbl::set_unread($feed_id);
+        // itemを新規登録
+        if(\Model_Itemtbl::set($title, $link, self::convert_datetime($pubDate), $feed_id, $guid)){
 
+            return \Model_Itemtbl::get_id_from_guid($guid);     // idを返す
+        }else{
+            return null;
+        }
     }
 
+    /*
+     * DBの情報をRSS2.0のchannel風にして返す
+     */
+    public static function get_localdata_channel_format($feedId)
+    {
+        $res = Model_Feedtbl::get_all_column_from_id($feedId)[0];
+        $res['item'] = Model_itemtbl::get_itemlist_column_from_feed_id($feedId);
+        return $res;
+    }
 
 
 }

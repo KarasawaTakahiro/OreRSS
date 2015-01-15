@@ -1,0 +1,35 @@
+insert into feed (url, title) values ("http://", "hoge 2");
+insert into feed (url, title) values ("http://", "hoge 3");
+insert into feed (url, title) values ("http://", "hoge 4");
+insert into feed (url, title) values ("http://", "hoge 5");
+insert into feed (url, title) values ("http://", "hoge 6");
+
+insert into item (guid, feed_id) values ("no2", 1);
+insert into item (guid, feed_id) values ("no3", 2);
+insert into item (guid, feed_id) values ("no4", 2);
+insert into item (guid, feed_id) values ("no5", 2);
+insert into item (guid, feed_id) values ("no6", 3);
+insert into item (guid, feed_id) values ("no7", 3);
+insert into item (guid, feed_id) values ("no8", 4);
+insert into item (guid, feed_id) values ("no9", 5);
+insert into item (guid, feed_id) values ("no10", 6);
+
+insert into user (nickname, passwd) values ("root1", "r");
+insert into user (nickname, passwd) values ("root2", "r");
+insert into user (nickname, passwd) values ("root3", "r");
+insert into user (nickname, passwd) values ("root4", "r");
+
+insert into watch (watched, item_id, user_id) values (false, 1, 1);
+insert into watch (watched, item_id, user_id) values (false, 2, 1);
+insert into watch (watched, item_id, user_id) values (false, 3, 1);
+insert into watch (watched, item_id, user_id) values (false, 3, 3);
+insert into watch (watched, item_id, user_id) values (false, 4, 2);
+insert into watch (watched, item_id, user_id) values (false, 4, 2);
+insert into watch (watched, item_id, user_id) values (false, 5, 2);
+insert into watch (watched, item_id, user_id) values (false, 6, 4);
+insert into watch (watched, item_id, user_id) values (false, 3, 1);
+insert into watch (watched, item_id, user_id) values (false, 4, 1);
+insert into watch (watched, item_id, user_id) values (false, 4, 1);
+insert into watch (watched, item_id, user_id) values (false, 5, 1);
+insert into watch (watched, item_id, user_id) values (false, 6, 1);
+
