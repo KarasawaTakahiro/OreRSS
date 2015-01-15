@@ -7,6 +7,12 @@
 </div>
 
 <div>
+    <ul class="list-inline">
+        <li id="desc-item-title">タイトル</li>
+        <li id="desc-item-pullnum">PULL数</li>
+        <li id="desc-item-info">インフォ</li>
+        <li id="desc-item-pull">PULL</li>
+    </ul>
 {foreach $mylists as $list}
     <ul class="list-inline">
         <li class="item-mylist"> <a class="unread" href="{$list.url}" target="_brank">{$list.title}</a> </li>
