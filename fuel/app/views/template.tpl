@@ -33,7 +33,7 @@
                             <button type="button" id ="btn-logout" class="btn btn-default navbar-btn navbar-right" title="ログアウト">
                                 <p class="nav-btn-icon"><span class="glyphicon glyphicon-log-out"></span></p>
                                 <p class="nav-btn-text">ログアウト</p>
-                                </button>
+                            </button>
                         </a>
                         <form class="navbar-form navbar-right" id="registNewFeed" action="#" method="post">
                             <div class="form-group">
@@ -41,7 +41,10 @@
                             </div>
                             <input type="submit" class="btn btn-default" name="feed_url" value="PULL" title="追加"/>
                         </form>
-                        <button type="button" id ="btn-refresh" class="btn btn-default navbar-btn navbar-right" title="更新"><span class="glyphicon glyphicon-refresh"></span></button>
+                        <button type="button" id ="btn-refresh" class="btn btn-default navbar-btn navbar-right" title="更新">
+                            <p class="nav-btn-icon"><span class="glyphicon glyphicon-refresh"></span></p>
+                            <p class="nav-btn-text">更新</p>
+                        </button>
                     </div><!-- /.navbar-collapse -->
                     {/if}
 
