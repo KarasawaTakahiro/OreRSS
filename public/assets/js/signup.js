@@ -22,11 +22,12 @@ var bind_checkPasswd = function(){
             checkPasswd();                  // 違ったら呼び出し
             preString = string;             // 文字列入れ替え
         }
-        console.log(string);
     });
 };
 
 var checkNickname = function(){
+    this = $("#inputNickname");
+    console.log(this.val().length);
     console.log("call");
 };
 
