@@ -5,7 +5,6 @@
 
                 <label for="inputNickname" class="sr-only">ニックネーム</label>
                 <input type="text" id="inputNickname" class="form-control" name="nickname" placeholder="ニックネーム" required autofocus>
-
                 <p id="wornNickname"></p>
 
                 <label for="inputPassword" class="sr-only">パスワード</label>
