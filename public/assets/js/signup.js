@@ -4,17 +4,36 @@ $(function(){
     bind_checkRePasswd();
 });
 
+var clearFlag = {
+    "nickname":false,
+    "password":false,
+    "repassword":false
+};
+
+var setBtnState = function(key, value){
+    var isClear = true;
+
+    clearFlag[key] = value;
+
+    for(var i in clearFlag){
+        isClear &= clearFlag[i];
+    }
+
+    if(isClear){
+        $("#btn_signup").removeAttr("disabled"); // 登録ボタンを有効化
+    }else{
+        $("#btn_signup").attr("disabled", true); // 登録ボタンを無効化
+    }
+
+};
+
 var bind_checkNickname = function(){
     var preString = "";                     // 比較対象文字列
     $("#btn_signup").attr("disabled", true); // 登録ボタンを無効化
     $("#inputNickname").keyup(function(){   // すべてのキー操作にバインド
         var string = $(this).val();         // テキストボックスの値取得
         if(string != preString){            // 文字列比較
-            if(checkNickname()){            // 違ったらチェック関数呼び出し
-                $("#btn_signup").removeAttr("disabled"); // 登録ボタンを有効化
-            }else{
-                $("#btn_signup").attr("disabled", true); // 登録ボタンを無効化
-            }
+            setBtnState("nickname", checkNickname());   // 違ったらチェック関数呼び出し
             preString = string;             // 文字列入れ替え
         }
     });
@@ -25,11 +44,7 @@ var bind_checkPasswd = function(){
     $("#inputPassword").keyup(function(){   // すべてのキー操作にバインド
         var string = $(this).val();         // テキストボックスの値取得
         if(string != preString){            // 文字列比較
-            if(checkPasswd()){              // 違ったら呼び出し
-                $("#btn_signup").removeAttr("disabled"); // 登録ボタンを有効化
-            }else{
-                $("#btn_signup").attr("disabled", true); // 登録ボタンを無効化
-            }
+            setBtnState("password", checkPasswd()); // 違ったら呼び出し
             preString = string;             // 文字列入れ替え
         }
     });
@@ -40,11 +55,7 @@ var bind_checkRePasswd = function(){
     $("#inputRePassword").keyup(function(){   // すべてのキー操作にバインド
         var string = $(this).val();         // テキストボックスの値取得
         if(string != preString){            // 文字列比較
-            if(checkRePasswd()){            // 違ったら呼び出し
-                $("#btn_signup").removeAttr("disabled"); // 登録ボタンを有効化
-            }else{
-                $("#btn_signup").attr("disabled", true); // 登録ボタンを無効化
-            }
+            setBtnState("repassword", checkRePasswd()); // 違ったら呼び出し
             preString = string;             // 文字列入れ替え
         }
     });
