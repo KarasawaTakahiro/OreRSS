@@ -53,14 +53,14 @@ var bind_checkRePasswd = function(){
 var checkNickname = function(){
     var obj = $("#inputNickname");
     var len = obj.val().length;
-    console.log(len);
     if(len < 2){                            // 文字数不足
-        console.log("2文字以上で決めてください");
+        wornNickname("2文字以上で決めてください");
         return false;
     }else if(10 < len){                     // 文字数超過
-        console.log("10文字以内で決めてください");
+        wornNickname("10文字以内で決めてください");
         return false;
     }else{                                  // 有効範囲内
+        wornNickname("");
         return true;
     }
 };
@@ -78,20 +78,26 @@ var checkPasswd = function(){
 
     // 文字数チェック
     if(len < 6){                            // 文字数不足
-        console.log("6文字以上で決めてください");
+        wornPassword("6文字以上で決めてください");
         return false;
     }else if(12 < len){                     // 文字数超過
-        console.log("12文字以内で決めてください");
+        wornPassword("12文字以内で決めてください");
         return false;
+    }else{
+        wornPassword("");
+        return true;
     }
 
-    return true;
 };
 
 var checkRePasswd = function(){
     // パスワードの同一性チェック
     if($("#inputPassword").val() != $("#inputRePassword").val()){
+        wornRePassword("パスワードが合致していません");
         return false;
+    }else{
+        wornRePassword("");
+        return true;
     }
 
     return true;
@@ -99,7 +105,6 @@ var checkRePasswd = function(){
 
 var wornNickname = function(wornString){
     $("#wornNickname").empty().append(wornString);
-
 };
 
 var wornPassword = function(wornString){
