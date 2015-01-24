@@ -1,6 +1,7 @@
 $(function(){
     bind_checkNickname();
     bind_checkPasswd();
+    bind_checkRePasswd();
 });
 
 var bind_checkNickname = function(){
@@ -25,6 +26,21 @@ var bind_checkPasswd = function(){
         var string = $(this).val();         // テキストボックスの値取得
         if(string != preString){            // 文字列比較
             if(checkPasswd()){              // 違ったら呼び出し
+                $("#btn_signup").removeAttr("disabled"); // 登録ボタンを有効化
+            }else{
+                $("#btn_signup").attr("disabled", true); // 登録ボタンを無効化
+            }
+            preString = string;             // 文字列入れ替え
+        }
+    });
+};
+
+var bind_checkRePasswd = function(){
+    var preString = "";                     // 比較対象文字列
+    $("#inputRePassword").keyup(function(){   // すべてのキー操作にバインド
+        var string = $(this).val();         // テキストボックスの値取得
+        if(string != preString){            // 文字列比較
+            if(checkRePasswd()){            // 違ったら呼び出し
                 $("#btn_signup").removeAttr("disabled"); // 登録ボタンを有効化
             }else{
                 $("#btn_signup").attr("disabled", true); // 登録ボタンを無効化
@@ -72,3 +88,11 @@ var checkPasswd = function(){
     return true;
 };
 
+var checkRePasswd = function(){
+    // パスワードの同一性チェック
+    if($("#inputPassword").val() != $("#inputRePassword").val()){
+        return false;
+    }
+
+    return true;
+};
