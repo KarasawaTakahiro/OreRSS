@@ -24,7 +24,11 @@ var bind_checkPasswd = function(){
     $("#inputPassword").keyup(function(){   // すべてのキー操作にバインド
         var string = $(this).val();         // テキストボックスの値取得
         if(string != preString){            // 文字列比較
-            checkPasswd();                  // 違ったら呼び出し
+            if(checkPasswd()){              // 違ったら呼び出し
+                $("#btn_login").removeAttr("disabled"); // 登録ボタンを有効化
+            }else{
+                $("#btn_login").attr("disabled", true); // 登録ボタンを無効化
+            }
             preString = string;             // 文字列入れ替え
         }
     });
@@ -46,7 +50,25 @@ var checkNickname = function(){
 };
 
 var checkPasswd = function(){
-    console.log("call");
-};
+    var obj = $("#inputPassword");          // テキストボックス
+    var len = obj.val().length;             // 文字列長
+    var regex = /^[a-zA-Z0-9]+$/;           // 正規表現 半角英数字
 
+    // 文字チェック
+    if(obj.val().match(regex) == null){
+        console.log("半角英数字のみが使えます");
+        return false;
+    }
+
+    // 文字数チェック
+    if(len < 6){                            // 文字数不足
+        console.log("6文字以上で決めてください");
+        return false;
+    }else if(12 < len){                     // 文字数超過
+        console.log("12文字以内で決めてください");
+        return false;
+    }
+
+    return true;
+};
 
