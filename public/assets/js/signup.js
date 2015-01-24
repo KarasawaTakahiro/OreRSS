@@ -44,18 +44,11 @@ var bind_checkPasswd = function(){
     $("#inputPassword").keyup(function(){   // すべてのキー操作にバインド
         var string = $(this).val();         // テキストボックスの値取得
         if(string != preString){            // 文字列比較
-            setBtnState("password", checkPasswd()); // 違ったら呼び出し
-            preString = string;             // 文字列入れ替え
-        }
-    });
-};
-
-var bind_checkRePasswd = function(){
-    var preString = "";                     // 比較対象文字列
-    $("#inputRePassword").keyup(function(){   // すべてのキー操作にバインド
-        var string = $(this).val();         // テキストボックスの値取得
-        if(string != preString){            // 文字列比較
-            setBtnState("repassword", checkRePasswd()); // 違ったら呼び出し
+            if(checkPasswd()){              // 違ったら呼び出し
+                $("#btn_login").removeAttr("disabled"); // 登録ボタンを有効化
+            }else{
+                $("#btn_login").attr("disabled", true); // 登録ボタンを無効化
+            }
             preString = string;             // 文字列入れ替え
         }
     });
