@@ -9,10 +9,10 @@
                 <label for="inputPassword" class="sr-only">パスワード</label>
                 <input type="password" id="inputPassword" class="form-control" name="passwd" placeholder="パスワード" required>
 
-                <label for="inputPassword" class="sr-only">パスワードの再入力</label>
-                <input type="password" id="inputPassword" class="form-control" name="passwd-re" placeholder="パスワードの再入力" required>
+                <label for="inputRePassword" class="sr-only">パスワードの再入力</label>
+                <input type="password" id="inputRePassword" class="form-control" name="passwd-re" placeholder="パスワードの再入力" required>
 
-                <button id="btn_login" class="btn btn-lg btn-primary btn-block" type="submit">登録</button>
+                <button id="btn_signup" class="btn btn-lg btn-primary btn-block" type="submit">登録</button>
             </form>
         </div>
 
