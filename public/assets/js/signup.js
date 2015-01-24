@@ -5,10 +5,15 @@ $(function(){
 
 var bind_checkNickname = function(){
     var preString = "";                     // 比較対象文字列
+    $("#btn_login").attr("disabled", true); // 登録ボタンを無効化
     $("#inputNickname").keyup(function(){   // すべてのキー操作にバインド
         var string = $(this).val();         // テキストボックスの値取得
         if(string != preString){            // 文字列比較
-            checkNickname();                // 違ったら呼び出し
+            if(checkNickname()){            // 違ったらチェック関数呼び出し
+                $("#btn_login").removeAttr("disabled"); // 登録ボタンを有効化
+            }else{
+                $("#btn_login").attr("disabled", true); // 登録ボタンを無効化
+            }
             preString = string;             // 文字列入れ替え
         }
     });
@@ -26,12 +31,22 @@ var bind_checkPasswd = function(){
 };
 
 var checkNickname = function(){
-    this = $("#inputNickname");
-    console.log(this.val().length);
-    console.log("call");
+    var obj = $("#inputNickname");
+    var len = obj.val().length;
+    console.log(len);
+    if(len < 2){                            // 文字数不足
+        console.log("2文字以上で決めてください");
+        return false;
+    }else if(10 < len){                     // 文字数超過
+        console.log("10文字以内で決めてください");
+        return false;
+    }else{                                  // 有効範囲内
+        return true;
+    }
 };
 
 var checkPasswd = function(){
     console.log("call");
 };
+
 
