@@ -96,3 +96,17 @@ var checkRePasswd = function(){
 
     return true;
 };
+
+var wornNickname = function(wornString){
+    $("#wornNickname").empty().append(wornString);
+
+};
+
+var wornPassword = function(wornString){
+    $("#wornPassword").empty().append(wornString);
+};
+
+var wornRePassword = function(wornString){
+    $("#wornRePassword").empty().append(wornString);
+};
+
