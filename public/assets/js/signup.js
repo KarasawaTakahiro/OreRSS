@@ -5,14 +5,14 @@ $(function(){
 
 var bind_checkNickname = function(){
     var preString = "";                     // 比較対象文字列
-    $("#btn_login").attr("disabled", true); // 登録ボタンを無効化
+    $("#btn_signup").attr("disabled", true); // 登録ボタンを無効化
     $("#inputNickname").keyup(function(){   // すべてのキー操作にバインド
         var string = $(this).val();         // テキストボックスの値取得
         if(string != preString){            // 文字列比較
             if(checkNickname()){            // 違ったらチェック関数呼び出し
-                $("#btn_login").removeAttr("disabled"); // 登録ボタンを有効化
+                $("#btn_signup").removeAttr("disabled"); // 登録ボタンを有効化
             }else{
-                $("#btn_login").attr("disabled", true); // 登録ボタンを無効化
+                $("#btn_signup").attr("disabled", true); // 登録ボタンを無効化
             }
             preString = string;             // 文字列入れ替え
         }
@@ -25,9 +25,9 @@ var bind_checkPasswd = function(){
         var string = $(this).val();         // テキストボックスの値取得
         if(string != preString){            // 文字列比較
             if(checkPasswd()){              // 違ったら呼び出し
-                $("#btn_login").removeAttr("disabled"); // 登録ボタンを有効化
+                $("#btn_signup").removeAttr("disabled"); // 登録ボタンを有効化
             }else{
-                $("#btn_login").attr("disabled", true); // 登録ボタンを無効化
+                $("#btn_signup").attr("disabled", true); // 登録ボタンを無効化
             }
             preString = string;             // 文字列入れ替え
         }
