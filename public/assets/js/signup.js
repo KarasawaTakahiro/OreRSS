@@ -4,12 +4,18 @@ $(function(){
     bind_checkRePasswd();
 });
 
+/*
+ * エラー状態を管理
+ */
 var clearFlag = {
     "nickname":false,
     "password":false,
     "repassword":false
 };
 
+/*
+ * 登録ボタンの状態を操作する
+ */
 var setBtnState = function(key, value){
     var isClear = true;
 
@@ -27,6 +33,9 @@ var setBtnState = function(key, value){
 
 };
 
+/*
+ * イベントのバインド
+ */
 var bind_checkNickname = function(){
     var preString = "";                     // 比較対象文字列
     $("#btn_signup").attr("disabled", true); // 登録ボタンを無効化
@@ -39,6 +48,9 @@ var bind_checkNickname = function(){
     });
 };
 
+/*
+ * イベントのバインド
+ */
 var bind_checkPasswd = function(){
     var preString = "";                     // 比較対象文字列
     $("#inputPassword").keyup(function(){   // すべてのキー操作にバインド
@@ -54,6 +66,9 @@ var bind_checkPasswd = function(){
     });
 };
 
+/*
+ * イベントのバインド
+ */
 var bind_checkRePasswd = function(){
     var preString = "";                     // 比較対象文字列
     $("#inputRePassword").keyup(function(){   // すべてのキー操作にバインド
@@ -69,6 +84,9 @@ var bind_checkRePasswd = function(){
     });
 };
 
+/*
+ * ニックネームの文字列に関してチェックする
+ */
 var checkNickname = function(){
     var obj = $("#inputNickname");
     var len = obj.val().length;
@@ -84,6 +102,9 @@ var checkNickname = function(){
     }
 };
 
+/*
+ * パスワードの文字列に関してチェックする
+ */
 var checkPasswd = function(){
     var obj = $("#inputPassword");          // テキストボックス
     var len = obj.val().length;             // 文字列長
@@ -109,6 +130,9 @@ var checkPasswd = function(){
 
 };
 
+/*
+ * パスワードの再入力部分についてチェックする
+ */
 var checkRePasswd = function(){
     // パスワードの同一性チェック
     if($("#inputPassword").val() != $("#inputRePassword").val()){
@@ -122,14 +146,23 @@ var checkRePasswd = function(){
     return true;
 };
 
+/*
+ * ニックネームに関する警告文を操作する
+ */
 var wornNickname = function(wornString){
     $("#wornNickname").empty().append(wornString);
 };
 
+/*
+ * パスワードに関する警告文を操作する
+ */
 var wornPassword = function(wornString){
     $("#wornPassword").empty().append(wornString);
 };
 
+/*
+ * パスワード再入力に関する警告文を操作する
+ */
 var wornRePassword = function(wornString){
     $("#wornRePassword").empty().append(wornString);
 };
