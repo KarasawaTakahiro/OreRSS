@@ -165,7 +165,7 @@ class Model_Feedtbl extends \Model
     /*
      * フィードの購読数を１だけ増やす
      */
-    public function inc_pull_num($id)
+    public static function inc_pull_num($id)
     {
         // 現在の値を取得
         $query = DB::select('pull_num')->from(TABLE_FEED)
