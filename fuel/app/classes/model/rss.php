@@ -22,7 +22,7 @@ class Model_Rss extends \Model
             $id = \Model_Feedtbl::get_id_from_url($mylist_url);     // feedのidを取得
             if($id == null) return null;                            // DBから参照失敗
 
-            Model_Pull::add($id, $userId);
+            self::pull($id, $userId);                               // 購読
             foreach($feed_channel->item as $item){
                 // itemの新規登録
                 $itemId = self::regist_item($id, $item->title, $item->link, $item->pubDate, $item->guid);
@@ -37,7 +37,7 @@ class Model_Rss extends \Model
 
             $feed_channel = \Model_Rss::get_localdata_channel_format($id);  // ローカルのデータを取得
             if($feed_channel == null) return null;                  // 参照失敗
-            Model_Pull::add($id, $userId);                          // 購読
+            self::pull($id, $userId);                               // 購読
             foreach($feed_channel['item'] as $item){                // 動画情報を登録
                 // itemの新規登録
                 $itemId = self::regist_item($id, $item['title'], $item['link'], $item['pub_date'], $item['guid']);
@@ -236,6 +236,16 @@ class Model_Rss extends \Model
         $res = Model_Feedtbl::get_all_column_from_id($feedId)[0];
         $res['item'] = Model_itemtbl::get_itemlist_column_from_feed_id($feedId);
         return $res;
+    }
+
+    /*
+     * feedを購読する
+     */
+    public static function pull($feedid, $userid)
+    {
+        if(Model_Pull::add($feedid, $userid)){                          // 購読
+            Model_Feedtbl::inc_pull_num($feedid);                       // 購読数を増やす
+        }
     }
 
 
