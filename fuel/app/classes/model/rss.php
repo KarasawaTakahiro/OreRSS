@@ -76,6 +76,7 @@ class Model_Rss extends \Model
             return 0;
         }
 
+        $url = self::convert_url($url);     // RSSフィードURLに変換
         $res = self::get_feed($url);        // フィードの全itemを取得
         if($res == null) return 0;          // フィードが404
         $items = self::get_items($res);     // フィードの取得が成功
