@@ -19,7 +19,10 @@
     <dd>
     <div id="feed-list-read">
         {foreach $feed_list_read as $feed}
-        <p><a href="/orerss/feed/{$feed.id}">{$feed.title}</a></p>
+        <p>
+            <a href="/orerss/feed/{$feed.id}">{$feed.title}</a>
+            <a class="unpull" href="#" name="{$feed.id}"><span class="glyphicon glyphicon-remove"></span></a>
+        </p>
         {/foreach}
     </div>
     </dd>
