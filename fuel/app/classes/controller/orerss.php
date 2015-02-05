@@ -242,6 +242,18 @@ class Controller_Orerss extends Controller_Template
     }
 
     /*
+     * フィードの購読解除
+     */
+    public function post_unpullFeed(){
+      $userid = Session::get('userid');             // ユーザID
+      $feedid = Input::post('fid');                 // フィードID
+      Model_Watch::del($userid, $feedid);           // 動画の視聴状況を削除
+      Model_Pull::del($userid, $feedid);            // 購読状況を削除
+
+      return true;
+    }
+
+    /*
      * Ringからfeedを更新する
      */
     public function get_updateRing(){
