@@ -152,7 +152,8 @@ class Model_Feedtbl extends \Model
      */
     public static function get_user_pull($userid)
     {
-        $query = \DB::select('feed.id', 'feed.title', 'feed.url')->from('feed')
+        $query = \DB::select('feed.id', 'feed.title', 'feed.url', 'feed.pull_num')
+            ->from('feed')
             ->join('pull')->on('feed.id', '=', 'pull.feed_id')
             ->join('user')->on('user.id', '=', 'pull.user_id')
             ->where('user.id', '=', $userid)
