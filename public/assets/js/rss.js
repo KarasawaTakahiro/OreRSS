@@ -5,7 +5,8 @@ $(function(){
   registNewFeed();
   // 更新用ボタンのリスナを登録
   feedRefresh();
-
+  // 購読解除用ボタンのリスナ登録
+  unpull();
 });
 
 function info(text){
@@ -98,5 +99,29 @@ var feedRefresh = function(){
 
 
   });
+};
+
+/*
+ * 購読解除ボタンのバインド
+ */
+var unpull = function(){
+    $("a.unpull").click(function(){         // クリックイベントにバインド
+        var feedid = $(this).attr("name");  // フィードID取得
+        var parent = $(this).parent();      // 一覧から削除のために行全体を取得
+
+        // ajaxでPOST
+        $.ajax({
+            url: '/orerss/unpullFeed',
+            async: true,
+            method: 'POST',
+            data: {fid:feedid}
+        }).done(function(){                 // 成功
+            parent.remove();                // 一覧から削除
+        }).fail(function(){                 // 失敗
+        });
+
+        return false;                       // ジャンプを無効化
+    });
+
 };
 
