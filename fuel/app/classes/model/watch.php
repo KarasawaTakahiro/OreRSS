@@ -28,4 +28,15 @@ class Model_Watch extends \Model
             ->where('item_id', '=', $itemId)
             ->execute();
     }
+
+    /*
+     * 項目削除
+     */
+    public static function del($userid, $feedid)
+    {
+        // 指定ユーザかつ指定フィードを親に持つ視聴状況を削除
+        $query = \DB::query("delete watch from watch join item on item.id = watch.item_id where user_id = $userid and feed_id = $feedid")->execute();
+        return $query;
+    }
+
 }
