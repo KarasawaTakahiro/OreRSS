@@ -70,5 +70,18 @@ class Model_Pull extends \Model
         }
     }
 
+    /*
+     * 項目削除
+     */
+    public static function del($userid, $feedid)
+    {
+        // ユーザIDかつフィードIDを持つものを削除
+        $query = \DB::delete('pull')
+            ->where('user_id', '=', $userid)
+            ->where('feed_id', '=', $feedid)
+            ->execute();
+        return $query;
+    }
+
 }
 
