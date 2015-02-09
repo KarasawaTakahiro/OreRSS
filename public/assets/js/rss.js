@@ -125,10 +125,8 @@ var unpull = function(){
             parent.remove();                // 一覧から削除
             // フィードページにいたらダッシュボードに移動
             var isfeed = location.href.match(/feed.[0-9]+/);    // フィードページかどうか
-                console.log(feedid);
             if(isfeed != null){
                 var pfeedid = isfeed[0].match(/[0-9]+/)[0];      // フィードIDを取得
-                console.log(pfeedid);
                 if(parseInt(pfeedid) == parseInt(feedid)){      // 削除したフィードのフィードページにいる
                     window.location.href = "/orerss/dashboard"; // dashboardにジャンプ
                 }
