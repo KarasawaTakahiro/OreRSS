@@ -106,6 +106,12 @@ var feedRefresh = function(){
  */
 var unpull = function(){
     $("a.unpull").click(function(){         // クリックイベントにバインド
+
+        // 削除の確認
+        if(confirm("購読を解除しますか？") == false){
+            return false;
+        }
+
         var feedid = $(this).attr("name");  // フィードID取得
         var parent = $(this).parent();      // 一覧から削除のために行全体を取得
 
@@ -117,6 +123,16 @@ var unpull = function(){
             data: {fid:feedid}
         }).done(function(){                 // 成功
             parent.remove();                // 一覧から削除
+            // フィードページにいたらダッシュボードに移動
+            var isfeed = location.href.match(/feed.[0-9]+/);    // フィードページかどうか
+                console.log(feedid);
+            if(isfeed != null){
+                var pfeedid = isfeed[0].match(/[0-9]+/)[0];      // フィードIDを取得
+                console.log(pfeedid);
+                if(parseInt(pfeedid) == parseInt(feedid)){      // 削除したフィードのフィードページにいる
+                    window.location.href = "/orerss/dashboard"; // dashboardにジャンプ
+                }
+            }
         }).fail(function(){                 // 失敗
         });
 
