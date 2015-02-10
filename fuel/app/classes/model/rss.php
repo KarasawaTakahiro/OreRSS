@@ -54,7 +54,7 @@ class Model_Rss extends \Model
         $num = 0;   // 新規総数
         // DBから全てのフィードのidを取得
         foreach(\Model_Feedtbl::get_all_feed_ids() as $feed_id){
-            $res = self::update_feed($feed_id);     // フィードを更新
+            $num += self::update_feed($feed_id);     // フィードを更新
         }
 
         return $num;
