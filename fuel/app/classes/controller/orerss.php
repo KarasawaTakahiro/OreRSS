@@ -236,7 +236,7 @@ class Controller_Orerss extends Controller_Template
     /*
      * feedを更新する - ajax
      */
-    public function action_updateFeed(){
+    public function post_updateFeed(){
         $updated = (new Model_Rss())->update();
         return json_encode(array('update_num' => $updated));
     }
