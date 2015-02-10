@@ -84,8 +84,11 @@ class Model_Rss extends \Model
                 continue;
             }else{
                 // 未登録により新規登録
-                self::regist_item($feed_id, $item->title, $item->link, $item->pubDate, $item->guid);
-                $update_num += 1;           // 更新数++
+                $itemid = self::regist_item($feed_id, $item->title, $item->link, $item->pubDate, $item->guid);
+                if($itemid != null){            // 更新成功
+                    $update_num += 1;           // 更新数++
+                    self::add_update_watch($itemid);    // 視聴情報の新規登録
+                }
             }
         }
         return $update_num;
