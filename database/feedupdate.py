@@ -1,18 +1,16 @@
 
 # encoding: utf-8
 
+import os
 import urllib2
 import time
 
 class FeedUpdate():
     def __init__(self):
+        os.environ["TZ"] = "Asia/Tokyo"
         self.url = "http://localhost/orerss/updateFeed"
-        #self.delay = 60
-        #self.delayminute = 10
-
-        self.delay = 30
-        self.delayminute = 1
-
+        self.delay = 60
+        self.delayminute = 10
         self.headers = {"pragma":"no-cache"}
         self.outfile = "./log_update.txt"
 
@@ -30,7 +28,8 @@ class FeedUpdate():
 
     def log(self, string):
         f = open(self.outfile, "a")
-        f.write("[%s] : udpate (%s)\n" % (time.strftime("%Y/%m/%d %H:%M:%S"), string))
+        t = time.strftime("%Y/%m/%d %H:%M:%S %Z")
+        f.write("[%s] : udpate (%s)\n" % (t, string))
         f.close()
 
 if __name__ == "__main__":
