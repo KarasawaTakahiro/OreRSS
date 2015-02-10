@@ -245,6 +245,24 @@ class Model_Rss extends \Model
         }
     }
 
+    /*
+     * 新規に登録されたitemに対してpullしているユーザのwatchを追加
+     */
+    public static function add_update_watch($itemid)
+    {
+        // itemidが所属するfeedを購読している全ユーザを得る
+        $users = DB::select('user_id')->from('pull')
+            ->join('item')->on('pull.feed_id', '=', 'item.feed_id')
+            ->where('item.id', '=', $itemid)
+            ->execute()
+            ->as_array();
+
+        // 取得したユーザに対してitemidのwatchを追加
+        foreach($users as $user){
+            Model_Watch::add($itemid, $user['user_id']);
+        }
+    }
+
 
 }
 
