@@ -85,7 +85,7 @@ class Model_Rss extends \Model
             }else{
                 // 未登録により新規登録
                 self::regist_item($feed_id, $item->title, $item->link, $item->pubDate, $item->guid);
-                $update_num += 1;
+                $update_num += 1;           // 更新数++
             }
         }
         return $update_num;
@@ -129,12 +129,13 @@ class Model_Rss extends \Model
             return false;
         }
 
-        if(0 < count($query->execute())){
+        if(0 < count($query->execute()->as_array())){
             return true;
         }else{
             return false;
         }
     }
+
     /*
         マイリストのURLからRSSのURLに変換する
     */
