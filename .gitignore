@@ -38,3 +38,5 @@ composer.phar
 /fuel/app/config/
 *.swp
 *.txt
+/.sass-cache
+/sass/.sass-cache
