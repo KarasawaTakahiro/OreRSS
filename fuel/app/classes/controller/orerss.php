@@ -12,10 +12,11 @@ class Controller_Orerss extends Controller_Template
      */
     public function get_index()
     {
+        $data = array();
         $this->template->nickname = null;
-        $this->template->contents = '';
-        $this->template->assets = '';
-        Response::redirect('/orerss/login');
+        $this->template->contents = View_Smarty::forge('orerss/index', $data);
+        $this->template->js = array('jquery-2.1.1.min.js', 'bootstrap.min.js');
+        $this->template->css = array('bootstrap.min.css', 'bootstrap.min.css');
     }
 
     /*
