@@ -1,0 +1,93 @@
+@font-face {
+  font-family: "nicomoji+";
+  src: url("../fonts/nicomoji-plus.ttf") format("TrueType");
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/index\.scss}line{font-family:\0000336}}
+.thumbnail-mylist-large {
+  width: 160px;
+  height: 90px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/index\.scss}line{font-family:\0000341}}
+.thumbnail-mylist-middle {
+  width: 100px;
+  height: 56px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/index\.scss}line{font-family:\0000346}}
+.thumbnail-user-small {
+  width: 16px;
+  height: 16px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/index\.scss}line{font-family:\0000351}}
+body {
+  background-image: url(../img/geometry2.png);
+  background-color: #ecf0f1;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/index\.scss}line{font-family:\0000354}}
+body .navbar-default {
+  background-color: #e7991e;
+  margin-bottom: 0px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/index\.scss}line{font-family:\0000359}}
+body .jumbotron {
+  text-align: center;
+  background-color: #e7991e;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/index\.scss}line{font-family:\0000366}}
+body .jumbotron h1 {
+  font-family: "nicomoji+";
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/index\.scss}line{font-family:\0000371}}
+body h2 {
+  font-family: "nicomoji+";
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/index\.scss}line{font-family:\0000375}}
+body .item-container {
+  height: 100%;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/index\.scss}line{font-family:\0000378}}
+body .item-container .update-item-thumbnail {
+  width: 60%;
+  float: left;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/index\.scss}line{font-family:\0000326}}
+body .item-container .update-item-thumbnail img {
+  width: 100%;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/index\.scss}line{font-family:\0000382}}
+body .item-container .pickup-item-thumbnail {
+  width: 20%;
+  float: left;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/index\.scss}line{font-family:\0000326}}
+body .item-container .pickup-item-thumbnail img {
+  width: 100%;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/index\.scss}line{font-family:\0000386}}
+body .item-container .item-info {
+  position: relative;
+  height: 100%;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/index\.scss}line{font-family:\0000390}}
+body .item-container .item-info .movie-datetime {
+  position: relative;
+  text-align: right;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/index\.scss}line{font-family:\0000398}}
+body .item-container .item-info .pullusers {
+  position: relative;
+  bottom: 0px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/index\.scss}line{font-family:\00003102}}
+body .item-container .item-info .pullusers li {
+  margin-left: 1px;
+  margin-right: 1px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/index\.scss}line{font-family:\00003111}}
+body .item-container .clear {
+  clear: both;
+}

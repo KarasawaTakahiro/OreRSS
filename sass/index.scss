@@ -1,0 +1,116 @@
+@import "compass";
+@import "compass/css3/flexbox";
+
+$color-main: desaturate(#f39c12, 10%);
+$color-accent: adjust-hue($color-main, 200);
+$color-bg: #ecf0f1;
+
+@font-face {
+    font-family: "nicomoji+";
+    src: url("../fonts/nicomoji-plus.ttf") format("TrueType");
+}
+
+@mixin background {
+    background-image: url(../img/geometry2.png);
+    background-color: $color-bg;
+}
+
+@mixin font-main {
+    font-family: "nicomoji+";
+}
+
+@mixin item-thumbnail($width) {
+    width: $width;
+    float: left;
+
+    img {
+        width: 100%;
+        }
+}
+
+@mixin from-bottom($hight) {
+    position: absolute;
+    bottom: $hight;
+}
+
+.thumbnail-mylist-large {
+    width: 160px;
+    height: 90px;
+}
+
+.thumbnail-mylist-middle {
+    width: 100px;
+    height: 56px;
+}
+
+.thumbnail-user-small {
+    width:  16px;
+    height: 16px;
+}
+
+body {
+    @include background;
+
+    .navbar-default {
+        background-color: $color-main;
+        margin-bottom: 0px;
+    }
+
+    .jumbotron {
+        text-align: center;
+        background-color: $color-main;
+
+        p {
+        }
+
+        h1 {
+            @include font-main;
+        }
+    }
+
+    h2{
+        @include font-main;
+    }
+
+    .item-container {
+        height: 100%;
+
+        .update-item-thumbnail {
+            @include item-thumbnail(60%);
+        }
+
+        .pickup-item-thumbnail {
+            @include item-thumbnail(20%);
+        }
+
+        .item-info {
+            position: relative;
+            height: 100%;
+
+            .movie-datetime {
+                position: relative;
+                text-align: right;
+            }
+
+            .mylist-description {
+            }
+
+            .pullusers {
+                position: relative;
+                bottom: 0px;
+
+                li {
+                    margin-left: 1px;
+                    margin-right: 1px;
+                    padding-left: 0px;
+                    padding-right: 0px;
+                }
+            }
+        }
+
+        .clear {
+            clear: both;
+        }
+
+    }
+}
