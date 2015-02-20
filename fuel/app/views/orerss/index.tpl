@@ -7,6 +7,7 @@
 
 <div class="container">
     <h2>Update</h2>
+    <hr />
     <div class="row">
         {foreach $updates as $item}
         <div class="col-md-4">
@@ -17,8 +18,10 @@
                         <img src="{$item.thumbnail}" />
                     </div>
                     <div class="item-info">
-                        <div>{$item.moviename}</div>
-                        <div class="movie-datetime">{$item.datetime}</div>
+                        <ul>
+                            <li class="movie-name">{$item.moviename}</li>
+                            <li class="movie-datetime">{$item.datetime}</li>
+                        </ul>
                     </div>
                     <div class="clear"></div>
                 </div>
@@ -31,27 +34,28 @@
         <div class="col-md-8">
             <!-- 左半分 -->
             <h2>Pickup</h2>
+            <hr />
             {foreach $pickups as $item}
-                <div class="pickup-item">
-                    <div class="item-container">
-                        <div class="pickup-item-thumbnail">
-                            <img src="{$item.thumbnail}" />
-                        </div>
-                        <div class="item-info">
-                            <div>{$item.title}</div>
-                            <div class="mylist-description">{$item.description}</div>
-                            <div class="pullusers">
-                                <ul class="list-inline">
-                                    {foreach $item.users as $user}
-                                    <li><img class="thumbnail-user-small" src="{$user.thumbnail}" alt="{$user.nickname}" title="{$user.nickname}" /></li>
-                                    {/foreach}
-                                    <li><span class="badge">{$item.pullnum}</span></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="clear"></div>
-                    </div>
+            <div class="pickup-item">
+                <div class="pickup-item-thumbnail">
+                    <img src="{$item.thumbnail}" />
                 </div>
+                <div class="item-info">
+                    <ul>
+                        <li class="name">{$item.title}</li>
+                        <li class="description">{$item.description}</li>
+                        <li class="pullusers">
+                        <ul class="list-inline">
+                            {foreach $item.users as $user}
+                            <li><img class="thumbnail-user-small" src="{$user.thumbnail}" alt="{$user.name}" title="{$user.name}" /></li>
+                            {/foreach}
+                            <li><span class="badge">{$item.pullnum}</span></li>
+                        </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="clear"></div>
+            </div>
             {/foreach}
         </div>
         <div class="col-md-4">

@@ -5,6 +5,10 @@ $color-main: desaturate(#f39c12, 10%);
 $color-accent: adjust-hue($color-main, 200);
 $color-bg: #ecf0f1;
 
+$fontsz-middle: 15px;
+$fontsz-large: $fontsz-middle * 1.2;
+$fontsz-small: $fontsz-middle * 0.8;
+
 @font-face {
     font-family: "nicomoji+";
     src: url("../fonts/nicomoji-plus.ttf") format("TrueType");
@@ -21,26 +25,23 @@ $color-bg: #ecf0f1;
 
 @mixin item-thumbnail($width) {
     width: $width;
+    height: 100%;
     float: left;
 
     img {
+        height: 100%;
         width: 100%;
-        }
+    }
 }
 
-@mixin from-bottom($hight) {
-    position: absolute;
-    bottom: $hight;
-}
+@mixin item-info($width) {
+    width: $width;
+    height: 100%;
+    float: left;
 
-.thumbnail-mylist-large {
-    width: 160px;
-    height: 90px;
-}
-
-.thumbnail-mylist-middle {
-    width: 100px;
-    height: 56px;
+    ul {
+        margin-bottom: 0px;
+    }
 }
 
 .thumbnail-user-small {
@@ -48,69 +49,83 @@ $color-bg: #ecf0f1;
     height: 16px;
 }
 
+html, body {
+    height: 100%;
+}
+
 body {
     @include background;
+}
 
-    .navbar-default {
-        background-color: $color-main;
-        margin-bottom: 0px;
-    }
+.jumbotron {
+    text-align: center;
+    background-color: $color-main;
 
-    .jumbotron {
-        text-align: center;
-        background-color: $color-main;
-
-        p {
-        }
-
-        h1 {
-            @include font-main;
-        }
-    }
-
-    h2{
+    h1 {
         @include font-main;
     }
+}
 
-    .item-container {
-        height: 100%;
+.navbar-default {
+    background-color: $color-main;
+    margin-bottom: 0px;
+}
 
-        .update-item-thumbnail {
-            @include item-thumbnail(60%);
-        }
+h2{
+    @include font-main;
+}
 
-        .pickup-item-thumbnail {
-            @include item-thumbnail(20%);
-        }
+.update-item-thumbnail {
+    @include item-thumbnail(60%);
 
-        .item-info {
-            position: relative;
-            height: 100%;
-
-            .movie-datetime {
-                position: relative;
-                text-align: right;
-            }
-
-            .mylist-description {
-            }
-
-            .pullusers {
-                position: relative;
-                bottom: 0px;
-
-                li {
-                    margin-left: 1px;
-                    margin-right: 1px;
-                    padding-left: 0px;
-                    padding-right: 0px;
-                }
-            }
-        }
-
-        .clear {
-            clear: both;
-        }
-
+    .item-info {
+        @include item-info(40%);
     }
 }
+
+.pickup-item-thumbnail {
+    @include item-thumbnail(20%);
+
+    .item-info {
+        @include item-info(80%);
+    }
+}
+
+.update-item {
+    margin-bottom: 10px;
+
+    .movie-name {
+        font-size: middle;
+    }
+
+    .movie-datetime {
+        font-size: small;
+    }
+}
+
+.pickup-item {
+    margin-bottom: 50px;
+
+    .name {
+        font-size: middle;
+        font-weight: bold;
+    }
+
+    .description {
+        font-size: small;
+    }
+
+    .pullusers {
+        li {
+            margin-left: 1px;
+            margin-right: 1px;
+            padding-left: 0px;
+            padding-right: 0px;
+        }
+    }
+}
+
+.clear {
+    clear: both;
+}
+
