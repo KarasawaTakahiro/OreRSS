@@ -1,5 +1,7 @@
 <?php
 
+define('TABLE_NAME', 'user');
+
 class Model_User extends \Model
 {
     /*
@@ -70,6 +72,30 @@ class Model_User extends \Model
             return $query[0]['nickname'];
         }
 
+    }
+
+    /*
+     * サムネイル登録
+     */
+    public static function set_thumbnail($userid, $filename)
+    {
+        $query = DB::update(TABLE_NAME)
+            ->value('thumbnail', $filename)
+            ->where('id', '=', $userid)
+            ->execute();
+
+        return $query;
+    }
+
+    /*
+     * サムネイルファイル名取得 
+     */
+    public static function get_thumbnail($userid)
+    {
+        return DB::select('thumbnail')->from(TABLE_NAME)
+            ->where('id', '=', $userid)
+            ->execute()
+            ->as_array()[0]['thumbnail'];
     }
 
 }
