@@ -145,6 +145,18 @@ class Controller_Orerss extends Controller_Template
     }
 
     /*
+     * 設定画面
+     */
+    public function get_settings()
+    {
+        $data = array();
+        $this->template->nickname = self::help_nickname();
+        $this->template->contents = View_Smarty::forge('orerss/settings', $data);
+        $this->template->js = array('jquery-2.1.1.min.js', 'bootstrap.min.js');
+        $this->template->css = array('bootstrap.min.css', 'bootstrap.min.css');
+    }
+
+    /*
      * ログアウト
      */
     public function get_logout()
@@ -198,6 +210,20 @@ class Controller_Orerss extends Controller_Template
             Response::redirect('/orerss/login');
         }
 
+    }
+
+    /*
+     * 設定
+     */
+    public function post_settings()
+    {
+        $thumbnail = self::help_userThumbnailUpload();  // サムネイルを取得
+        if(0 < count($thumbnail['success'])){           // アップロード成功
+            // サムネイルをDBに保存
+            Model_User::set_thumbnail(self::help_userid(), $thumbnail['success'][0]['saved_as']);
+        }
+
+        Response::redirect('/orerss/settings');
     }
 
 // --- ajax ---------------------------------------------------------------------------
@@ -277,6 +303,16 @@ class Controller_Orerss extends Controller_Template
 // --- help ---------------------------------------------------------------------
 
     /*
+     * ユーザIDを取得
+     */
+    private function help_userid(){
+        $userid = Session::get('userid', null);     // セッションのユーザIDを取得
+        if($userid != null){ return $userid;        // 取得成功でIDを返す
+        }else{ return null;                         // 取得失敗でnullを返す
+        }
+    }
+
+    /*
      * セッションからユーザIDを取得してニックネームを取得する
      */
     private function help_nickname(){
@@ -305,6 +341,29 @@ class Controller_Orerss extends Controller_Template
         if(Session::get('userid') != null){
             Response::redirect('/orerss/logout');
         }
+    }
+
+    /*
+     * 画像のアップロード
+     */
+    private function help_userThumbnailUpload()
+    {
+        $config = array(
+            'path'          => DOCROOT.DS.'assets'.DS.'img'.DS.'user',  // 保存先
+            'randomize'     => true,                                    // ファイル名をランダムに
+            'ext_whitelist' => array('jpg', 'jpeg', 'png'),             // うp可能拡張子
+        );
+
+        // うp開始
+        Upload::process($config);
+        if(Upload::is_valid()){
+            Upload::save();
+        }
+
+        return array(
+            'success'   => Upload::get_files(),
+            'faileds'   => Upload::get_errors(),
+        );
     }
 
 }
