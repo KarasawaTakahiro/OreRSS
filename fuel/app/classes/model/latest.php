@@ -18,10 +18,6 @@ class Model_Latest extends \Model
             ->limit(RECORDS_NUM-1);
         $new = $query->execute()->as_array();
 
-        echo '<pre>';
-        var_dump($new);
-        echo '</pre>';
-
         // 規定数以上なら削除する
         if(0 < count($new)){
             $query = DB::delete(TABLE_NAME)
@@ -34,10 +30,20 @@ class Model_Latest extends \Model
                         'item_id'   => $itemid))
                     ->execute();
 
-        echo '<pre>';
-        var_dump($query);
-        echo '</pre>';
+        return $query;
+    }
 
+    /*
+     * 値の取得
+     * 新しい順にitemテーブルの情報を付与して返す
+     */
+    public static function get()
+    {
+        $query = DB::select('*')->from(TABLE_NAME)
+            ->join('item')->on(TABLE_NAME.'.item_id', '=', 'item.id')
+            ->order_by(TABLE_NAME.'.pub_date', 'desc')
+            ->execute()
+            ->as_array();
         return $query;
     }
 
