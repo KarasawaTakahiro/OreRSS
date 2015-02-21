@@ -40,3 +40,4 @@ composer.phar
 *.txt
 /.sass-cache
 /sass/.sass-cache
+*.png
