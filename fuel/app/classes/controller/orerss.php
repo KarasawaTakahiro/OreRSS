@@ -1,5 +1,7 @@
 <?php
 
+define('DIR_THUMBNAIL', DOCROOT.DS.'assets'.DS.'img'.DS.'user');
+
 class Controller_Orerss extends Controller_Template
 {
 
@@ -217,8 +219,14 @@ class Controller_Orerss extends Controller_Template
      */
     public function post_settings()
     {
+        $userid = self::help_userid();
         $thumbnail = self::help_userThumbnailUpload();  // サムネイルを取得
         if(0 < count($thumbnail['success'])){           // アップロード成功
+            // 先に登録されているものを削除
+            $thumb = Model_User::get_thumbnail($userid);
+            if($thumbnail != ''){
+                unlink(DIR_THUMBNAIL.DS.$thumb);
+            }
             // サムネイルをDBに保存
             Model_User::set_thumbnail(self::help_userid(), $thumbnail['success'][0]['saved_as']);
         }
@@ -349,9 +357,9 @@ class Controller_Orerss extends Controller_Template
     private function help_userThumbnailUpload()
     {
         $config = array(
-            'path'          => DOCROOT.DS.'assets'.DS.'img'.DS.'user',  // 保存先
-            'randomize'     => true,                                    // ファイル名をランダムに
-            'ext_whitelist' => array('jpg', 'jpeg', 'png'),             // うp可能拡張子
+            'path'          => DIR_THUMBNAIL,                   // 保存先
+            'randomize'     => true,                            // ファイル名をランダムに
+            'ext_whitelist' => array('jpg', 'jpeg', 'png'),     // うp可能拡張子
         );
 
         // うp開始
