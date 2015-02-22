@@ -191,6 +191,23 @@ class Model_Feedtbl extends \Model
             ->execute();
     }
 
+    /*
+     * マイリストの説明文を取得する
+     */
+    public static function get_description($id)
+    {
+        $query = DB::select('description')->from(TABLE_FEED)
+            ->where('id', '=', $id)
+            ->execute()
+            ->as_array();
+
+        if(0 < count($query){
+            return $query[0]['description'];
+        }else{
+            return null;
+        }
+    }
+
 
 }
 
