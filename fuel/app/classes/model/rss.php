@@ -23,6 +23,7 @@ class Model_Rss extends \Model
             if($id == null) return null;                            // DBから参照失敗
 
             self::pull($id, $userId);                               // 購読
+            Model_Feedtbl::set_description($id, $feed_channel->description);    // 説明文を登録する
             foreach($feed_channel->item as $item){
                 // itemの新規登録
                 $itemId = self::regist_item($id, $item->title, $item->link, $item->pubDate, $item->guid);
@@ -73,10 +74,12 @@ class Model_Rss extends \Model
             return 0;
         }
 
-        $furl = self::convert_url($url);     // RSSフィードURLに変換
-        $res = self::get_feed($furl);        // フィードの全itemを取得
-        if($res == null) return 0;          // フィードが404
-        $items = self::get_items($res);     // フィードの取得が成功
+        $furl = self::convert_url($url);        // RSSフィードURLに変換
+        $res = self::get_feed($furl);           // フィードの全itemを取得
+        if($res == null) return 0;              // フィードが404
+        $channel = self::parse($res);           // パース
+        Model_Feedtbl::set_description($feed_id, $channel->description);    // 動画説明文更新
+        $items = self::get_items($channel);     // フィードの取得が成功
 
         foreach($items as $item){
             if(self::is_registered_item_at($url, $item->guid)){
@@ -205,9 +208,9 @@ class Model_Rss extends \Model
     /*
         
     */
-    private function get_items($feed_data){
+    private function get_items($channel){
         $items = array();
-        foreach(self::parse($feed_data)->item as $item){
+        foreach($channel->item as $item){
             array_push($items, $item);
         }
         array_reverse($items);
