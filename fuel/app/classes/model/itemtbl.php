@@ -159,4 +159,37 @@ class Model_Itemtbl extends \Model
         }
     }
 
+    /*
+     * 指定IDのサムネイルを取得する
+     */
+    public static function get_thumbnail_from_id($id)
+    {
+        $query = DB::select('link')->from(TABLE_ITEM)
+            ->where('id', '=', $id)
+            ->execute()
+            ->as_array();
+
+        // no match
+        if(count($query) <= 0) return null;
+    }
+
+    /*
+     * URLからsmIDを取得する
+     * smIDの数字部分のみを抜き出す
+     */
+    private static function pickup_smid($str)
+    {
+        // watch/sm0000を抜き出す
+        if(preg_match('/watch\/sm\d+/', $str, $matches) != True){
+            return null;            // マッチせず終了
+        }
+
+        // 更に0000を抜き出す
+        if(preg_match('/\d+/', $matches[0], $m) != True){
+            return null;            // マッチせず終了
+        }
+
+        return $m[0];
+    }
+
 }
