@@ -27,7 +27,7 @@ class Model_Pull extends \Model
     }
 
     /*
-     * 指定したfeedを購読しているユーザの情報を返す
+     * 指定したfeedを購読している自分以外のユーザの情報を返す
      */
     public static function get_pull_users($feedid, $userid)
     {
@@ -83,5 +83,25 @@ class Model_Pull extends \Model
         return $query;
     }
 
+    /*
+     * 指定したfeedを購読している全ユーザの情報を返す
+     */
+    public static function get_all_pull_users($feedid, $userid)
+    {
+        $query = \DB::select('nickname', 'user.id', 'user.thumbnail')->from('pull')
+            ->join('feed')->on('feed.id', '=', 'pull.feed_id')
+            ->join('user')->on('user.id', '=', 'pull.user_id')
+            ->where('pull.feed_id', '=', $feedid)
+            ->execute()
+            ->as_array();
+
+        if(0 < count($query)){
+            return $query;
+        }else{
+            return null;
+        }
+
+        return $query;
+    }
 }
 
