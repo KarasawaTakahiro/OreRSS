@@ -1,6 +1,7 @@
 <?php
 
 define('TABLE_ITEM', 'item');
+define('API_THUMBNAIL', 'http://ext.nicovideo.jp/api/getthumbinfo/sm'); // 動画に関する詳しい情報を取得できるAPI
 
 class Model_Itemtbl extends \Model
 {
@@ -164,6 +165,7 @@ class Model_Itemtbl extends \Model
      */
     public static function get_thumbnail_from_id($id)
     {
+        // 動画URLを検索
         $query = DB::select('link')->from(TABLE_ITEM)
             ->where('id', '=', $id)
             ->execute()
@@ -171,6 +173,11 @@ class Model_Itemtbl extends \Model
 
         // no match
         if(count($query) <= 0) return null;
+
+        $smid = self::pickup_smid($query[0]['link']);       // 動画URLからsmIDを取得
+        $data = simplexml_load_string(self::get_action(API_THUMBNAIL.$smid));   // APIアクセス&XMLをパース
+
+        return $data->thumb->thumbnail_url;
     }
 
     /*
@@ -191,5 +198,28 @@ class Model_Itemtbl extends \Model
 
         return $m[0];
     }
+
+    /*
+     * URLにアクセス
+     * アクセス結果を返す
+     */
+    private static function get_action($url){
+        $context = stream_context_create(array(
+            'http'=>array(
+                'user_agent' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.143 Safari/537.36',
+                'ignore_errors' => true,
+                )
+            )
+        );
+        $content = file_get_contents($url, false, $context);
+
+        $pos = strpos($http_response_header[0], '404');
+        if($pos !== false){     // 404
+            return null;
+        }else{                  // 404じゃない時
+            return $content;
+        }
+    }
+
 
 }
