@@ -1,6 +1,6 @@
 <?php
 
-define('DIR_THUMBNAIL', DOCROOT.DS.'assets'.DS.'img'.DS.'user');
+define('DIR_THUMBNAIL', DOCROOT.'assets'.DS.'img'.DS.'user');
 
 class Controller_Orerss extends Controller_Template
 {
@@ -224,7 +224,7 @@ class Controller_Orerss extends Controller_Template
         if(0 < count($thumbnail['success'])){           // アップロード成功
             // 先に登録されているものを削除
             $thumb = Model_User::get_thumbnail($userid);
-            if($thumbnail != ''){
+            if($thumb != null){
                 unlink(DIR_THUMBNAIL.DS.$thumb);
             }
             // サムネイルをDBに保存
