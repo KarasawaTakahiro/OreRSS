@@ -27,7 +27,7 @@
                         <p id="information" class="navbar-text"></p>
                         <a href="/orerss/settings">
                             <button type="button" id ="" class="btn btn-default navbar-btn navbar-right" title="設定">
-                                <p class="nav-btn-icon"><span class="glyphicon glyphicon-log-out"></span></p>
+                                <p class="nav-btn-icon"><span class="glyphicon glyphicon-cog"></span></p>
                                 <p class="nav-btn-text">設定</p>
                             </button>
                         </a>
