@@ -208,6 +208,24 @@ class Model_Feedtbl extends \Model
         }
     }
 
+    /*
+     * 指定フィードの最新itemを取得する
+     */
+    public static function get_latest_item($id)
+    {
+        $query = DB::select()->from('item')
+            ->where('feed_id', '=', $id)
+            ->order_by('pub_date', 'desc')
+            ->limit(1)
+            ->execute()
+            ->as_array();
+
+        if(0 < count($query)){
+            return $query[0];
+        }else{
+            return null;
+        }
+    }
 
 }
 
