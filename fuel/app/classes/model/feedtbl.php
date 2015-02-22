@@ -180,6 +180,17 @@ class Model_Feedtbl extends \Model
         return $query;
     }
 
+    /*
+     * マイリスト説明文を登録
+     */
+    public static function set_description($id, $description)
+    {
+        return DB::update(TABLE_FEED)
+            ->value('description'   => $description)
+            ->where('id', '=', $id)
+            ->execute();
+    }
+
 
 }
 
