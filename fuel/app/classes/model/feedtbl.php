@@ -186,7 +186,7 @@ class Model_Feedtbl extends \Model
     public static function set_description($id, $description)
     {
         return DB::update(TABLE_FEED)
-            ->value('description'   => $description)
+            ->value('description', $description)
             ->where('id', '=', $id)
             ->execute();
     }
@@ -201,7 +201,7 @@ class Model_Feedtbl extends \Model
             ->execute()
             ->as_array();
 
-        if(0 < count($query){
+        if(0 < count($query)){
             return $query[0]['description'];
         }else{
             return null;
