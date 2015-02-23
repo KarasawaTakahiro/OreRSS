@@ -12,7 +12,10 @@ class Controller_Orerss extends Controller_Template
      */
     public function get_index()
     {
-        $data = array();
+        $data = array(
+            'updates'   => Model_Index::update(),
+            'pickups'   => Model_Index::pickup(),
+        );
         $this->template->nickname = null;
         $this->template->contents = View_Smarty::forge('orerss/index', $data);
         $this->template->js = array('jquery-2.1.1.min.js', 'bootstrap.min.js');
