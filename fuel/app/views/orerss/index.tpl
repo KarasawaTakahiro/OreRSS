@@ -56,8 +56,6 @@
                     <div class="clear"></div>
                 </div>
             </div>
-            <div class="clear"></div>
-            </div>
             {/foreach}
         </div>
         <div class="col-md-4">
