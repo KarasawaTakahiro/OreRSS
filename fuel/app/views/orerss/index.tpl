@@ -18,7 +18,7 @@
                         <img src="{$item.thumbnail}" />
                     </div>
                     <div class="item-info">
-                        <ul>
+                        <ul class="list-inline">
                             <li class="movie-name">{$item.moviename}</li>
                             <li class="movie-datetime">{$item.datetime}</li>
                         </ul>
@@ -42,8 +42,8 @@
                         <img src="{$item.thumbnail}" />
                     </div>
                     <div class="item-info">
-                        <div>{$item.title}</div>
-                        <div class="mylist-description">{$item.description}</div>
+                        <div class="title">{$item.title}</div>
+                        <div class="description">{$item.description}</div>
                         <div class="pullusers">
                             <ul class="list-inline">
                                 {foreach $item.users as $user}
@@ -58,20 +58,21 @@
             </div>
             {/foreach}
         </div>
+
         <div class="col-md-4">
             <!-- 右半分 -->
             <h4>ログイン</h4>
             {include file='orerss/login_form.tpl'}
 
             <h4>初めての方へ</h4>
-            <ul>
+            <ul class="list">
                 <li>チュートリアル</li>
                 <li>チュートリアル</li>
                 <li>チュートリアル</li>
             </ul>
 
             <h4>お知らせ</h4>
-            <ul>
+            <ul class="list">
                 <li>サイトリニューアル</li>
                 <li>サイトリニューアル</li>
                 <li>サイトリニューアル</li>

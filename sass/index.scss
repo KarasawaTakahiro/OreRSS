@@ -39,6 +39,11 @@ $fontsz-small: $fontsz-middle * 0.8;
     height: 100%;
     float: left;
 
+    div {
+        width: 100%;
+        word-break: break-all;
+    }
+
     ul {
         margin-bottom: 0px;
     }
@@ -55,6 +60,10 @@ html, body {
 
 body {
     @include background;
+}
+
+h4 {
+    margin-top: 20px;
 }
 
 .jumbotron {
@@ -75,57 +84,62 @@ h2{
     @include font-main;
 }
 
-.update-item-thumbnail {
-    @include item-thumbnail(60%);
-
-    .item-info {
-        @include item-info(40%);
-    }
-}
-
-.pickup-item-thumbnail {
-    @include item-thumbnail(20%);
-
-    .item-info {
-        @include item-info(80%);
-    }
-}
-
 .update-item {
     margin-bottom: 10px;
 
-    .movie-name {
-        font-size: middle;
+    .update-item-thumbnail {
+        @include item-thumbnail(60%);
     }
 
-    .movie-datetime {
-        font-size: small;
+    .item-info {
+        @include item-info(40%);
+
+        .movie-name {
+            font-size: middle;
+        }
+
+        .movie-datetime {
+            font-size: small;
+        }
     }
+
 }
 
 .pickup-item {
     margin-bottom: 50px;
 
-    .name {
-        font-size: middle;
-        font-weight: bold;
+    .pickup-item-thumbnail {
+        @include item-thumbnail(20%);
     }
 
-    .description {
-        font-size: small;
-    }
+    .item-info {
+        @include item-info(80%);
 
-    .pullusers {
-        li {
-            margin-left: 1px;
-            margin-right: 1px;
-            padding-left: 0px;
-            padding-right: 0px;
+        .title {
+            font-size: middle;
+            font-weight: bold;
+        }
+
+        .description {
+            font-size: small;
+        }
+
+        .pullusers {
+            li {
+                margin-left: 1px;
+                margin-right: 1px;
+                padding-left: 0px;
+                padding-right: 0px;
+            }
         }
     }
 }
 
 .clear {
     clear: both;
+}
+
+.list {
+    list-style-image: url('../img/free_triangle_005_peachpuff.gif');
 }
 
