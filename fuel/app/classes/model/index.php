@@ -43,4 +43,21 @@ class Model_Index extends \Model
 
         return $pickups;
     }
+
+    /*
+     * pickupに表示するデータ
+     */
+    public static function update($offset=0)
+    {
+        $updates = array();
+        foreach(Model_Latest::get($offset) as $col){
+            $item['thumbnail'] = Model_Itemtbl::get_thumbnail_from_id($col['item_id']);
+            $item['mylistname'] = Model_Feedtbl::get_all_column_from_id($col['feed_id'])[0]['title'];
+            $item['moviename'] = $col['title'];
+            $item['datetime'] = $col['modified_at'];
+            array_push($updates, $item);
+        }
+
+        return $updates;
+    }
 }
