@@ -225,8 +225,10 @@ class Model_Rss extends \Model
     private function regist_item($feed_id, $title, $link, $pubDate, $guid){
         // itemを新規登録
         if(\Model_Itemtbl::set($title, $link, self::convert_datetime($pubDate), $feed_id, $guid)){
+            $itemid = Model_Itemtbl::get_id_from_guid($guid);
+            Model_Latest::set($itemid);         // 新規テーブルに登録
 
-            return \Model_Itemtbl::get_id_from_guid($guid);     // idを返す
+            return $itemid;     // idを返す
         }else{
             return null;
         }
