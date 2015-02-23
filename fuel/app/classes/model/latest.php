@@ -2,6 +2,7 @@
 
 define('TABLE_NAME', 'latest');
 define('RECORDS_NUM', 12);
+define('LIMIT', 3);
 
 class Model_Latest extends \Model
 {
@@ -37,11 +38,13 @@ class Model_Latest extends \Model
      * 値の取得
      * 新しい順にitemテーブルの情報を付与して返す
      */
-    public static function get()
+    public static function get($offset=0)
     {
-        $query = DB::select('*')->from(TABLE_NAME)
+        $query = DB::select()->from(TABLE_NAME)
             ->join('item')->on(TABLE_NAME.'.item_id', '=', 'item.id')
             ->order_by(TABLE_NAME.'.pub_date', 'desc')
+            ->limit(LIMIT)
+            ->offset($offset)
             ->execute()
             ->as_array();
         return $query;
