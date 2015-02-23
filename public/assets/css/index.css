@@ -213,10 +213,6 @@ h2 {
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/index\.scss}line{font-family:\0000378}}
 .update-item .item-info .movie-name {
-  font-size: middle;
-}
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/index\.scss}line{font-family:\0000382}}
-.update-item .item-info .movie-datetime {
   font-size: small;
 }
 

@@ -14,19 +14,19 @@
         {foreach $updates as $item}
         <div class="col-md-4">
             <div class="update-item">
-                <h3>{$item.mylistname}</h3>
                 <div class="item-container">
+                    <h3 class="movie-datetime">{$item.datetime}</h3>
+                    <div class="movie-name">{$item.moviename}</div>
                     <div class="update-item-thumbnail">
                         <img src="{$item.thumbnail}" />
                     </div>
                     <div class="item-info">
                         <ul class="list-inline">
-                            <li class="movie-name">{$item.moviename}</li>
-                            <li class="movie-datetime">{$item.datetime}</li>
                         </ul>
                     </div>
                     <div class="clear"></div>
                 </div>
+                <h3>{$item.mylistname}</h3>
             </div>
         </div>
         {/foreach}

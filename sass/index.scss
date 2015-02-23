@@ -76,11 +76,11 @@ h2{
         @include item-info(40%);
 
         .movie-name {
-            font-size: middle;
+            font-size: small;
         }
 
         .movie-datetime {
-            font-size: small;
+            //font-size: small;
         }
     }
 
