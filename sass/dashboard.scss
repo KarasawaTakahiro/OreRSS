@@ -1,0 +1,82 @@
+@import "compass";
+@import "basic";
+@import "navbar";
+
+@mixin font-list-header($width){
+    width: $width;
+    color: #d6d6d6;
+}
+
+body {
+    @include background;
+}
+
+.list-header {
+    .title {
+        @include font-list-header(68%);
+    }
+    
+    .pubDate {
+        @include font-list-header(20%);
+    }
+    
+    .mark {
+        @include font-list-header(10%);
+        text-align: center;
+    }
+}
+
+.list-body {
+    .title {
+        width: 68%;
+
+        .read {
+            color: #000000;
+        }
+
+        .unread {
+            color: #ff7b00;
+            font-weight: bold;
+        }
+    }
+
+    .pubDate {
+        width: 20%;
+        color: #c4c4c4;
+    }
+
+    .mark {
+        width: 10%;
+        text-align: center;
+        color: $color-accent;
+    }
+}
+
+#dashboard {
+    font-weight: bold;
+    color: $color-accent;
+    background-color: #ffffff;
+    text-align: center;
+}
+
+#feed-list-unread {
+    font-weight: bold;
+    background-color: #ffffff;
+
+    ul {
+        background-color: #000000;
+    }
+
+    a {
+        color: #ff5400;
+    }
+}
+
+#feed-list-read {
+  background-color: #ffffff;
+
+  a {
+      color: #ff5400;
+  }
+}
+

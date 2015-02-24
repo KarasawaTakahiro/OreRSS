@@ -1,6 +1,6 @@
 
 <div id="dashboard">
-    <p><a href="/orerss/dashboard"><b>Dash Board</b></a></p>
+    <p><a href="/orerss/dashboard">Dash Board</a></p>
 </div>
 
 <dl>
