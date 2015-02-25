@@ -58,7 +58,7 @@ class Model_Feedtbl extends \Model
     }
 
     // 未読を含むフィードリストを返す
-    public static function get_feed_list_unread($userid)
+    public static function get_unread_list($userid)
     {
         $query = \DB::select('feed.id', 'feed.title')->from('feed')
                                                      ->join('item')
@@ -227,6 +227,42 @@ class Model_Feedtbl extends \Model
         }
     }
 
+    /*
+     * フィードの未読数を得る
+     */
+    public static function get_num_feed_list_unread($userid, $feedid)
+    {
+        $query = \DB::select()->from('feed')
+            ->join('item')
+            ->on('feed.id', '=', 'item.feed_id')
+            ->join('watch')
+            ->on('watch.item_id', '=', 'item.id')
+            ->join('user')
+            ->on('user.id', '=', 'watch.user_id')
+            ->join('pull')
+            ->on('pull.feed_id', '=', 'feed.id')
+            ->on('pull.user_id', '=', 'user.id')
+            ->where('watched', '=', false)
+            ->where('user.id', '=', $userid)
+            ->where('feed.id', '=', $feedid)
+            ->execute();
+
+        return count($query);
+    }
+
+    /*
+     * フィードのリストを未読数とともに取得する
+     */
+    public static function get_feed_list_unread($userid)
+    {
+        $list = Model_Feedtbl::get_unread_list($userid);
+        foreach($list as &$feed){
+            $feed['unread_num'] = self::get_num_feed_list_unread($userid, $feed['id']);
+            unset($feed);
+        }
+
+        return $list;
+    }
 }
 
 
