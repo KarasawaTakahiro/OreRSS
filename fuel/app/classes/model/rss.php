@@ -4,6 +4,8 @@ include_once('itemtbl.php');
 
 define('RSSURL_FRONT', 'http://www.nicovideo.jp/mylist/');
 define('RSSURL_BACK', '?rss=2.0');
+define('FEED_TITLE_PREFIX', 'マイリスト ');                 // フィードのタイトルの接頭語
+define('FEED_TITLE_SUFFIX', '-ニコニコ動画');                 // フィードのタイトルの接尾語
 
 class Model_Rss extends \Model
 {
@@ -17,8 +19,9 @@ class Model_Rss extends \Model
         if(self::is_registered_feed($mylist_url) == false){
             // 未登録の時
             $feed = self::get_feed(self::convert_url($mylist_url));     // 問い合わせ
-            $feed_channel = self::parse($feed);
-            \Model_Feedtbl::set($mylist_url, $feed_channel->title);
+            $feed_channel = self::parse($feed);                         // channelを抽出
+            $feed_title = self::parse_title($feed_channel->title);      // マイリストのタイトルを抽出
+            \Model_Feedtbl::set($mylist_url, $feed_title);          // feed登録
             $id = \Model_Feedtbl::get_id_from_url($mylist_url);     // feedのidを取得
             if($id == null) return null;                            // DBから参照失敗
 
@@ -30,7 +33,7 @@ class Model_Rss extends \Model
                 // 視聴情報の登録
                 Model_Watch::add($itemId, $userId);
             }
-            return array('title' => $feed_channel->title, 'id' => $id);
+            return array('title' => $feed_title, 'id' => $id);
         }else{      // マイリストがシステムに登録済み
             $id = \Model_Feedtbl::get_id_from_url($mylist_url);     // feedのidを取得
             if($id == null) return null;                            // DBから参照失敗
@@ -272,6 +275,17 @@ class Model_Rss extends \Model
         }
     }
 
+    /*
+     * フィードのタイトルからマイリストのタイトル部分を抽出する
+     */
+    private static function parse_title($title)
+    {
+        $rear = mb_substr($title, mb_strlen(FEED_TITLE_PREFIX));        // 接頭語を削除
+        $len = mb_strlen($rear);
+        $mylisttitle =  mb_substr($rear, 0, $len-mb_strlen(FEED_TITLE_SUFFIX)); // 接尾語を削除
+
+        return $mylisttitle;
+    }
 
 }
 
