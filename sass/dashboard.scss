@@ -1,58 +1,6 @@
 @import "compass";
-@import "base";
-@import "basic";
+
 @import "navbar";
-
 @import "feed_list";
-
-$color-header: #d6d6d6;
-
-@mixin font-list-header($width){
-    width: $width;
-    color: $color-header;
-}
-
-.list-header {
-    .title {
-        @include font-list-header(68%);
-    }
-    
-    .pubDate {
-        @include font-list-header(20%);
-    }
-    
-    .mark {
-        @include font-list-header(10%);
-        text-align: center;
-    }
-}
-
-.list-body {
-    .title {
-        width: 68%;
-
-        .read {
-            color: black;
-        }
-
-        .unread {
-            color: $color-main;
-            font-weight: bold;
-        }
-    }
-
-    .pubDate {
-        width: 20%;
-        color: $color-text;
-    }
-
-    .mark {
-        width: 10%;
-        text-align: center;
-        
-        a {
-            color: $color-accent;
-        }
-    }
-}
+@import "item_list";
 
