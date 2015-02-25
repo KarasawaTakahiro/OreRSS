@@ -45,7 +45,7 @@ class Model_Rss extends \Model
             foreach($feed_channel['item'] as $item){                // 動画情報を登録
                 Model_Watch::add($item['id'], $userId);             // 視聴情報の登録
             }
-            return array('title' => array($feed_channel['title']), 'id' => $id);
+            return array('title' => $feed_channel['title'], 'id' => $id);
         }
 
     }

@@ -59,7 +59,7 @@ var registNewFeed = function(){
           success: function(data){
             // リスト一覧に追加
             if(data !== null){
-              $("#feed-list-unread").append('<p><a class="unread" href="/orerss/feed/' + data.id + '" >' + data.title[0] + '</a></p>');
+              $("#feed-list-unread").append('<p><a class="unread" href="/orerss/feed/' + data.id + '" >' + data.title + '</a></p>');
               tbox.val("");
             }
           },
