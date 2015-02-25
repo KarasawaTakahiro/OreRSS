@@ -22,6 +22,12 @@ $fontsz-small: $fontsz-middle * 0.8;
     font-family: "nicomoji+";
 }
 
+body {
+    @include background;
+    height: 100%;
+}
+
 #contents {
     margin-top: 20px;
+    height: 100%;
 }
