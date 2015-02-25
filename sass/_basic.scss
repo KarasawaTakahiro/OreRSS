@@ -1,12 +1,17 @@
 @import "compass";
 
-$color-main: desaturate(#f39c12, 10%);
+$color-main: #f39c12;//desaturate(#f39c12, 10%);
 $color-accent: adjust-hue($color-main, 200);
 $color-bg: #ecf0f1;
+$color-text: #727272;
 
 $fontsz-middle: 15px;
 $fontsz-large: $fontsz-middle * 1.2;
 $fontsz-small: $fontsz-middle * 0.8;
+
+$margin: 40px;
+$margin-inner: 20px;
+$margin-small: 10px;
 
 @font-face {
     font-family: "nicomoji+";

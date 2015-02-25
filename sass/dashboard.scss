@@ -1,10 +1,15 @@
 @import "compass";
+@import "base";
 @import "basic";
 @import "navbar";
 
+@import "feed_list";
+
+$color-header: #d6d6d6;
+
 @mixin font-list-header($width){
     width: $width;
-    color: #d6d6d6;
+    color: $color-header;
 }
 
 .list-header {
@@ -27,99 +32,27 @@
         width: 68%;
 
         .read {
-            color: #000000;
+            color: black;
         }
 
         .unread {
-            color: #ff7b00;
+            color: $color-main;
             font-weight: bold;
         }
     }
 
     .pubDate {
         width: 20%;
-        color: #c4c4c4;
+        color: $color-text;
     }
 
     .mark {
         width: 10%;
         text-align: center;
-        color: $color-accent;
-    }
-}
-
-#dashboard {
-    text-align: center;
-
-    a {
-        font-weight: bold;
-        color: $color-accent;
-    }
-}
-
-
-/*
-    フィードリスト
-*/
-.link-panel {
-    width: 100%;
-    height: 100%;
-    margin-bottom: 3px;
-    border-bottom-style: solid;
-    border-bottom-width: 1px;
-    border-bottom-color: #fff;
-
-    &:hover {
-        background-color: #fff;
-    }
-
-    a {
-        display: inline-block;
-        width: 100%;
-        height: 100%;
-
-        &:hover {
-            text-decoration: none;
+        
+        a {
+            color: $color-accent;
         }
     }
-}
-
-
-#feed-list-unread {
-    font-weight: bold;
-    width: 100%;
-    height: 100%;
-
-    a {
-        color: #ff5400;
-
-        .feed-title {
-            display: inline-block;
-            width: 87%;
-        }
-
-        .badge {
-            width: 10%;
-        }
-    }
-
-}
-
-#feed-list-read {
-
-  a {
-      color: #ff5400;
-      display: inline-block;
-  }
-
-  .feed-title {
-      width: 87%;
-  }
-
-  .unpull {
-      width: 10%;
-      text-align: center;
-  }
-
 }
 
