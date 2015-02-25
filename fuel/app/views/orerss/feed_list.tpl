@@ -29,6 +29,7 @@
         </div>
         <div class="feed-unpull">
             <a class="unpull" href="#" name="{$feed.id}"><span class="glyphicon glyphicon-remove"></span></a>
+        <div class="clear-left"></div>
         </div>
         {/foreach}
     </div>

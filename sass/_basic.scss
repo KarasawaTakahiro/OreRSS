@@ -27,6 +27,18 @@ $margin-small: 10px;
     font-family: "nicomoji+";
 }
 
+.clear-left {
+    clear: left;
+}
+
+.clear-right {
+    clear: right;
+}
+
+.clear-both {
+    clear: both;
+}
+
 body {
     @include background;
     height: 100%;
