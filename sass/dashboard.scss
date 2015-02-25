@@ -49,10 +49,12 @@
 }
 
 #dashboard {
-    font-weight: bold;
-    color: $color-accent;
-    background-color: #ffffff;
     text-align: center;
+
+    a {
+        font-weight: bold;
+        color: $color-accent;
+    }
 }
 
 

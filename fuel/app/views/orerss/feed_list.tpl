@@ -1,6 +1,6 @@
 
-<div id="dashboard">
-    <p><a href="/orerss/dashboard">Dash Board</a></p>
+<div id="dashboard" class="link-panel">
+    <a href="/orerss/dashboard">DASHBOARD</a>
 </div>
 
 <dl>
