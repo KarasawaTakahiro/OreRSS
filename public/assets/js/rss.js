@@ -22,7 +22,7 @@ function mark_read(obj, item_id){
     method: 'POST',
   });
 
-  $(obj).css('fontWeight', 'normal'); // フォントの変更
+  $(obj).attr('class', 'read'); // フォントの変更
 }
 
 // automark
@@ -36,7 +36,7 @@ function autoMark(feed_id, item_id){
     dataType: 'json',
     success: function(list){
       for(var i=0; i<list.length; i++){
-        $("#"+list[i]).css('fontWeight', 'normal');   // フォントを変更
+        $("#"+list[i]).attr('class', 'read');   // フォントを変更
       }
     },
   });
