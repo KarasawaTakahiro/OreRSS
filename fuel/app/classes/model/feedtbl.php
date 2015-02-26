@@ -211,12 +211,12 @@ class Model_Feedtbl extends \Model
     /*
      * 指定フィードの最新itemを取得する
      */
-    public static function get_latest_item($id)
+    public static function get_latest_item($id, $limit=1)
     {
         $query = DB::select()->from('item')
             ->where('feed_id', '=', $id)
             ->order_by('pub_date', 'desc')
-            ->limit(1)
+            ->limit($limit)
             ->execute()
             ->as_array();
 
@@ -262,6 +262,17 @@ class Model_Feedtbl extends \Model
         }
 
         return $list;
+    }
+
+    /*
+     * 登録されたフィードの中からIDをランダムに指定数取得
+     */
+    public static function get_random($limit=1)
+    {
+        return DB::query('SELECT id FROM '.TABLE_FEED.' ORDER BY rand() limit :lim')
+            ->bind('lim', $limit)
+            ->execute()
+            ->as_array();
     }
 }
 
