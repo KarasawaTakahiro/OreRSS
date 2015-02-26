@@ -140,13 +140,13 @@ dd {
   width: 68%;
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/_item_list\.scss}line{font-family:\0000330}}
-.list-body .title .read {
-  color: black;
-}
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/_item_list\.scss}line{font-family:\0000334}}
 .list-body .title .unread {
   color: #f39c12;
   font-weight: bold;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/_item_list\.scss}line{font-family:\0000335}}
+.list-body .title .read {
+  color: #727272;
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/_item_list\.scss}line{font-family:\0000340}}
 .list-body .pubDate {

@@ -27,13 +27,13 @@ $color-header: #d6d6d6;
     .title {
         width: 68%;
 
-        .read {
-            color: black;
-        }
-
         .unread {
             color: $color-main;
             font-weight: bold;
+        }
+
+        .read {
+            color: $color-text;
         }
     }
 
