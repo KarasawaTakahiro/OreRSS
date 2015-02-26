@@ -1,2 +1,9 @@
 @import "compass";
+@import "basic";
+
+.thumbnail-user-small {
+    @include thumbnail-small;
+}
+
+
 

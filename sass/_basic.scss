@@ -27,6 +27,11 @@ $margin-small: 10px;
     font-family: "nicomoji+";
 }
 
+@mixin thumbnail-small {
+    width: 32px;
+    height: 32px;
+}
+
 .clear-left {
     clear: left;
 }

@@ -5,9 +5,11 @@
             <ul class="list-inline">
                 {foreach $userlist as $user}
                 <li>
-                    <a class="user-list-item" href="/orerss/user/{$user.id}">
-                        <img src="{$user.thumbnail}" alt="{$user.nickname}" title="{$user.nickname}" />
-                    </a>
+                    <div class="link-panel">
+                        <a href="/orerss/user/{$user.id}">
+                            <img class="thumbnail-user-small" src="{$user.thumbnail}" alt="{$user.nickname}" title="{$user.nickname}" />
+                        </a>
+                    </div>
                 </li>
                 {/foreach}
             </ul>
