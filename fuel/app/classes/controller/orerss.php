@@ -78,7 +78,7 @@ class Controller_Orerss extends Controller_Template
             // 指定フィードのitemリスト
             'items'     => Model_Url::convert_continuous_playback_url(Model_Itemtbl::get_itemlist_column_from_feed_id_with_watched($feed_id, $userid)),
             'nickname'  => self::help_nickname(),
-            'userlist'  => Model_Pull::get_pull_users($feed_id, $userid),
+            'userlist'  => Model_Feed::userlist($feed_id, $userid),
             'direction' => 'down',
         );
 
