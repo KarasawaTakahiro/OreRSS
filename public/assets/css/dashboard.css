@@ -162,3 +162,9 @@ dd {
 .list-body .mark a {
   color: #121ef3;
 }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/_user_list\.scss}line{font-family:\000034}}
+.thumbnail-user-small {
+  width: 32px;
+  height: 32px;
+}

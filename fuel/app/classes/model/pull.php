@@ -2,6 +2,8 @@
 
 class Model_Pull extends \Model
 {
+    const TABLE_NAME = 'pull';
+
     /*
      * 購読しているフィードのIDを返す
      */
@@ -91,5 +93,33 @@ class Model_Pull extends \Model
 
         return $query;
     }
+
+    /*
+     * 指定ユーザがPULLしているフィードの中で1つでもPULLしているユーザを返す
+     */
+    public static function get_near_users($userid)
+    {
+        // 指定ユーザがPULLしているfeedIDを取得
+        $feeds = DB::select('feed_id')->from(self::TABLE_NAME)
+            ->where('user_id', '=', $userid)
+            ->execute()
+            ->as_array();
+
+        // 対象のユーザ情報を取得
+        $query = DB::select('nickname', 'user.id', 'user.thumbnail')->from(self::TABLE_NAME)
+            ->join('user')->on('user.id', '=', 'pull.user_id')
+            ->where('user_id', '!=', $userid)                   // where user_id != $userid
+            ->and_where_open();                                 // and (
+        foreach($feeds as $feed){
+            $query->or_where('feed_id', '=', $feed['feed_id']); // or feed_id = $feedid
+        }
+        $query = $query->and_where_close()                      // )
+            ->group_by('user_id')                               // group by user_id
+            ->execute()
+            ->as_array();
+
+        return $query;
+    }
+
 }
 

@@ -46,7 +46,8 @@ class Controller_Orerss extends Controller_Template
             'feed_list' => array('unread' =>  Model_Feedtbl::get_feed_list_unread($userid),     // 未読を含む
                                  'read'   => Model_Feedtbl::get_feed_list_read($userid),        // 未読を含まない
                                  ),
-            'items'     => Model_Itemtbl::get_all_unread_itemlist($userid),                     // 未読のitem全てのリスト
+            'items'     => Model_Itemtbl::get_all_unread_itemlist($userid), // 未読のitem全てのリスト
+            'userlist'  => Model_Dashboard::userlist($userid),              // ユーザに近いユーザリスト
             'nickname'  => self::help_nickname(),
             'direction' => 'up',
         );
