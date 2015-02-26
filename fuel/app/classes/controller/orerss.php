@@ -19,7 +19,7 @@ class Controller_Orerss extends Controller_Template
         $this->template->nickname = null;
         $this->template->contents = View_Smarty::forge('orerss/index', $data);
         $this->template->js = array('jquery-2.1.1.min.js', 'bootstrap.min.js');
-        $this->template->css = array('bootstrap.min.css', 'bootstrap.min.css', 'index.css');
+        $this->template->css = array('bootstrap.min.css', 'index.css');
     }
 
     /*
