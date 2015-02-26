@@ -50,6 +50,7 @@ class Controller_Orerss extends Controller_Template
             'userlist'  => Model_Dashboard::userlist($userid),              // ユーザに近いユーザリスト
             'nickname'  => self::help_nickname(),
             'direction' => 'up',
+            'randomfeed'=> Model_Dashboard::random_feed(),
         );
 
 

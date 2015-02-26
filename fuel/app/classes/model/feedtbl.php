@@ -228,6 +228,25 @@ class Model_Feedtbl extends \Model
     }
 
     /*
+     * 指定フィードのitemを新しい順に取得する
+     */
+    public static function get_later_item($id, $limit=1)
+    {
+        $query = DB::select()->from('item')
+            ->where('feed_id', '=', $id)
+            ->order_by('pub_date', 'desc')
+            ->limit($limit)
+            ->execute()
+            ->as_array();
+
+        if(0 < count($query)){
+            return $query;
+        }else{
+            return null;
+        }
+    }
+
+    /*
      * フィードの未読数を得る
      */
     public static function get_num_feed_list_unread($userid, $feedid)
@@ -265,11 +284,11 @@ class Model_Feedtbl extends \Model
     }
 
     /*
-     * 登録されたフィードの中からIDをランダムに指定数取得
+     * 登録されたフィードの中からランダムに指定数取得
      */
     public static function get_random($limit=1)
     {
-        return DB::query('SELECT id FROM '.TABLE_FEED.' ORDER BY rand() limit :lim')
+        return DB::query('SELECT * FROM '.TABLE_FEED.' ORDER BY rand() limit :lim')
             ->bind('lim', $limit)
             ->execute()
             ->as_array();
