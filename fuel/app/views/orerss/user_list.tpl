@@ -1,5 +1,5 @@
 <dl>
-    <dt>このフィードをPULLしている他のユーザ</dt>
+    <dt>{$title}</dt>
     <dd>
         <div class="user-list">
             <ul class="list-inline">
