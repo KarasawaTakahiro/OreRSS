@@ -32,16 +32,25 @@ $margin-small: 10px;
     height: 32px;
 }
 
-.clear-left {
-    clear: left;
-}
+.link-panel {
+    width: 100%;
+    height: 100%;
+    margin-bottom: 3px;
+    @include line-bottom();
 
-.clear-right {
-    clear: right;
-}
+    &:hover {
+        background-color: #ffffff;
+    }
 
-.clear-both {
-    clear: both;
+    a {
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
 }
 
 body {
