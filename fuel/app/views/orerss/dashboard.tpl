@@ -3,6 +3,7 @@
         <div class="col-md-8 col-md-push-4 col-lg-8 col-lg-push-4">
             <!-- right pain -->
             {include file='./item_list.tpl' items=$items}
+            {include file='./randomfeed.tpl' items=$randomfeed}
         </div>
 
         <!-- left pain -->
