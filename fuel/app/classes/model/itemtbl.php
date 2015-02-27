@@ -1,7 +1,6 @@
 <?php
 
 define('TABLE_ITEM', 'item');
-define('API_THUMBNAIL', 'http://ext.nicovideo.jp/api/getthumbinfo/sm'); // 動画に関する詳しい情報を取得できるAPI
 
 class Model_Itemtbl extends \Model
 {
@@ -165,19 +164,17 @@ class Model_Itemtbl extends \Model
      */
     public static function get_thumbnail_from_id($id)
     {
-        // 動画URLを検索
-        $query = DB::select('link')->from(TABLE_ITEM)
+        $query = DB::select('thumbnail')->from(TABLE_ITEM)
             ->where('id', '=', $id)
             ->execute()
             ->as_array();
 
         // no match
-        if(count($query) <= 0) return null;
-
-        $smid = self::pickup_smid($query[0]['link']);       // 動画URLからsmIDを取得
-        $data = simplexml_load_string(self::get_action(API_THUMBNAIL.$smid));   // APIアクセス&XMLをパース
-
-        return $data->thumb->thumbnail_url;
+        if(count($query) <= 0){
+            return null;
+        }else{
+            return $query[0]['thumbnail'];
+        }
     }
 
     /*
