@@ -1,0 +1,40 @@
+@import "compass";
+@import "basic";
+
+@import "item_list";
+
+.list-header {
+    .pullnum {
+        @include font-list-header(10%);
+        text-align: center;
+    }
+
+    .info {
+        @include font-list-header(10%);
+        text-align: center;
+    }
+
+    .pull {
+        @include font-list-header(10%);
+        text-align: center;
+    }
+}
+
+.list-body {
+    .pullnum {
+        width: 10%;
+        text-align: center;
+    }
+
+    .info {
+        width: 10%;
+        text-align: center;
+        color: $color-text;
+    }
+
+    .pull {
+        width: 10%;
+        text-align: center;
+    }
+}
+
