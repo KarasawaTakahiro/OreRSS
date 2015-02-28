@@ -187,23 +187,34 @@ dd {
   height: 100%;
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/_pull_list\.scss}line{font-family:\0000330}}
-.list-body .thumb {
-  width: 130px;
-  height: 100px;
+.list-body .list-item {
+  width: 100%;
+  height: 100%;
+  margin-bottom: 20px;
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/_pull_list\.scss}line{font-family:\0000335}}
-.list-body .text-info {
+.list-body .list-item .thumb {
+  width: 130px;
+  height: 100px;
+  float: left;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/_pull_list\.scss}line{font-family:\0000341}}
+.list-body .list-item .text-info {
   width: 68%;
+  height: 100%;
+  float: left;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/_pull_list\.scss}line{font-family:\0000338}}
-.list-body .text-info .title {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/_pull_list\.scss}line{font-family:\0000346}}
+.list-body .list-item .text-info .title {
   width: 100%;
+  padding-left: 10px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/_pull_list\.scss}line{font-family:\0000342}}
-.list-body .text-info .description {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/_pull_list\.scss}line{font-family:\0000351}}
+.list-body .list-item .text-info .description {
   height: 60px;
   width: 100%;
   color: #727272;
+  padding-left: 10px;
   word-break: break-all;
   -webkit-line-clamp: 3;
   -moz-line-clamp: 3;
@@ -221,24 +232,31 @@ dd {
   white-space: normal;
   text-overflow: ellipsis;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/_pull_list\.scss}line{font-family:\0000351}}
-.list-body .circle-info {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/_pull_list\.scss}line{font-family:\0000361}}
+.list-body .list-item .circle-info {
   width: 5%;
   height: 100%;
+  float: left;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/_pull_list\.scss}line{font-family:\0000355}}
-.list-body .circle-info .pullnum {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/_pull_list\.scss}line{font-family:\0000366}}
+.list-body .list-item .circle-info .pullnum {
   height: 50%;
   text-align: center;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/_pull_list\.scss}line{font-family:\0000360}}
-.list-body .circle-info .info {
-  height: 50%;
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/_pull_list\.scss}line{font-family:\0000371}}
+.list-body .list-item .circle-info .info {
   text-align: center;
   color: #727272;
+  margin-top: 44px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/_pull_list\.scss}line{font-family:\0000367}}
-.list-body .pull {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/_pull_list\.scss}line{font-family:\0000378}}
+.list-body .list-item .pull {
   width: 5%;
+  height: 100%;
   text-align: center;
+  float: left;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/_pull_list\.scss}line{font-family:\0000385}}
+.list-body .list-item .clear-left {
+  clear: left;
 }
