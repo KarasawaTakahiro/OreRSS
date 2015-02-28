@@ -135,7 +135,7 @@ class Controller_Orerss extends Controller_Template
             throw new HttpNotFoundException;
 
         $data = array(
-            'mylists' => Model_Feedtbl::get_user_pull($vuserid),
+            'pulllists' => Model_Userp::pulllist($vuserid),
             'nickname' => self::help_nickname(),
             'vuser_nickname' => Model_User::get_nickname($vuserid),
             // 取得済みのフィードリスト
