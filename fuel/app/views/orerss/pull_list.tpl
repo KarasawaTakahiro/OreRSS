@@ -18,12 +18,16 @@
     <div class="list-body">
         {foreach $pulllists as $list}
         <ul class="list-inline">
-            <li class="title link-panel"><a class="unread" href="{$list.url}" target="_brank">{$list.title}</a> </li>
-            <li class="pullnum"><span class="badge" title="購読数">{$list.pull_num}</span> </li>
-            <li class="info"><span class="glyphicon glyphicon-info-sign" title="情報を見る"></span> </li>
+            <li class="thumb"><div class="thumb"><img src="{$list.thumbnail}" /></div></li>
+            <li class="text-info">
+                <div class="title link-panel"><a href="{$list.url}" target="_brank">{$list.title}</a></div>
+                <div class="description">{$list.description}</div>
+            </li>
+            <li class="circle-info">
+                <div class="info"><span class="glyphicon glyphicon-info-sign"></span></div>
+                <div class="pullnum"><span class="badge">{$list.pull_num}</span></div>
+            </li>
             <li class="pull link-panel"><a class="smart-push" href="{$list.url}"><span class="glyphicon glyphicon-plus" title="購読する"></span></a> </li>
-            <li><img src="{$list.thumbnail}" /></li>
-            <li>{$list.description}</li>
         </ul>
         {/foreach}
     </div>

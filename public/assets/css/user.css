@@ -163,38 +163,82 @@ dd {
   color: #121ef3;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/_pull_list\.scss}line{font-family:\000037}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/_pull_list\.scss}line{font-family:\0000311}}
 .list-header .pullnum {
   width: 10%;
   color: #d6d6d6;
   text-align: center;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/_pull_list\.scss}line{font-family:\0000312}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/_pull_list\.scss}line{font-family:\0000316}}
 .list-header .info {
   width: 10%;
   color: #d6d6d6;
   text-align: center;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/_pull_list\.scss}line{font-family:\0000317}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/_pull_list\.scss}line{font-family:\0000321}}
 .list-header .pull {
   width: 10%;
   color: #d6d6d6;
   text-align: center;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/_pull_list\.scss}line{font-family:\0000324}}
-.list-body .pullnum {
-  width: 10%;
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/_pull_list\.scss}line{font-family:\0000327}}
+.list-body {
+  height: 100%;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/_pull_list\.scss}line{font-family:\0000330}}
+.list-body .thumb {
+  width: 130px;
+  height: 100px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/_pull_list\.scss}line{font-family:\0000335}}
+.list-body .text-info {
+  width: 68%;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/_pull_list\.scss}line{font-family:\0000338}}
+.list-body .text-info .title {
+  width: 100%;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/_pull_list\.scss}line{font-family:\0000342}}
+.list-body .text-info .description {
+  height: 60px;
+  width: 100%;
+  color: #727272;
+  word-break: break-all;
+  -webkit-line-clamp: 3;
+  -moz-line-clamp: 3;
+  -ms-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  -ms-box-orient: vertical;
+  box-orient: vertical;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-box;
+  display: box;
+  overflow: hidden;
+  white-space: normal;
+  text-overflow: ellipsis;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/_pull_list\.scss}line{font-family:\0000351}}
+.list-body .circle-info {
+  width: 5%;
+  height: 100%;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/_pull_list\.scss}line{font-family:\0000355}}
+.list-body .circle-info .pullnum {
+  height: 50%;
   text-align: center;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/_pull_list\.scss}line{font-family:\0000329}}
-.list-body .info {
-  width: 10%;
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/_pull_list\.scss}line{font-family:\0000360}}
+.list-body .circle-info .info {
+  height: 50%;
   text-align: center;
   color: #727272;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/_pull_list\.scss}line{font-family:\0000335}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/_pull_list\.scss}line{font-family:\0000367}}
 .list-body .pull {
-  width: 10%;
+  width: 5%;
   text-align: center;
 }

@@ -30,3 +30,21 @@
     text-shadow: -1px 1px rgba(0, 0, 0, $op);
 }
 
+// line-clamp 指定行からはみ出た時に...を表示 ブロック要素のみ
+@mixin line-clamp($line:3){
+    -webkit-line-clamp: $line;  // 指定行数
+    -moz-line-clamp: $line;
+    -ms-line-clamp: $line;
+    line-clamp: $line;
+    -webkit-box-orient: vertical;  // 領域内の子要素を、上から下へ垂直に積み重ねて表示
+    -moz-box-orient: vertical;
+    -ms-box-orient: vertical;
+    box-orient: vertical;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-box;
+    display: box;
+    overflow: hidden;
+    white-space: normal;  // 領域に応じて自動的に改行する
+    text-overflow: ellipsis;
+}
