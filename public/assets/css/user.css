@@ -270,25 +270,22 @@ dd {
   float: left;
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/_pull_list\.scss}line{font-family:\0000384}}
+.list-body .list-item .circle-info .pull {
+  text-align: center;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/_pull_list\.scss}line{font-family:\0000390}}
 .list-body .list-item .circle-info .info {
   text-align: center;
   color: #727272;
-  margin-top: 54px;
+  margin-top: 32px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/_pull_list\.scss}line{font-family:\0000390}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/_pull_list\.scss}line{font-family:\0000396}}
 .list-body .list-item .circle-info .pullnum {
   height: 50%;
   text-align: center;
   margin-top: 10px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/_pull_list\.scss}line{font-family:\0000397}}
-.list-body .list-item .pull {
-  width: 5%;
-  height: 100%;
-  text-align: center;
-  float: left;
-}
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/_pull_list\.scss}line{font-family:\00003104}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/_pull_list\.scss}line{font-family:\00003103}}
 .list-body .list-item .clear-left {
   clear: left;
 }

@@ -15,6 +15,7 @@
             <li class="pull">PULL</li>
         </ul>
     </div>
+
     <div class="list-body">
         {foreach $pulllists as $list}
         <div class="list-item">
@@ -33,10 +34,10 @@
                 </div>
             </div>
             <div class="circle-info">
+                <div class="pull link-panel"><a class="smart-push" href="{$list.url}"><span class="glyphicon glyphicon-plus" title="購読する"></span></a> </div>
                 <div class="info"><span class="glyphicon glyphicon-info-sign"></span></div>
                 <div class="pullnum"><span class="badge">{$list.pull_num}</span></div>
             </div>
-            <div class="pull link-panel"><a class="smart-push" href="{$list.url}"><span class="glyphicon glyphicon-plus" title="購読する"></span></a> </div>
             <div class="clear-left"></div>
         </div>
         {/foreach}
