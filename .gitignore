@@ -35,7 +35,12 @@ desktop.ini
 #
 /fuel/app/tmp/
 composer.phar
-/fuel/app/config/
+/fuel/app/config/development/
+/fuel/app/config/production/
+/fuel/app/config/session/
+/fuel/app/config/standing/
+/fuel/app/config/db.php
+/fuel/app/config/test/
 *.swp
 *.txt
 /.sass-cache
