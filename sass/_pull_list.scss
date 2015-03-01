@@ -8,6 +8,13 @@ $thumbnail-height: 100px;
 
 $width-list-text-info: 77%;
 
+.user-info {
+
+    .nickname {
+        color: $color-text;
+    }
+}
+
 .list-header {
     .thumb {
         @include font-list-header($thumbnail-width);

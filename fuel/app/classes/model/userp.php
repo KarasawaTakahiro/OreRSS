@@ -28,5 +28,15 @@ class Model_Userp extends \Model
         return $feeds;
     }
 
+    public static function get_vuser($userid)
+    {
+        $res = array();
+        $data = Model_User::get_data($userid);
+        $res['nickname'] = $data['nickname'];
+        $res['thumbnail'] = $data['thumbnail'];
+        $res['id'] = $data['id'];
+        return $res;
+    }
+
 }
 

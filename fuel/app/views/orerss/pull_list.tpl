@@ -1,9 +1,6 @@
-<div>
-    <ul class="list-inline">
-        <li class="nickname">
-        {$vuser_nickname}
-        </li>
-    </ul>
+<div class="user-info">
+    <span>{Asset::img("user/`$vuser.thumbnail`", ["alt"=>"{$vuser.nickname}", "class"=>"thumbnail-user-small"])}</span>
+    <span class="nickname">{$vuser.nickname}</span>
 </div>
 
 <div class="pull_list">
