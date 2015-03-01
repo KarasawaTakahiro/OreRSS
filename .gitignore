@@ -20,7 +20,7 @@ desktop.ini
 
 # any of the fuel packages installed by default
 /docs/
-/fuel/core/
+/fuel/core/*
 /fuel/packages/auth/
 /fuel/packages/email/
 /fuel/packages/oil/
@@ -33,13 +33,18 @@ desktop.ini
 /fuel/app/config/crypt.php
 
 #
+/fuel/app/config/test/
+/fuel/app/config/session/*
 /fuel/app/tmp/
-composer.phar
-/fuel/app/config/
-*.swp
-*.txt
+/public/assets/img/user/*
 /.sass-cache
 /sass/.sass-cache
-*.png
 *.pyc
 *.log
+*.swp
+*.txt
+composer.phar
+
+# 
+!/fuel/core/classes/controller/template.php
+
