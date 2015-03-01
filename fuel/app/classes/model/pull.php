@@ -105,6 +105,8 @@ class Model_Pull extends \Model
             ->execute()
             ->as_array();
 
+        if($feeds == null) return array();
+
         // 対象のユーザ情報を取得
         $query = DB::select('nickname', 'user.id', 'user.thumbnail')->from(self::TABLE_NAME)
             ->join('user')->on('user.id', '=', 'pull.user_id')

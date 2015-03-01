@@ -26,6 +26,7 @@ class Model_User extends \Model
         $query = \DB::insert('user')->set(array(
                              'nickname'    => $nickname,
                              'passwd'      => password_hash($passwd, PASSWORD_DEFAULT),
+                             'pub_date'     => Date::time()->format('mysql'),
                               ));
 
         return $query->execute();
