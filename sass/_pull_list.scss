@@ -1,27 +1,38 @@
 @import "compass";
+@import "compass/css3/deprecated-support";
 @import "basic";
 @import "base";
-@import "compass/css3/deprecated-support";
-
-@import "item_list";
 
 $thumbnail-width: 130px;
 $thumbnail-height: 100px;
 
+$width-list-text-info: 77%;
+
 .list-header {
-    .pullnum {
-        @include font-list-header(10%);
-        text-align: center;
+    .thumb {
+        @include font-list-header($thumbnail-width);
     }
 
-    .info {
-        @include font-list-header(10%);
-        text-align: center;
+    .text-info {
+            @include font-list-header(72%);
+
+        .title {
+        }
     }
 
-    .pull {
-        @include font-list-header(10%);
-        text-align: center;
+    .circle-info {
+        @include font-list-header(9%);
+        padding-right: 0px;
+        text-align: right;
+
+        .pullnum {
+        }
+
+        .info {
+        }
+
+        .pull {
+        }
     }
 }
 
@@ -45,7 +56,7 @@ $thumbnail-height: 100px;
         }
 
         .text-info {
-            width: 68%;
+            width: $width-list-text-info;
             height: 100%;
             float: left;
 
@@ -82,8 +93,6 @@ $thumbnail-height: 100px;
             float: left;
 
             .pull {
-                //width: 5%;
-                //height: 100%;
                 text-align: center;
             }
 

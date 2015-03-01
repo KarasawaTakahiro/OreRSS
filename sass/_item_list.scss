@@ -1,12 +1,7 @@
 @import "compass";
 @import "base";
+@import "basic";
 
-$color-header: #d6d6d6;
-
-@mixin font-list-header($width){
-    width: $width;
-    color: $color-header;
-}
 
 .list-header {
     .title {

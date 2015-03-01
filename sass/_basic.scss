@@ -5,6 +5,7 @@ $color-main: #f39c12;//desaturate(#f39c12, 10%);
 $color-accent: adjust-hue($color-main, 200);
 $color-bg: #ecf0f1;
 $color-text: #727272;
+$color-header: #d6d6d6;
 
 $fontsz-middle: 15px;
 $fontsz-large: $fontsz-middle * 1.2;
@@ -36,6 +37,11 @@ $margin-small: 10px;
 @mixin thumbnail-xsmall {
     width:  16px;
     height: 16px;
+}
+
+@mixin font-list-header($width){
+    width: $width;
+    color: $color-header;
 }
 
 .link-panel {
