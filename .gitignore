@@ -33,17 +33,18 @@ desktop.ini
 /fuel/app/config/crypt.php
 
 #
-/fuel/app/tmp/
-composer.phar
 /fuel/app/config/*/
 /fuel/app/config/test/
-*.swp
-*.txt
+/fuel/app/tmp/
+/public/assets/img/user/*
 /.sass-cache
 /sass/.sass-cache
-/public/assets/img/user/*
 *.pyc
 *.log
+*.swp
+*.txt
+composer.phar
 
 # 
 !/fuel/core/classes/controller/template.php
+
