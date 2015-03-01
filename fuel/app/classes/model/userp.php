@@ -4,10 +4,10 @@ class Model_Userp extends \Model
 {
     public static function pulllist($userid)
     {
-        $feeds = Model_Feedtbl::get_user_pull($userid);
+        $feeds = Model_Feedtbl::get_user_pull($userid); // ユーザがPULLしているFeedを取得
 
-        // サムネイル取得
         foreach($feeds as &$feed){
+            // サムネイル取得
             $latest = Model_Feedtbl::get_latest_item($feed['id']);          // 最新item
             if($latest == null){
                 $feed['thumbnail'] = '';
@@ -19,6 +19,9 @@ class Model_Userp extends \Model
                 continue;
             }
             $feed['thumbnail'] = $thumb;
+
+            // ユーザ取得
+            $feed['users'] = Model_Feed::userlist($feed['id'], $userid);    // FeedをPULLしている
         }
         unset($feed);
 

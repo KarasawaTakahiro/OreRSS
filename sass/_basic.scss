@@ -33,6 +33,11 @@ $margin-small: 10px;
     height: 32px;
 }
 
+@mixin thumbnail-xsmall {
+    width:  16px;
+    height: 16px;
+}
+
 .link-panel {
     width: 100%;
     height: 100%;
@@ -52,6 +57,14 @@ $margin-small: 10px;
             text-decoration: none;
         }
     }
+}
+
+.thumbnail-user-small {
+    @include thumbnail-small;
+}
+
+.thumbnail-user-xsmall {
+    @include thumbnail-xsmall;
 }
 
 body {
