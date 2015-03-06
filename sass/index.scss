@@ -1,5 +1,6 @@
 @import "compass";
 @import "compass/css3/flexbox";
+@import "footer";
 
 $color-main: desaturate(#f39c12, 10%);
 $color-accent: adjust-hue($color-main, 200);

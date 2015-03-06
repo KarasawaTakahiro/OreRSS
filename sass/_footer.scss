@@ -1,0 +1,39 @@
+@import "compass";
+@import "basic";
+
+#footer {
+    color: $color-text;
+    margin-top: $margin;
+    padding-top: $padding-inner;
+    padding-bottom: $padding-small;
+
+    // グラデーション
+    background-color: rgb(243,156,18); // Old browsers
+    @include filter-gradient(#f39c12, #febf01, vertical); // IE6-9
+    @include background-image(linear-gradient(top,  rgba(243,156,18,1) 0%,rgba(254,191,1,1) 100%,rgba(243,156,18,1) 100%,rgba(254,191,1,1) 100%));
+
+    #message {
+        margin-bottom: $margin-inner;
+        text-align: center;
+    }
+
+    #disclaimer {
+        margin-top: $margin;
+        margin-bottom: 0px;
+        text-align: center;
+        font-size: $fontsz-small;
+    }
+
+    a {
+        color: $color-accent;
+    }
+
+    li {
+        margin-left: $margin-inner;
+    }
+
+    .date {
+        margin-right: $margin-inner;
+    }
+}
+
