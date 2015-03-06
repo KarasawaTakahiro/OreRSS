@@ -1,8 +1,10 @@
 <div class="jumbotron">
-    <p>マイリストの更新をチェック<br>
-    ＋<br>
-    新しいマイリストの発見</p>
-    <h1>俺RSS</h1>
+    <div class="container">
+        <p>マイリストの更新をチェック<br>
+        ＋<br>
+        新しいマイリストの発見</p>
+        <h1>俺RSS</h1>
+    </div>
 </div>
 
 <div class="container">
@@ -79,5 +81,5 @@
             </ul>
         </div>
     </div>
-
 </div>
+

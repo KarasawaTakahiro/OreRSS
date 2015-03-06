@@ -58,15 +58,11 @@
         </header>
 
         <!-- contents -->
-        <div id="contents">
-            {$contents}
-        </div>
+        {$contents}
 
         <!-- footer -->
         <footer>
-            <div id="footer">
-                {include file='./orerss/footer.tpl'}
-            </div>
+            {include file='./orerss/footer.tpl'}
         </footer>
 
         {foreach $js as $i}

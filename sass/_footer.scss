@@ -3,6 +3,7 @@
 
 #footer {
     color: $color-text;
+    width: 100%;
     margin-top: $margin;
     padding-top: $padding-inner;
     padding-bottom: $padding-small;
@@ -15,6 +16,18 @@
     #message {
         margin-bottom: $margin-inner;
         text-align: center;
+    }
+
+    #sitemap {
+        width: 25%;
+        margin-left: 28%;
+        float: left;
+    }
+
+    #notification {
+        width: 25%;
+        height: 100%;
+        float: left;
     }
 
     #disclaimer {

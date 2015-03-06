@@ -184,6 +184,7 @@ dd {
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/_footer\.scss}line{font-family:\000034}}
 #footer {
   color: #727272;
+  width: 100%;
   margin-top: 40px;
   padding-top: 20px;
   padding-bottom: 10px;
@@ -197,27 +198,39 @@ dd {
   background-image: -webkit-linear-gradient(top, #f39c12 0%, #febf01 100%, #f39c12 100%, #febf01 100%);
   background-image: linear-gradient(to bottom, #f39c12 0%, #febf01 100%, #f39c12 100%, #febf01 100%);
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/_footer\.scss}line{font-family:\0000315}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/_footer\.scss}line{font-family:\0000316}}
 #footer #message {
   margin-bottom: 20px;
   text-align: center;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/_footer\.scss}line{font-family:\0000320}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/_footer\.scss}line{font-family:\0000321}}
+#footer #sitemap {
+  width: 25%;
+  margin-left: 28%;
+  float: left;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/_footer\.scss}line{font-family:\0000327}}
+#footer #notification {
+  width: 25%;
+  height: 100%;
+  float: left;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/_footer\.scss}line{font-family:\0000333}}
 #footer #disclaimer {
   margin-top: 40px;
   margin-bottom: 0px;
   text-align: center;
   font-size: 12px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/_footer\.scss}line{font-family:\0000327}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/_footer\.scss}line{font-family:\0000340}}
 #footer a {
   color: #121ef3;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/_footer\.scss}line{font-family:\0000331}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/_footer\.scss}line{font-family:\0000344}}
 #footer li {
   margin-left: 20px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/_footer\.scss}line{font-family:\0000335}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/_footer\.scss}line{font-family:\0000348}}
 #footer .date {
   margin-right: 20px;
 }
