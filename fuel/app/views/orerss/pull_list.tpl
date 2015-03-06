@@ -31,7 +31,7 @@
                     {foreach $list.users as $user}
                     <div class="link-panel">
                         <a href="/orerss/user/{$user.id}">
-                            <img class="thumbnail-user-xsmall" src="{$user.thumbnail}" alt="{$user.nickname}" title="{$user.nickname}" />
+                            {Asset::img("user/`$user.thumbnail`", ["alt"=>"{$user.nickname}", "class"=>"thumbnail-user-small", "title"=>"{$user.nickname}"])}
                         </a>
                     </div>
                     {/foreach}
