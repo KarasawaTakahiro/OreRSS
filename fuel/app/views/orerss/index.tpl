@@ -49,7 +49,7 @@
                         <div class="pullusers">
                             <ul class="list-inline">
                                 {foreach $item.users as $user}
-                                <li><img class="thumbnail-user-small" src="{$user.thumbnail}" alt="{$user.nickname}" title="{$user.nickname}" /></li>
+                                <li>{Asset::img("user/`$user.thumbnail`", ["alt"=>"{$user.nickname}", "class"=>"thumbnail-user-small", "title"=>"{$user.nickname}"])}</li>
                                 {/foreach}
                                 <li><span class="badge">{$item.pullnum}</span></li>
                             </ul>
