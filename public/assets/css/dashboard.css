@@ -52,6 +52,11 @@ body {
   height: 100%;
 }
 
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/_basic\.scss}line{font-family:\0000390}}
+.clear-left {
+  clear: left;
+}
+
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/_navbar\.scss}line{font-family:\000034}}
 .navbar-brand {
   font-family: "nicomoji+";

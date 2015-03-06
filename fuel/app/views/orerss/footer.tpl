@@ -18,7 +18,7 @@
             </ul>
     </div>
 
-    <div class="clear"></div>
+    <div class="clear-left"></div>
 
     <p id="disclaimer">
     『俺RSS』（以下，当サイト）を利用したことによって生じたいかなる損害に関しても，当サイトでは一切の責任を負いかねます
