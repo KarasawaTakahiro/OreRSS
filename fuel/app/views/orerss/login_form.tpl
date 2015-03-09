@@ -1,6 +1,6 @@
 <div class="container">
-    <div class="signin">
-        <form class="form-signin" action="/orerss/login" method="POST">
+    <div class="login">
+        <form class="form-login" action="/orerss/login" method="POST">
             <label for="inputNickname" class="sr-only">ニックネーム</label>
             <input type="text" id="inputNickname" class="form-control" name="nickname" placeholder="ニックネーム" required autofocus>
 
