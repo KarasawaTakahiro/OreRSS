@@ -104,7 +104,7 @@ class Controller_Orerss extends Controller_Template
 
         $this->template->nickname = $this->help_nickname();
         $this->template->contents = View_Smarty::forge('orerss/login', $data);
-        $this->template->js = array('jquery-2.1.1.min.js', 'bootstrap.min.js');
+        $this->template->js = array('jquery-2.1.1.min.js', 'bootstrap.min.js', 'sign-form.js', 'login.js');
         $this->template->css = array('bootstrap.min.css', 'login.css');
     }
 
