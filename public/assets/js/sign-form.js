@@ -1,3 +1,22 @@
+/* OVERRIDE
+ * ニックネームの文字数が少なかった時の関数
+ */
+var wornNicknameLess = function(){ };
+
+/* ORVERRIDE
+ * ニックネームの文字数が多かった時の関数
+ */
+var wornNicknameMore = function(){ };
+
+/* ORVERRIDE
+ * パスワードの文字数が少なかった時の関数
+ */
+var wornPasswordLess = function(){ };
+
+/* OVERRIDE
+ * パスワードの文字数が多かった時の関数
+ */
+var wornNicknameMore = function(){ };
 
 /*
  * イベントのバインド
@@ -22,11 +41,7 @@ var bind_checkPasswd = function(){
     $("#inputPassword").keyup(function(){   // すべてのキー操作にバインド
         var string = $(this).val();         // テキストボックスの値取得
         if(string != preString){            // 文字列比較
-            if(checkPasswd()){              // 違ったら呼び出し
-                $("#btn_signup").removeAttr("disabled"); // 登録ボタンを有効化
-            }else{
-                $("#btn_signup").attr("disabled", true); // 登録ボタンを無効化
-            }
+            setBtnState("password", checkPasswd());
             preString = string;             // 文字列入れ替え
         }
     });
@@ -39,13 +54,13 @@ var checkNickname = function(){
     var obj = $("#inputNickname");
     var len = obj.val().length;
     if(len < 2){                            // 文字数不足
-        wornNickname("2文字以上で決めてください");
+        wornNicknameLess();
         return false;
     }else if(10 < len){                     // 文字数超過
-        wornNickname("10文字以内で決めてください");
+        wornNicknameMore();
         return false;
     }else{                                  // 有効範囲内
-        wornNickname("");
+        wornNicknameClear();
         return true;
     }
 };
@@ -66,13 +81,13 @@ var checkPasswd = function(){
 
     // 文字数チェック
     if(len < 6){                            // 文字数不足
-        wornPassword("6文字以上で決めてください");
+        wornPasswordLess();
         return false;
     }else if(12 < len){                     // 文字数超過
-        wornPassword("12文字以内で決めてください");
+        wornPasswordMore();
         return false;
     }else{
-        wornPassword("");
+        wornPasswordClear("");
         return true;
     }
 
@@ -111,9 +126,19 @@ var wornNickname = function(wornString){
 };
 
 /*
+ *  ニックネームに関する警告文を削除する
+ */
+var wornNicknameClear = function(){
+    wornNickname("");
+};
+
+/*
  * パスワードに関する警告文を操作する
  */
 var wornPassword = function(wornString){
     $("#wornPassword").empty().append(wornString);
 };
 
+var wornPasswordClear = function(){
+    wornPassword("");
+};
