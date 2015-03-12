@@ -4,13 +4,6 @@
 @import "navbar";
 @import "footer";
 @import "login_form";
+@import "sign_form";
 
-.container {
-    text-align: center;
-    width: 60%;
-}
-
-h2 {
-    @include font-main;
-}
 

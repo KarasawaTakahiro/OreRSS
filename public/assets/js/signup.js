@@ -55,3 +55,19 @@ var wornRePassword = function(wornString){
     $("#wornRePassword").empty().append(wornString);
 };
 
+var wornNicknameLess = function(){
+    wornNickname("ニックネームは2文字以上で決めてください");
+};
+
+var wornNicknameMore = function (){
+    wornNickname("ニックネームは10文字以下で決めてください");
+};
+
+var wornPasswordLess = function(){
+    wornPassword("パスワードは6文字以上で決めてください");
+};
+
+var wornPasswordMore = function(){
+    wornPassword("パスワードは12文字以下で決めてください");
+};
+
