@@ -139,7 +139,7 @@ body {
 }
 
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/_login_form\.scss}line{font-family:\000035}}
-.login button {
+.login #btn_submmit {
   margin-top: 20px;
 }
 
