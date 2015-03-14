@@ -17,7 +17,10 @@
                     <a href="{$feed.url}">{$feed.title}</a>
                 </div>
                 <div class="pull">
-                    <a href="#"><span class="glyphicon glyphicon-plus"></span></a>
+                    <form class="smart-pull" >
+                        <button type="submit" href="#"><span class="glyphicon glyphicon-plus"></span></button>
+                        <input type="hidden" name="id" value="{$feed.id}">
+                    </form>
                 </div>
             </div>
         </div>

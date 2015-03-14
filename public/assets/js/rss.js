@@ -7,6 +7,8 @@ $(function(){
   feedRefresh();
   // 購読解除用ボタンのリスナ登録
   unpull();
+  //
+  smartpull();
 });
 
 function info(text){
@@ -137,5 +139,40 @@ var unpull = function(){
         return false;                       // ジャンプを無効化
     });
 
+};
+
+/*
+ * smart pull
+ */
+var smartpull = function(){
+    $(".smart-pull").submit(function(evt){
+        var feedid = $(this).find("input").attr("value");
+        console.log(feedid);
+
+        $.ajax({
+            url: '/orerss/smartpull',
+            async: true,
+            type: 'POST',
+            data: {'feedid' : feedid},
+            dataType: 'json',
+        }).done(function(data){
+            if(data !== null){
+                append_feed(data.id, data.title);
+            }
+        });
+
+        return false;
+    });
+};
+
+/*
+ * 未視聴リストにフィードを追加する
+ */
+var append_feed = function(id, title){
+    var div = $("<div>").addClass("link-panel");
+    var a = $("<a>").attr("href", "/orerss/feed" + id);
+    var title = $("<span>").addClass("unread").addClass("feed-title");
+    a.append(title).appendTo(div);
+    $("#feed-list-unread").append(div);
 };
 
