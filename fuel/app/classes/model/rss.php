@@ -282,7 +282,7 @@ class Model_Rss extends \Model
     /*
      * フィード内の動画に対する視聴情報の登録を行う
      */
-    private static function pull_feed($feedid, $userid)
+    public static function pull_feed($feedid, $userid)
     {
         if(Model_Pull::is_pull($userid, $feedid))return  array();   // 購読済み
 
