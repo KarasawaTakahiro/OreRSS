@@ -37,15 +37,7 @@ class Model_Rss extends \Model
         }else{      // マイリストがシステムに登録済み
             $id = \Model_Feedtbl::get_id_from_url($mylist_url);     // feedのidを取得
             if($id == null) return null;                            // DBから参照失敗
-            if(Model_Pull::is_pull($userId, $id))return  array();   // 購読済みかどうか
-
-            $feed_channel = \Model_Rss::get_localdata_channel_format($id);  // ローカルのデータを取得
-            if($feed_channel == null) return null;                  // 参照失敗
-            self::pull($id, $userId);                               // 購読
-            foreach($feed_channel['item'] as $item){                // 動画情報を登録
-                Model_Watch::add($item['id'], $userId);             // 視聴情報の登録
-            }
-            return array('title' => $feed_channel['title'], 'id' => $id);
+            return self::pull_feed($id, $userId);                   // 購読処理
         }
 
     }
@@ -285,6 +277,22 @@ class Model_Rss extends \Model
         $mylisttitle =  mb_substr($rear, 0, $len-mb_strlen(FEED_TITLE_SUFFIX)); // 接尾語を削除
 
         return $mylisttitle;
+    }
+
+    /*
+     * フィード内の動画に対する視聴情報の登録を行う
+     */
+    private static function pull_feed($feedid, $userid)
+    {
+        if(Model_Pull::is_pull($userid, $feedid))return  array();   // 購読済み
+
+        $feed_channel = self::get_localdata_channel_format($feedid);  // ローカルのデータを取得
+        if($feed_channel == null) return array();               // 参照失敗
+        self::pull($feedid, $userid);                           // 購読
+        foreach($feed_channel['item'] as $item){                // 動画情報を登録
+            Model_Watch::add($item['id'], $userid);             // 視聴情報の登録
+        }
+        return array('title' => $feed_channel['title'], 'id' => $feedid);
     }
 
 }

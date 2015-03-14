@@ -173,7 +173,7 @@ class Controller_Orerss extends Controller_Template
         Response::redirect('/orerss/login');
     }
 
-// --- POST -----------------------------------------------------------------------------
+// --- post -----------------------------------------------------------------------------
 
     /*
      * 新規登録POST
@@ -291,6 +291,18 @@ class Controller_Orerss extends Controller_Template
       Model_Pull::del($userid, $feedid);            // 購読状況を削除
 
       return true;
+    }
+
+    /*
+     * smart pull
+     *
+     * Input
+     *  feedid - フィードID
+     */
+    public function post_smartpull(){
+        $userid = self::help_nickname();
+        $feedid = Input::post('feedid');
+        return json_encode(Model_Rss::pull_feed($feedid, $userid));
     }
 
     /*
