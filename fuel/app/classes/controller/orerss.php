@@ -300,7 +300,7 @@ class Controller_Orerss extends Controller_Template
      *  feedid - フィードID
      */
     public function post_smartpull(){
-        $userid = self::help_nickname();
+        $userid = self::help_userid();
         $feedid = Input::post('feedid');
         return json_encode(Model_Rss::pull_feed($feedid, $userid));
     }
