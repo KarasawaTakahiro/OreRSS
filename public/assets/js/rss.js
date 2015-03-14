@@ -9,6 +9,8 @@ $(function(){
   unpull();
   //
   smartpull();
+  // フィードリストを隠す
+  hideFeedlist();
 });
 
 function info(text){
@@ -176,3 +178,24 @@ var append_feed = function(id, title, unread_num){
     $("#feed-list-unread").append(div);
 };
 
+/*
+ * フィードリストを隠す
+ */
+var hideFeedlist = function(){
+    var button = $("#hide button").click(function(evt){
+        // リストのトグル
+        var item = $("#feed-list-read").children().slice(5);
+        for(var i=0; i<item.length; i++){
+            $(item[i]).slideToggle(1000);
+        }
+        // まだあるよアイコンのトグル
+        $("#option").slideToggle(1000);
+        // ボタンのアイコンのトグル
+        var icons = $("#hide button").children();
+        for(var i=0; i<icons.length; i++){
+            $(icons[i]).toggle();
+        }
+
+        return false;
+    });
+};
