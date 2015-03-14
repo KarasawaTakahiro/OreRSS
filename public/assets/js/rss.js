@@ -156,7 +156,7 @@ var smartpull = function(){
             dataType: 'json',
         }).done(function(data){
             if(Array.isArray(data) == false){       // 配列の時は登録失敗している
-                append_feed(data.id, data.title);
+                append_feed(data.id, data.title, data.unread_num);
             }
         });
 
@@ -167,11 +167,12 @@ var smartpull = function(){
 /*
  * 未視聴リストにフィードを追加する
  */
-var append_feed = function(id, title){
+var append_feed = function(id, title, unread_num){
     var div = $("<div>").addClass("link-panel");
     var a = $("<a>").attr("href", "/orerss/feed/" + id);
     var title = $("<span>").addClass("unread").addClass("feed-title").text(title);
-    a.append(title).appendTo(div);
+    var num = $("<span>").addClass("badge").text(unread_num);
+    a.append(title).append(num).appendTo(div);
     $("#feed-list-unread").append(div);
 };
 

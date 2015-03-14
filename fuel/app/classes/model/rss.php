@@ -292,7 +292,11 @@ class Model_Rss extends \Model
         foreach($feed_channel['item'] as $item){                // 動画情報を登録
             Model_Watch::add($item['id'], $userid);             // 視聴情報の登録
         }
-        return array('title' => $feed_channel['title'], 'id' => $feedid);
+        $unread_num = Model_Feedtbl::get_num_feed_list_unread($userid, $feedid);    // 未視聴数
+
+        return array('title' => $feed_channel['title'], 
+            'id' => $feedid, 
+            'unread_num' => $unread_num);
     }
 
 }
