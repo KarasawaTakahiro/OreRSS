@@ -47,4 +47,5 @@ composer.phar
 
 # 
 !/fuel/core/classes/controller/template.php
+!/public/assets/img/user/default.jpg
 
