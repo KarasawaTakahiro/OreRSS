@@ -147,7 +147,6 @@ var unpull = function(){
 var smartpull = function(){
     $(".smart-pull").submit(function(evt){
         var feedid = $(this).find("input").attr("value");
-        console.log(feedid);
 
         $.ajax({
             url: '/orerss/smartpull',
@@ -156,7 +155,7 @@ var smartpull = function(){
             data: {'feedid' : feedid},
             dataType: 'json',
         }).done(function(data){
-            if(data !== null){
+            if(Array.isArray(data) == false){       // 配列の時は登録失敗している
                 append_feed(data.id, data.title);
             }
         });
@@ -170,8 +169,8 @@ var smartpull = function(){
  */
 var append_feed = function(id, title){
     var div = $("<div>").addClass("link-panel");
-    var a = $("<a>").attr("href", "/orerss/feed" + id);
-    var title = $("<span>").addClass("unread").addClass("feed-title");
+    var a = $("<a>").attr("href", "/orerss/feed/" + id);
+    var title = $("<span>").addClass("unread").addClass("feed-title").text(title);
     a.append(title).appendTo(div);
     $("#feed-list-unread").append(div);
 };
