@@ -269,3 +269,9 @@ dd {
 #footer .date {
   margin-right: 20px;
 }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/feed\.scss}line{font-family:\0000311}}
+h2 {
+  font-family: "nicomoji+";
+  text-align: center;
+}

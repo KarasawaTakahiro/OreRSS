@@ -8,3 +8,8 @@
 @import "user_list";
 @import "footer";
 
+h2 {
+    @include font-main;
+    text-align: center;
+}
+
