@@ -165,6 +165,23 @@ class Controller_Orerss extends Controller_Template
     }
 
     /*
+     * チュートリアル
+     */
+    public function get_tutor($page=null)
+    {
+        // ページが存在するか
+        if($page == null || ($page != 'whatis' && $page != 'rss' && $page != 'find')){
+            $page = 'whatis';
+        }
+
+        $data = array('page'    => $page);
+        $this->template->contents = View_Smarty::forge('orerss/tutor', $data);
+        $this->template->nickname = self::help_nickname();
+        $this->template->js = array('jquery-2.1.1.min.js', 'bootstrap.min.js');
+        $this->template->css = array('bootstrap.min.css', 'tutor.css');
+    }
+
+    /*
      * ログアウト
      */
     public function get_logout()
