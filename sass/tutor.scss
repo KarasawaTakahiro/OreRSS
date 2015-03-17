@@ -1,0 +1,23 @@
+@import "compass";
+@import "basic";
+
+@import "navbar";
+@import "footer";
+
+h2 {
+    @include font-main;
+    text-align: center;
+}
+
+ul {
+    @include list-dot-original;
+}
+
+.without-dot {
+    list-style-type: none;
+}
+
+.container {
+    margin-top: $margin;
+}
+

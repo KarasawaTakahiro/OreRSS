@@ -1,4 +1,5 @@
 @import "compass";
+@import "basic";
 
 @import "navbar";
 @import "footer";
@@ -111,6 +112,6 @@ h2{
 }
 
 .list {
-    list-style-image: url('../img/free_triangle_005_peachpuff.gif');
+    @include list-dot-original;
 }
 
