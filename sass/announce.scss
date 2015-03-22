@@ -1,0 +1,50 @@
+@import "compass";
+@import "basic";
+@import "base";
+
+@import "navbar";
+@import "footer";
+
+#dashboard {
+    text-align: center;
+
+    a {
+        font-weight: bold;
+        color: $color-accent;
+    }
+}
+
+h2 {
+    @include font-main;
+    text-align: center;
+}
+
+.topic {
+
+    h3 {
+        @include line-bottom();
+    }
+
+    .text {
+        margin-bottom: $margin-small;
+    }
+
+    .attribute {
+        color: $color-text;
+
+        .auther {
+            display: inline-block;
+        }
+
+        .datetime {
+            display: inline-block;
+            font-size: small;
+
+            .date {
+            }
+
+            .time {
+            }
+        }
+    }
+}
