@@ -182,6 +182,18 @@ class Controller_Orerss extends Controller_Template
     }
 
     /*
+     * お知らせ
+     */
+    public function get_announce()
+    {
+        $data = array();
+        $this->template->contents = View_Smarty::forge('orerss/announce', $data);
+        $this->template->nickname = self::help_nickname();
+        $this->template->js = array('jquery-2.1.1.min.js', 'bootstrap.min.js');
+        $this->template->css = array('bootstrap.min.css', 'announce.css');
+    }
+
+    /*
      * ログアウト
      */
     public function get_logout()
