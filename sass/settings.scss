@@ -3,3 +3,17 @@
 @import "navbar";
 @import "footer";
 
+h2 {
+    @include font-main;
+    text-align: center;
+}
+
+#dashboard {
+    text-align: center;
+
+    a {
+        font-weight: bold;
+        color: $color-accent;
+    }
+}
+
