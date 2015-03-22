@@ -1,4 +1,5 @@
 @import "compass";
+@import "base";
 @import "basic";
 
 @import "navbar";
@@ -9,9 +10,23 @@ h2 {
     text-align: center;
 }
 
+h3 {
+    @include line-bottom;
+}
+
 ul {
     @include list-dot-original;
 }
+
+#dashboard {
+    text-align: center;
+
+    a {
+        font-weight: bold;
+        color: $color-accent;
+    }
+}
+
 
 .without-dot {
     list-style-type: none;
@@ -21,3 +36,16 @@ ul {
     margin-top: $margin;
 }
 
+.paragraph {
+    margin-top: $margin-inner;
+
+    p {
+        letter-spacing: 2px;
+
+        .font-lg {
+            font-size: $fontsz-large;
+            color: $color-accent;
+            letter-spacing: normal;
+        }
+    }
+}

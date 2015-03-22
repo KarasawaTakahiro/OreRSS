@@ -138,23 +138,56 @@ body {
   margin-right: 20px;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/tutor\.scss}line{font-family:\000037}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/tutor\.scss}line{font-family:\000038}}
 h2 {
   font-family: "nicomoji+";
   text-align: center;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/tutor\.scss}line{font-family:\0000312}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/tutor\.scss}line{font-family:\0000313}}
+h3 {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: rgba(255, 255, 255, 0.5) 0 1px 0;
+  -webkit-box-shadow: rgba(255, 255, 255, 0.5) 0 1px 0;
+  box-shadow: rgba(255, 255, 255, 0.5) 0 1px 0;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/tutor\.scss}line{font-family:\0000317}}
 ul {
   list-style-image: url("../img/free_triangle_005_peachpuff.gif");
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/tutor\.scss}line{font-family:\0000316}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/tutor\.scss}line{font-family:\0000321}}
+#dashboard {
+  text-align: center;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/tutor\.scss}line{font-family:\0000324}}
+#dashboard a {
+  font-weight: bold;
+  color: #121ef3;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/tutor\.scss}line{font-family:\0000331}}
 .without-dot {
   list-style-type: none;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/tutor\.scss}line{font-family:\0000320}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/tutor\.scss}line{font-family:\0000335}}
 .container {
   margin-top: 40px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/tutor\.scss}line{font-family:\0000339}}
+.paragraph {
+  margin-top: 20px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/tutor\.scss}line{font-family:\0000342}}
+.paragraph p {
+  letter-spacing: 2px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/tutor\.scss}line{font-family:\0000345}}
+.paragraph p .font-lg {
+  font-size: 18px;
+  color: #121ef3;
+  letter-spacing: normal;
 }
