@@ -6,7 +6,7 @@
                 <h4>サイトマップ</h4>
                 <li><a href="/orerss">トップページ</a></li>
                 <li><a href="/orerss/dashboard">Dashboard</a></li>
-                <li><a href="">チュートリアル</a></li>
+                <li><a href="/orerss/tutor">チュートリアル</a></li>
                 <li><a href="">初めての方へ</a></li>
             </ul>
     </div>
