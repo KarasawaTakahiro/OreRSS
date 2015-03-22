@@ -31,6 +31,12 @@
                         <p class="nav-btn-text">設定</p>
                     </button>
                 </a>
+                <a href="/orerss/tutor">
+                    <button type="button" id ="btn-logout" class="btn btn-default navbar-btn navbar-right" title="チュートリアル">
+                        <p class="nav-btn-icon"><span class="glyphicon glyphicon-question-sign"></span></p>
+                        <p class="nav-btn-text">チュートリアル</p>
+                    </button>
+                </a>
                 <a href="/orerss/logout">
                     <button type="button" id ="btn-logout" class="btn btn-default navbar-btn navbar-right" title="ログアウト">
                         <p class="nav-btn-icon"><span class="glyphicon glyphicon-log-out"></span></p>
