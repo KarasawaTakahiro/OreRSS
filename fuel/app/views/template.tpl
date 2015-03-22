@@ -25,6 +25,12 @@
             {if $nickname != null}
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <p id="information" class="navbar-text"></p>
+                <a href="/orerss/logout">
+                    <button type="button" id ="btn-logout" class="btn btn-default navbar-btn navbar-right" title="ログアウト">
+                        <p class="nav-btn-icon"><span class="glyphicon glyphicon-log-out"></span></p>
+                        <p class="nav-btn-text">ログアウト</p>
+                    </button>
+                </a>
                 <a href="/orerss/settings">
                     <button type="button" id ="" class="btn btn-default navbar-btn navbar-right" title="設定">
                         <p class="nav-btn-icon"><span class="glyphicon glyphicon-cog"></span></p>
@@ -32,15 +38,15 @@
                     </button>
                 </a>
                 <a href="/orerss/tutor">
+                    <button type="button" id ="btn-logout" class="btn btn-default navbar-btn navbar-right" title="お知らせ">
+                        <p class="nav-btn-icon"><span class="glyphicon glyphicon-info-sign"></span></p>
+                        <p class="nav-btn-text">お知らせ</p>
+                    </button>
+                </a>
+                <a href="/orerss/tutor">
                     <button type="button" id ="btn-logout" class="btn btn-default navbar-btn navbar-right" title="チュートリアル">
                         <p class="nav-btn-icon"><span class="glyphicon glyphicon-question-sign"></span></p>
                         <p class="nav-btn-text">チュートリアル</p>
-                    </button>
-                </a>
-                <a href="/orerss/logout">
-                    <button type="button" id ="btn-logout" class="btn btn-default navbar-btn navbar-right" title="ログアウト">
-                        <p class="nav-btn-icon"><span class="glyphicon glyphicon-log-out"></span></p>
-                        <p class="nav-btn-text">ログアウト</p>
                     </button>
                 </a>
                 <form class="navbar-form navbar-right" id="registNewFeed" action="#" method="post">
