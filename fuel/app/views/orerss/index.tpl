@@ -15,18 +15,14 @@
         <div class="col-md-4">
             <div class="update-item">
                 <div class="item-container">
-                    <h3 class="movie-datetime">{$item.datetime}</h3>
-                    <div class="movie-name">{$item.moviename}</div>
+                <h3>{$item.mylistname}</h3>
                     <div class="update-item-thumbnail">
                         <img src="{$item.thumbnail}" />
                     </div>
-                    <div class="item-info">
-                        <ul class="list-inline">
-                        </ul>
-                    </div>
+                    <div class="item-info">{$item.moviename}</div>
                     <div class="clear"></div>
+                    <h3 class="movie-datetime">{$item.datetime}</h3>
                 </div>
-                <h3>{$item.mylistname}</h3>
             </div>
         </div>
         {/foreach}
@@ -63,17 +59,17 @@
 
         <div class="col-md-4">
             <!-- 右半分 -->
-            <h4>ログイン</h4>
+            <h2>ログイン</h2>
             {include file='orerss/login_form.tpl'}
 
-            <h4>初めての方へ</h4>
+            <h2>初めての方へ</h2>
             <ul class="list">
                 <li>チュートリアル</li>
                 <li>チュートリアル</li>
                 <li>チュートリアル</li>
             </ul>
 
-            <h4>お知らせ</h4>
+            <h2>お知らせ</h2>
             <ul class="list">
                 <li>サイトリニューアル</li>
                 <li>サイトリニューアル</li>

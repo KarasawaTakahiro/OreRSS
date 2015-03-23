@@ -74,16 +74,16 @@ h2{
 
     .item-info {
         @include item-info(40%);
+        padding-left: 3px;
 
         .movie-name {
             font-size: small;
         }
-
-        .movie-datetime {
-            //font-size: small;
-        }
     }
 
+    .movie-datetime {
+        margin-top: 10px;
+    }
 }
 
 .pickup-item {

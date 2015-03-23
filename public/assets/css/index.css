@@ -201,6 +201,7 @@ h2 {
   width: 40%;
   height: 100%;
   float: left;
+  padding-left: 3px;
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/index\.scss}line{font-family:\0000323}}
 .update-item .item-info div {
@@ -211,9 +212,13 @@ h2 {
 .update-item .item-info ul {
   margin-bottom: 0px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/index\.scss}line{font-family:\0000378}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/index\.scss}line{font-family:\0000379}}
 .update-item .item-info .movie-name {
   font-size: small;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/index\.scss}line{font-family:\0000384}}
+.update-item .movie-datetime {
+  margin-top: 10px;
 }
 
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/takahiro\/Workspace\/OreRSS\/src\/OreRSS\/sass\/index\.scss}line{font-family:\0000389}}
