@@ -81,16 +81,14 @@
 
             <h2>初めての方へ</h2>
             <ul class="list">
-                <li>チュートリアル</li>
-                <li>チュートリアル</li>
-                <li>チュートリアル</li>
+                <li><a href="/orerss/tutor/whatis">何ができるの？</a></li>
+                <li><a href="/orerss/tutor/rss">更新チェック機能</a></li>
+                <li><a href="/orerss/tutor/find">フィード発見機能</a></li>
             </ul>
 
             <h2>お知らせ</h2>
             <ul class="list">
-                <li>サイトリニューアル</li>
-                <li>サイトリニューアル</li>
-                <li>サイトリニューアル</li>
+                <li><a href="/orerss/announce">お知らせ</a></li>
             </ul>
         </div>
     </div>
