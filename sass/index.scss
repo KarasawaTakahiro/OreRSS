@@ -30,11 +30,6 @@
     }
 }
 
-.thumbnail-user-small {
-    width:  16px;
-    height: 16px;
-}
-
 html, body {
     height: 100%;
 }
@@ -45,6 +40,27 @@ body {
 
 h4 {
     margin-top: 20px;
+}
+
+#dashboard {
+    text-align: center;
+
+    a {
+        font-weight: bold;
+        color: $color-accent;
+    }
+}
+
+#user {
+    margin-left: 23px;
+}
+
+.font-lg {
+    font-size: $fontsz-large;
+}
+
+.inline-block {
+    display: inline-block;
 }
 
 .jumbotron {

@@ -64,13 +64,17 @@
             {include file='orerss/login_form.tpl'}
             {else}
             <h2>ユーザ</h2>
-            <div>
-                <div id="dashboard">
-                    <p><a href="/orerss/dashboard"><b>Dash Board</b></a></p>
+            <div id="user">
+                <div class="inline-block">
+                    {Asset::img($userdata.thumbnail, ['class'=>'thumbnail-user-normal'])}
                 </div>
-                <div>
-                        {Asset::img($userdata.thumbnail, ['class'=>'thumbnail-user-small'])}
-                    {$userdata.name}
+                <div class="inline-block">
+                    <div class="font-lg">
+                        {$userdata.name}
+                    </div>
+                    <div id="dashboard" class="link-panel">
+                        <a href="/orerss/dashboard">Dash Board</a>
+                    </div>
                 </div>
             </div>
             {/if}

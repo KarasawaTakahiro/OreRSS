@@ -33,6 +33,11 @@ $padding-small: 10px;
     font-family: "nicomoji+";
 }
 
+@mixin thumbnail-normal {
+    width: 64px;
+    height: 64px;
+}
+
 @mixin thumbnail-small {
     width: 32px;
     height: 32px;
@@ -71,6 +76,10 @@ $padding-small: 10px;
             text-decoration: none;
         }
     }
+}
+
+.thumbnail-user-normal {
+    @include thumbnail-normal;
 }
 
 .thumbnail-user-small {
