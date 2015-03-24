@@ -27,7 +27,7 @@ class Model_User extends \Model
                              'nickname'    => $nickname,
                              'passwd'      => password_hash($passwd, PASSWORD_DEFAULT),
                              'pub_date'     => Date::time()->format('mysql'),
-                             'thumbnail'    => 'default.jpg',
+                             'thumbnail'    => 'default'.rand(1, 6).'.png',
                               ));
 
         return $query->execute();
