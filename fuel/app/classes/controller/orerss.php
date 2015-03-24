@@ -359,7 +359,7 @@ class Controller_Orerss extends Controller_Template
         $this->template->nickname = self::help_nickname();
         $this->template->contents = View_Smarty::forge('orerss/404', $data);
         $this->template->js = array('jquery-2.1.1.min.js', 'bootstrap.min.js');
-        $this->template->css = array('bootstrap.min.css', 'bootstrap.min.css', 'rss.css', '404.css');
+        $this->template->css = array('bootstrap.min.css', '404.css');
     }
 
 // --- help ---------------------------------------------------------------------
