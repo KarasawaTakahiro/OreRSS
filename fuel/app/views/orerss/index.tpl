@@ -66,7 +66,7 @@
             <h2>ユーザ</h2>
             <div id="user">
                 <div class="inline-block">
-                    {Asset::img($userdata.thumbnail, ['class'=>'thumbnail-user-normal'])}
+                    {Asset::img("user/`$userdata.thumbnail`", ['class'=>'thumbnail-user-normal'])}
                 </div>
                 <div class="inline-block">
                     <div class="font-lg">
