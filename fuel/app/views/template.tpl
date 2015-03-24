@@ -37,7 +37,7 @@
                         <p class="nav-btn-text">設定</p>
                     </button>
                 </a>
-                <a href="/orerss/tutor">
+                <a href="/orerss/announce">
                     <button type="button" id ="btn-logout" class="btn btn-default navbar-btn navbar-right" title="お知らせ">
                         <p class="nav-btn-icon"><span class="glyphicon glyphicon-info-sign"></span></p>
                         <p class="nav-btn-text">お知らせ</p>
