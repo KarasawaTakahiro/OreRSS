@@ -23,7 +23,7 @@
                 </div>
                 <div class="pull">
                     <form class="smart-pull" >
-                        <button type="submit" href="#"><span class="glyphicon glyphicon-plus"></span></button>
+                        <button type="submit" href="#" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span></button>
                         <input type="hidden" name="id" value="{$feed.id}" />
                     </form>
                 </div>

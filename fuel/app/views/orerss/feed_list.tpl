@@ -23,7 +23,7 @@
     <dt>
         <div class="w50">フィードリスト</div>
         <div id="hide">
-            <button type="button">
+            <button type="button" class="btn btn-default">
                 <span class="glyphicon glyphicon-resize-small" style=""></span>
                 <span class="glyphicon glyphicon-resize-full" style="display: none;"></span>
             </button>
