@@ -80,14 +80,17 @@ $padding-small: 10px;
 
 .thumbnail-user-normal {
     @include thumbnail-normal;
+    border-radius: 32px;
 }
 
 .thumbnail-user-small {
     @include thumbnail-small;
+    border-radius: 16px;
 }
 
 .thumbnail-user-xsmall {
     @include thumbnail-xsmall;
+    border-radius: 8px;
 }
 
 body {
