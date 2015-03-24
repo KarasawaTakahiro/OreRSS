@@ -8,7 +8,11 @@
             <div class="item">
                 <div class="huge-thumbnail">
                     {foreach $feed.items as $item}
+                    {if $item.thumbnail == null}
+                    {Asset::img('thumbnail_nothing.png', ["alt"=>{$item.title}])}
+                    {else}
                     {Asset::img($item.thumbnail, ["alt"=>{$item.title}])}
+                    {/if}
                     {if $item@iteration % 2 == 0}
                     <br />
                     {/if}
