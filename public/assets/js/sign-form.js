@@ -75,7 +75,6 @@ var checkPasswd = function(){
 
     // 文字チェック
     if(obj.val().match(regex) == null){
-        console.log("半角英数字のみが使えます");
         return false;
     }
 

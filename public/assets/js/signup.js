@@ -22,9 +22,8 @@ var bind_checkRePasswd = function(){
         var string = $(this).val();         // テキストボックスの値取得
         if(string != preString){            // 文字列比較
             if(checkRePasswd()){            // 違ったら呼び出し
-                $("#btn_signup").removeAttr("disabled"); // 登録ボタンを有効化
-            }else{
-                $("#btn_signup").attr("disabled", true); // 登録ボタンを無効化
+                setBtnState("repassword", checkRePasswd());
+                preString = string;             // 文字列入れ替え
             }
             preString = string;             // 文字列入れ替え
         }
@@ -44,8 +43,6 @@ var checkRePasswd = function(){
         wornRePassword("");
         return true;
     }
-
-    return true;
 };
 
 /*
