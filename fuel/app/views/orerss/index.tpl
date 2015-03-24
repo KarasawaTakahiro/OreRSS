@@ -59,8 +59,21 @@
 
         <div class="col-md-4">
             <!-- 右半分 -->
+            {if $nickname == null}
             <h2>ログイン</h2>
             {include file='orerss/login_form.tpl'}
+            {else}
+            <h2>ユーザ</h2>
+            <div>
+                <div id="dashboard">
+                    <p><a href="/orerss/dashboard"><b>Dash Board</b></a></p>
+                </div>
+                <div>
+                        {Asset::img($userdata.thumbnail, ['class'=>'thumbnail-user-small'])}
+                    {$userdata.name}
+                </div>
+            </div>
+            {/if}
 
             <h2>初めての方へ</h2>
             <ul class="list">

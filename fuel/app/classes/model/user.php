@@ -1,6 +1,6 @@
 <?php
 
-define('TABLE_NAME', 'user');
+define('TABLE_NAME_', 'user');
 
 class Model_User extends \Model
 {
@@ -81,7 +81,7 @@ class Model_User extends \Model
      */
     public static function set_thumbnail($userid, $filename)
     {
-        $query = DB::update(TABLE_NAME)
+        $query = DB::update(TABLE_NAME_)
             ->value('thumbnail', $filename)
             ->where('id', '=', $userid)
             ->execute();
@@ -94,7 +94,7 @@ class Model_User extends \Model
      */
     public static function get_thumbnail($userid)
     {
-        return DB::select('thumbnail')->from(TABLE_NAME)
+        return DB::select('thumbnail')->from(TABLE_NAME_)
             ->where('id', '=', $userid)
             ->execute()
             ->as_array()[0]['thumbnail'];

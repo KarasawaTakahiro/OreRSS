@@ -16,7 +16,14 @@ class Controller_Orerss extends Controller_Template
             'updates'   => Model_Index::update(),
             'pickups'   => Model_Index::pickup(),
         );
-        $this->template->nickname = null;
+
+        if(self::help_userid() != null){
+            $data['userdata'] = array('name' => self::help_nickname(),
+                'thumbnail'    => Model_User::get_thumbnail(self::help_userid()),
+            );
+        }
+
+        $this->template->nickname = self::help_nickname();
         $this->template->contents = View_Smarty::forge('orerss/index', $data);
         $this->template->js = array('jquery-2.1.1.min.js', 'bootstrap.min.js');
         $this->template->css = array('bootstrap.min.css', 'index.css');
