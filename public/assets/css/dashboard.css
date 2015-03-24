@@ -219,10 +219,9 @@ dd {
   color: #121ef3;
 }
 
-/* line 4, ../../../sass/_user_list.scss */
-.thumbnail-user-small {
-  width: 32px;
-  height: 32px;
+/* line 5, ../../../sass/_user_list.scss */
+.user-list li {
+  padding-right: 0px;
 }
 
 /* line 4, ../../../sass/_footer.scss */

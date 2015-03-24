@@ -106,7 +106,7 @@ class Model_User extends \Model
     public static function get_data($userid)
     {
         $query = DB::select('id', 'modified_at', 'pub_date', 'nickname', 'thumbnail')
-            ->from(TABLE_NAME)
+            ->from(TABLE_NAME_)
             ->where('id', '=', $userid)
             ->execute()
             ->as_array();

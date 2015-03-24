@@ -1,9 +1,8 @@
 @import "compass";
 @import "basic";
 
-.thumbnail-user-small {
-    @include thumbnail-small;
+.user-list {
+    li {
+        padding-right: 0px;
+    }
 }
-
-
-

@@ -42,7 +42,7 @@
 }
 
 /* line 91, ../../../sass/_basic.scss */
-.thumbnail-user-xsmall, .list-body .list-item .text-info .pullusers .link-panel {
+.thumbnail-user-xsmall {
   width: 16px;
   height: 16px;
   border-radius: 8px;
@@ -231,7 +231,7 @@ dd {
 }
 /* line 75, ../../../sass/_pull_list.scss */
 .list-body .list-item .text-info .description {
-  height: 60px;
+  height: 47px;
   width: 100%;
   color: #727272;
   padding-left: 10px;
@@ -265,30 +265,32 @@ dd {
 /* line 89, ../../../sass/_pull_list.scss */
 .list-body .list-item .text-info .pullusers .link-panel {
   display: inline-block;
+  width: auto;
+  margin-bottom: 0px;
 }
-/* line 97, ../../../sass/_pull_list.scss */
+/* line 98, ../../../sass/_pull_list.scss */
 .list-body .list-item .circle-info {
   width: 5%;
   height: 100%;
   float: left;
 }
-/* line 102, ../../../sass/_pull_list.scss */
+/* line 103, ../../../sass/_pull_list.scss */
 .list-body .list-item .circle-info .pull {
   text-align: center;
 }
-/* line 106, ../../../sass/_pull_list.scss */
+/* line 107, ../../../sass/_pull_list.scss */
 .list-body .list-item .circle-info .info {
   text-align: center;
   color: #727272;
   margin-top: 32px;
 }
-/* line 112, ../../../sass/_pull_list.scss */
+/* line 113, ../../../sass/_pull_list.scss */
 .list-body .list-item .circle-info .pullnum {
   height: 50%;
   text-align: center;
   margin-top: 10px;
 }
-/* line 119, ../../../sass/_pull_list.scss */
+/* line 120, ../../../sass/_pull_list.scss */
 .list-body .list-item .clear-left {
   clear: left;
 }
