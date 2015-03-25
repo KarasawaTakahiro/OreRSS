@@ -348,3 +348,7 @@ h2 {
   background-color: #ecf0f1;
   text-align: center;
 }
+/* line 65, ../../../sass/dashboard.scss */
+.randomfeed .frame .item .pull button {
+  color: #121ef3;
+}

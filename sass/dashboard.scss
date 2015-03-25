@@ -61,6 +61,10 @@ h2 {
                 bottom: $text-margin;
                 background-color: $color-bg;
                 text-align: center;
+
+                button {
+                    color: $color-accent;
+                }
             }
         }
     }
