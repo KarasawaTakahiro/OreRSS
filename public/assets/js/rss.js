@@ -11,10 +11,11 @@ $(function(){
   smartpull();
   // フィードリストを隠す
   hideFeedlist();
+  //
+  removeHideFeedlistBtn();
 });
 
-function info(text){
-}
+var MAXNUM_READFEEDlISTITEM = 5;
 
 
 // 既読をつける
@@ -179,12 +180,21 @@ var append_feed = function(id, title, unread_num){
 };
 
 /*
+ * 視聴済みフィードリストを隠す機能がいらない場合は，ボタンを削除する
+ */
+var removeHideFeedlistBtn = function(){
+    if($("#feed-list-read").children().length <= MAXNUM_READFEEDlISTITEM){
+        $("#hide button").remove();
+    }
+};
+
+/*
  * フィードリストを隠す
  */
 var hideFeedlist = function(){
     var button = $("#hide button").click(function(evt){
         // リストのトグル
-        var item = $("#feed-list-read").children().slice(5);
+        var item = $("#feed-list-read").children().slice(MAXNUM_READFEEDlISTITEM);
         for(var i=0; i<item.length; i++){
             $(item[i]).slideToggle(1000);
         }
