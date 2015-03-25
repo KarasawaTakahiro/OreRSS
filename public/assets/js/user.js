@@ -1,6 +1,7 @@
 $(function(){
     bind_smartPush();
     bind_description();
+    disable_toggle_button();
 });
 
 var description_default_height = 0;
@@ -35,6 +36,18 @@ var toggle_description = function(obj){
     }else{
         // 元に戻す
         $(desc).animate({"height":description_default_height});
+    }
+};
+
+/*
+ * 説明文が短い時にボタンを無効化
+ */
+var disable_toggle_button = function(){
+    var obj = $(".list-item .description");
+    for(var i=0; i < obj.length; i++){
+        if(obj[i].scrollHeight == obj[i].offsetHeight){
+            $($(obj[i]).parents(".list-item").find("button")[0]).remove();
+        }
     }
 };
 
