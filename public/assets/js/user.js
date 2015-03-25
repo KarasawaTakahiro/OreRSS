@@ -63,7 +63,6 @@ var bind_smartPush = function(){
 
 var bind_description = function(){
     description_default_height = $(".list-item .description").height();
-    console.log(description_default_height);
     $(".info button").click(function(){
         toggle_description($(this));
     });
