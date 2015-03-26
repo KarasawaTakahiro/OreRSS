@@ -3,6 +3,26 @@
     <head>
         <meta charset="utf-8" />
         <title>俺RSS(α)</title>
+
+        {* favicon *}
+        <link rel="apple-touch-icon" sizes="57x57" href={Asset::get_file('favicons/apple-touch-icon-57x57.png', 'img')} />
+        <link rel="apple-touch-icon" sizes="60x60" href={Asset::get_file('favicons/apple-touch-icon-60x60.png', 'img')} />
+        <link rel="apple-touch-icon" sizes="72x72" href={Asset::get_file('favicons/apple-touch-icon-72x72.png', 'img')} />
+        <link rel="apple-touch-icon" sizes="76x76" href={Asset::get_file('favicons/apple-touch-icon-76x76.png', 'img')} />
+        <link rel="apple-touch-icon" sizes="114x114" href={Asset::get_file('favicons/apple-touch-icon-114x114.png', 'img')} />
+        <link rel="apple-touch-icon" sizes="120x120" href={Asset::get_file('favicons/apple-touch-icon-120x120.png', 'img')} />
+        <link rel="apple-touch-icon" sizes="144x144" href={Asset::get_file('favicons/apple-touch-icon-144x144.png', 'img')} />
+        <link rel="apple-touch-icon" sizes="152x152" href={Asset::get_file('favicons/apple-touch-icon-152x152.png', 'img')} />
+        <link rel="apple-touch-icon" sizes="180x180" href={Asset::get_file('favicons/apple-touch-icon-180x180.png', 'img')} />
+        <link rel="icon" type="image/png" sizes="32x32" href={Asset::get_file('favicons/favicon-32x32.png', 'img')} />
+        <link rel="icon" type="image/png" sizes="192x192" href={Asset::get_file('favicons/android-chrome-192x192.png', 'img')} />
+        <link rel="icon" type="image/png" sizes="96x96" href={Asset::get_file('favicons/favicon-96x96.png', 'img')} />
+        <link rel="icon" type="image/png" sizes="16x16" href={Asset::get_file('favicons/favicon-16x16.png', 'img')} />
+        <link rel="manifest" href={Asset::get_file('favicons/manifest.json', 'img')} />
+        {Html::meta('msapplication-TileColor', '#f39c12')}
+        {Html::meta('msapplication-TileImage', Asset::get_file('favicons/mstile-144x144.png', 'img'))}
+        {Html::meta('theme-color', '#ffffff')}
+        {* /favicon *}
     </head>
 
     <body>
