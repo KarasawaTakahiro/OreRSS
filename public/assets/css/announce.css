@@ -61,13 +61,6 @@ body {
 }
 
 /* line 105, ../../../sass/_basic.scss */
-#contents {
-  margin-top: 20px;
-  height: 100%;
-  min-height: 300px;
-}
-
-/* line 111, ../../../sass/_basic.scss */
 .clear-left {
   clear: left;
 }
@@ -201,4 +194,11 @@ h2 {
 .topic .attribute .datetime {
   display: inline-block;
   font-size: small;
+}
+
+/* line 52, ../../../sass/announce.scss */
+#contents {
+  margin-top: 20px;
+  height: 100%;
+  min-height: 300px;
 }
