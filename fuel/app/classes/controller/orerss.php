@@ -351,7 +351,7 @@ class Controller_Orerss extends Controller_Template
      */
     private function help_isLogout()
     {
-        if(Session::get('userid') != null){
+        if(Session::get('userid', null) != null){
             Response::redirect('/orerss/logout');
         }
     }

@@ -90,7 +90,11 @@ class GetThumbnail():
         id = self._pickup_smid(url)
         if id:
             soup = self._thumbinfo(id)
-            return str(soup.find('thumbnail_url').string)
+            find = soup.find('thumbnail_url')
+            if find:
+                return str(find.string)
+            else:
+                return ''
         else:
             return ''
 

@@ -33,8 +33,12 @@ class Model_Userp extends \Model
         $res = array();
         $data = Model_User::get_data($userid);
         $res['nickname'] = $data['nickname'];
-        $res['thumbnail'] = $data['thumbnail'];
         $res['id'] = $data['id'];
+        if($data['thumbnail'] == null){
+            $res['thumbnail'] = '';
+        }else{
+            $res['thumbnail'] = $data['thumbnail'];
+        }
         return $res;
     }
 
