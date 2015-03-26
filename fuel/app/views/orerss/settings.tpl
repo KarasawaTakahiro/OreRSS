@@ -3,7 +3,7 @@
         <div class="col-md-3">
             <h2>メニュー</h2>
             <div id="dashboard" class="link-panel">
-                <a href="/dashboard">DASHBOARD</a>
+                <a href="/orerss/dashboard">DASHBOARD</a>
             </div>
 
         </div>
@@ -20,7 +20,7 @@
                             {Asset::img("user/`$thumbnail`", ["class"=>"thumbnail-user-normal", "alt"=>"サムネイル"])}
                         </div>
                         <div class="future">
-                            <form action="/settings" method="post" enctype="multipart/form-data">
+                            <form action="/orerss/settings" method="post" enctype="multipart/form-data">
                                 <div class="input-group">
                                     <input class="form-control" name="thumbnail" type="file" placeholder="ファイルを選択" />
                                     <span class="input-group-addon"><input type="submit"></span>

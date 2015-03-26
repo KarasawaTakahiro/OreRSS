@@ -1,6 +1,6 @@
 <div class="container">
     <div class="signup">
-        <form class="form-signin" action="/signup" method="POST">
+        <form class="form-signin" action="/orerss/signup" method="POST">
             <h2 class="form-signin-heading">ユーザ登録</h2>
 
             <label for="inputNickname" class="sr-only">ニックネーム</label>

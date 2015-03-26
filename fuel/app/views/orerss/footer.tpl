@@ -4,9 +4,9 @@
     <div id="sitemap">
             <ul>
                 <h4>サイトマップ</h4>
-                <li><a href="/">トップページ</a></li>
-                <li><a href="/dashboard">Dashboard</a></li>
-                <li><a href="/tutor">チュートリアル</a></li>
+                <li><a href="/orerss">トップページ</a></li>
+                <li><a href="/orerss/dashboard">Dashboard</a></li>
+                <li><a href="/orerss/tutor">チュートリアル</a></li>
                 <li><a href="">初めての方へ</a></li>
             </ul>
     </div>
