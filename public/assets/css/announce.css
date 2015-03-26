@@ -56,12 +56,17 @@ body {
 }
 
 /* line 101, ../../../sass/_basic.scss */
+.fontsz-middle {
+  font-size: 15px;
+}
+
+/* line 105, ../../../sass/_basic.scss */
 #contents {
   margin-top: 20px;
   height: 100%;
 }
 
-/* line 106, ../../../sass/_basic.scss */
+/* line 110, ../../../sass/_basic.scss */
 .clear-left {
   clear: left;
 }
