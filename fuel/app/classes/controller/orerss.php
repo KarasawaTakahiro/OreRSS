@@ -165,6 +165,7 @@ class Controller_Orerss extends Controller_Template
     public function get_settings()
     {
         $data = array();
+        $data['thumbnail'] = Model_User::get_thumbnail(self::help_userid());
         $this->template->nickname = self::help_nickname();
         $this->template->contents = View_Smarty::forge('orerss/settings', $data);
         $this->template->js = array('jquery-2.1.1.min.js', 'bootstrap.min.js');
