@@ -61,12 +61,6 @@ body {
 }
 
 /* line 105, ../../../sass/_basic.scss */
-#contents {
-  margin-top: 20px;
-  height: 100%;
-}
-
-/* line 110, ../../../sass/_basic.scss */
 .clear-left {
   clear: left;
 }
@@ -185,4 +179,11 @@ p {
 /* line 21, ../../../sass/_sign_form.scss */
 input {
   margin-bottom: 3px;
+}
+
+/* line 25, ../../../sass/_sign_form.scss */
+#contents {
+  margin-top: 20px;
+  height: 100%;
+  min-height: 300px;
 }
