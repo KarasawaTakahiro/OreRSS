@@ -357,3 +357,9 @@ dd {
 #footer .date {
   margin-right: 20px;
 }
+
+/* line 8, ../../../sass/user.scss */
+h2 {
+  font-family: "nicomoji+";
+  text-align: center;
+}
