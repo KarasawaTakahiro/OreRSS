@@ -104,7 +104,7 @@ class Model_Feedtbl extends \Model
                                                      ->where('watched', '=', true)
                                                      ->where('user.id', '=', $userid)
                                                      ->group_by('feed.id')
-                                                     ->order_by('watch.modified_at')
+                                                     ->order_by('watch.modified_at', 'desc')
                                                      ->execute()
                                                      ->as_array();
 
