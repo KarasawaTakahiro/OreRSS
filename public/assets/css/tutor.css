@@ -64,9 +64,10 @@ body {
 #contents {
   margin-top: 20px;
   height: 100%;
+  min-height: 300px;
 }
 
-/* line 110, ../../../sass/_basic.scss */
+/* line 111, ../../../sass/_basic.scss */
 .clear-left {
   clear: left;
 }
@@ -78,12 +79,21 @@ body {
 }
 
 /* line 9, ../../../sass/_navbar.scss */
+#brand-arrow {
+  margin-right: 0px;
+  margin-left: 0px;
+  padding-right: 0px;
+  padding-left: 0px;
+  font-size: 15px;
+}
+
+/* line 17, ../../../sass/_navbar.scss */
 .navbar-default {
   background-color: #f39c12;
   margin-bottom: 0px;
 }
 
-/* line 14, ../../../sass/_navbar.scss */
+/* line 22, ../../../sass/_navbar.scss */
 .nav-btn-text {
   padding: 0px;
   margin: 0px;
@@ -91,7 +101,7 @@ body {
   text-align: center;
 }
 
-/* line 21, ../../../sass/_navbar.scss */
+/* line 29, ../../../sass/_navbar.scss */
 .nav-btn-icon {
   padding: 0px;
   margin: 0px;

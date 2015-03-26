@@ -1,9 +1,9 @@
 <div class="jumbotron">
     <div class="container">
+        <h1>俺RSS</h1>
         <p>マイリストの更新をチェック<br>
         ＋<br>
         新しいマイリストの発見</p>
-        <h1>俺RSS</h1>
     </div>
 </div>
 

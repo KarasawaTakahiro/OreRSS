@@ -3,6 +3,13 @@
   src: url("../fonts/nicomoji-plus.ttf") format("TrueType");
 }
 /* line 60, ../../../sass/_basic.scss */
+body {
+  background-image: url(../img/geometry2.png);
+  background-color: #ecf0f1;
+  height: 100%;
+}
+
+/* line 65, ../../../sass/_basic.scss */
 .link-panel {
   width: 100%;
   height: 100%;
@@ -12,56 +19,54 @@
   -webkit-box-shadow: rgba(255, 255, 255, 0.5) 0 1px 0;
   box-shadow: rgba(255, 255, 255, 0.5) 0 1px 0;
 }
-/* line 66, ../../../sass/_basic.scss */
+/* line 71, ../../../sass/_basic.scss */
 .link-panel:hover {
   background-color: #ffffff;
 }
-/* line 70, ../../../sass/_basic.scss */
+/* line 75, ../../../sass/_basic.scss */
 .link-panel a {
   display: inline-block;
   width: 100%;
   height: 100%;
 }
-/* line 75, ../../../sass/_basic.scss */
+/* line 80, ../../../sass/_basic.scss */
 .link-panel a:hover {
   text-decoration: none;
 }
 
-/* line 81, ../../../sass/_basic.scss */
+/* line 86, ../../../sass/_basic.scss */
 .thumbnail-user-normal {
   width: 64px;
   height: 64px;
   border-radius: 32px;
 }
 
-/* line 86, ../../../sass/_basic.scss */
+/* line 91, ../../../sass/_basic.scss */
 .thumbnail-user-small {
   width: 32px;
   height: 32px;
   border-radius: 16px;
 }
 
-/* line 91, ../../../sass/_basic.scss */
+/* line 96, ../../../sass/_basic.scss */
 .thumbnail-user-xsmall {
   width: 16px;
   height: 16px;
   border-radius: 8px;
 }
 
-/* line 96, ../../../sass/_basic.scss */
-body {
-  background-image: url(../img/geometry2.png);
-  background-color: #ecf0f1;
-  height: 100%;
+/* line 101, ../../../sass/_basic.scss */
+.fontsz-middle {
+  font-size: 15px;
 }
 
-/* line 101, ../../../sass/_basic.scss */
+/* line 105, ../../../sass/_basic.scss */
 #contents {
   margin-top: 20px;
   height: 100%;
 }
 
-/* line 106, ../../../sass/_basic.scss */
+/* line 110, ../../../sass/_basic.scss */
 .clear-left {
   clear: left;
 }
@@ -73,12 +78,21 @@ body {
 }
 
 /* line 9, ../../../sass/_navbar.scss */
+#brand-arrow {
+  margin-right: 0px;
+  margin-left: 0px;
+  padding-right: 0px;
+  padding-left: 0px;
+  font-size: 15px;
+}
+
+/* line 17, ../../../sass/_navbar.scss */
 .navbar-default {
   background-color: #f39c12;
   margin-bottom: 0px;
 }
 
-/* line 14, ../../../sass/_navbar.scss */
+/* line 22, ../../../sass/_navbar.scss */
 .nav-btn-text {
   padding: 0px;
   margin: 0px;
@@ -86,7 +100,7 @@ body {
   text-align: center;
 }
 
-/* line 21, ../../../sass/_navbar.scss */
+/* line 29, ../../../sass/_navbar.scss */
 .nav-btn-icon {
   padding: 0px;
   margin: 0px;
