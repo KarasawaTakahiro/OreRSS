@@ -22,7 +22,7 @@ var MAXNUM_READFEEDlISTITEM = 5;
 function mark_read(obj, item_id){
   // 対象を既読にする
   $.ajax({
-    url: '/orerss/markRead/'+item_id,
+    url: '/markRead/'+item_id,
     async: true,
     method: 'POST',
   });
@@ -35,7 +35,7 @@ function autoMark(feed_id, item_id){
   //console.log('autoMark');
   //
   $.ajax({
-    url: '/orerss/automarkRead/'+feed_id+'/'+item_id,
+    url: '/automarkRead/'+feed_id+'/'+item_id,
     async: true,
     method: 'POST',
     dataType: 'json',
@@ -56,7 +56,7 @@ var registNewFeed = function(){
 
       if(0 < newFeedUrl.length){
         $.ajax({
-          url: '/orerss/registNewFeed/',
+          url: '/registNewFeed/',
           async: true,
           type: 'POST',
           data: {'url':newFeedUrl},   // feedのURLを引数にする
@@ -64,7 +64,7 @@ var registNewFeed = function(){
           success: function(data){
             // リスト一覧に追加
             if(data !== null){
-              $("#feed-list-unread").append('<p><a class="unread" href="/orerss/feed/' + data.id + '" >' + data.title + '</a></p>');
+              $("#feed-list-unread").append('<p><a class="unread" href="/feed/' + data.id + '" >' + data.title + '</a></p>');
               tbox.val("");
             }
           },
@@ -87,7 +87,7 @@ var feedRefresh = function(){
 
     // ajaxでfeedのデータを取得
     $.ajax({
-      url: '/orerss/updateFeed',
+      url: '/updateFeed',
       async: true,
       type: 'POST',
       dataType: 'json',
@@ -122,7 +122,7 @@ var unpull = function(){
 
         // ajaxでPOST
         $.ajax({
-            url: '/orerss/unpullFeed',
+            url: '/unpullFeed',
             async: true,
             method: 'POST',
             data: {fid:feedid}
@@ -133,7 +133,7 @@ var unpull = function(){
             if(isfeed != null){
                 var pfeedid = isfeed[0].match(/[0-9]+/)[0];      // フィードIDを取得
                 if(parseInt(pfeedid) == parseInt(feedid)){      // 削除したフィードのフィードページにいる
-                    window.location.href = "/orerss/dashboard"; // dashboardにジャンプ
+                    window.location.href = "/dashboard"; // dashboardにジャンプ
                 }
             }
         }).fail(function(){                 // 失敗
@@ -152,7 +152,7 @@ var smartpull = function(){
         var feedid = $(this).find("input").attr("value");
 
         $.ajax({
-            url: '/orerss/smartpull',
+            url: '/smartpull',
             async: true,
             type: 'POST',
             data: {'feedid' : feedid},
@@ -172,7 +172,7 @@ var smartpull = function(){
  */
 var append_feed = function(id, title, unread_num){
     var div = $("<div>").addClass("link-panel");
-    var a = $("<a>").attr("href", "/orerss/feed/" + id);
+    var a = $("<a>").attr("href", "/feed/" + id);
     var title = $("<span>").addClass("unread").addClass("feed-title").text(title);
     var num = $("<span>").addClass("badge").text(unread_num);
     a.append(title).append(num).appendTo(div);
