@@ -12,9 +12,16 @@
 
 /**
  * Set error reporting and display errors settings.  You will want to change these when in production.
+vie: http://qiita.com/saltyshiomix/items/4dcf99b59dee4e0db93d
  */
 error_reporting(-1);
-ini_set('display_errors', 1);
+if(isset($_SERVER['FUEL_ENV']) && $_SERVER['FUEL_ENV'] === 'production')
+{
+	// FuelPHPでキャッチできないエラーをPHPでもキャッチさせない
+	ini_set('display_errors', 0);
+}else{
+	ini_set('display_errors', 1);
+}
 
 /**
  * Website document root
