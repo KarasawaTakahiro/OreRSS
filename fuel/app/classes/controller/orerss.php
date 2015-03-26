@@ -16,7 +16,14 @@ class Controller_Orerss extends Controller_Template
             'updates'   => Model_Index::update(),
             'pickups'   => Model_Index::pickup(),
         );
-        $this->template->nickname = null;
+
+        if(self::help_userid() != null){
+            $data['userdata'] = array('name' => self::help_nickname(),
+                'thumbnail'    => Model_User::get_thumbnail(self::help_userid()),
+            );
+        }
+
+        $this->template->nickname = self::help_nickname();
         $this->template->contents = View_Smarty::forge('orerss/index', $data);
         $this->template->js = array('jquery-2.1.1.min.js', 'bootstrap.min.js');
         $this->template->css = array('bootstrap.min.css', 'index.css');
@@ -47,9 +54,10 @@ class Controller_Orerss extends Controller_Template
                                  'read'   => Model_Feedtbl::get_feed_list_read($userid),        // 未読を含まない
                                  ),
             'items'     => Model_Itemtbl::get_all_unread_itemlist($userid), // 未読のitem全てのリスト
-            'userlist'  => Model_Dashboard::userlist($userid),              // ユーザに近いユーザリスト
+            'userlist'  => Model_Pull::get_near_users($userid),             // ユーザに近いユーザリスト
             'nickname'  => self::help_nickname(),
             'direction' => 'up',
+            'randomfeed'=> Model_Dashboard::random_feed(),
         );
 
 
@@ -79,7 +87,7 @@ class Controller_Orerss extends Controller_Template
             // 指定フィードのitemリスト
             'items'     => Model_Url::convert_continuous_playback_url(Model_Itemtbl::get_itemlist_column_from_feed_id_with_watched($feed_id, $userid)),
             'nickname'  => self::help_nickname(),
-            'userlist'  => Model_Feed::userlist($feed_id, $userid),
+            'userlist'  => Model_Pull::get_pull_users($feed_id, $userid),
             'direction' => 'down',
         );
 
@@ -103,8 +111,8 @@ class Controller_Orerss extends Controller_Template
 
         $this->template->nickname = $this->help_nickname();
         $this->template->contents = View_Smarty::forge('orerss/login', $data);
-        $this->template->js = array('jquery-2.1.1.min.js', 'bootstrap.min.js');
-        $this->template->css = array('bootstrap.min.css', 'bootstrap.min.css', 'login.css');
+        $this->template->js = array('jquery-2.1.1.min.js', 'bootstrap.min.js', 'sign-form.js', 'login.js');
+        $this->template->css = array('bootstrap.min.css', 'login.css');
     }
 
     /*
@@ -117,8 +125,8 @@ class Controller_Orerss extends Controller_Template
 
         $this->template->nickname = $this->help_nickname();
         $this->template->contents = View_Smarty::forge('orerss/signup', $data);
-        $this->template->js = array('jquery-2.1.1.min.js', 'bootstrap.min.js', 'signup.js');
-        $this->template->css = array('bootstrap.min.css', 'bootstrap.min.css', 'login.css');
+        $this->template->js = array('jquery-2.1.1.min.js', 'bootstrap.min.js', 'sign-form.js', 'signup.js');
+        $this->template->css = array('bootstrap.min.css', 'signup.css');
     }
 
     /*
@@ -156,11 +164,43 @@ class Controller_Orerss extends Controller_Template
      */
     public function get_settings()
     {
+        self::help_isLogin();
+
         $data = array();
+        $data['thumbnail'] = Model_User::get_thumbnail(self::help_userid());
         $this->template->nickname = self::help_nickname();
         $this->template->contents = View_Smarty::forge('orerss/settings', $data);
         $this->template->js = array('jquery-2.1.1.min.js', 'bootstrap.min.js');
-        $this->template->css = array('bootstrap.min.css', 'bootstrap.min.css');
+        $this->template->css = array('bootstrap.min.css', 'settings.css');
+    }
+
+    /*
+     * チュートリアル
+     */
+    public function get_tutor($page=null)
+    {
+        // ページが存在するか
+        if($page == null || ($page != 'whatis' && $page != 'rss' && $page != 'find')){
+            $page = 'whatis';
+        }
+
+        $data = array('page'    => $page);
+        $this->template->contents = View_Smarty::forge('orerss/tutor', $data);
+        $this->template->nickname = self::help_nickname();
+        $this->template->js = array('jquery-2.1.1.min.js', 'bootstrap.min.js');
+        $this->template->css = array('bootstrap.min.css', 'tutor.css');
+    }
+
+    /*
+     * お知らせ
+     */
+    public function get_announce()
+    {
+        $data = array();
+        $this->template->contents = View_Smarty::forge('orerss/announce', $data);
+        $this->template->nickname = self::help_nickname();
+        $this->template->js = array('jquery-2.1.1.min.js', 'bootstrap.min.js');
+        $this->template->css = array('bootstrap.min.css', 'announce.css');
     }
 
     /*
@@ -169,10 +209,10 @@ class Controller_Orerss extends Controller_Template
     public function get_logout()
     {
         Session::delete('userid');
-        Response::redirect('/orerss/login');
+        Response::redirect('/orerss');
     }
 
-// --- POST -----------------------------------------------------------------------------
+// --- post -----------------------------------------------------------------------------
 
     /*
      * 新規登録POST
@@ -227,9 +267,9 @@ class Controller_Orerss extends Controller_Template
         $userid = self::help_userid();
         $thumbnail = self::help_userThumbnailUpload();  // サムネイルを取得
         if(0 < count($thumbnail['success'])){           // アップロード成功
-            // 先に登録されているものを削除
+            // 先に登録されているものかつ，デフォルトでないものを削除
             $thumb = Model_User::get_thumbnail($userid);
-            if($thumb != null){
+            if(($thumb != null) && (mb_substr($thumb, 0, 7) != 'default')){
                 unlink(DIR_THUMBNAIL.DS.$thumb);
             }
             // サムネイルをDBに保存
@@ -293,6 +333,18 @@ class Controller_Orerss extends Controller_Template
     }
 
     /*
+     * smart pull
+     *
+     * Input
+     *  feedid - フィードID
+     */
+    public function post_smartpull(){
+        $userid = self::help_userid();
+        $feedid = Input::post('feedid');
+        return json_encode(Model_Rss::pull_feed($feedid, $userid));
+    }
+
+    /*
      * Ringからfeedを更新する
      */
     public function get_updateRing(){
@@ -310,7 +362,7 @@ class Controller_Orerss extends Controller_Template
         $this->template->nickname = self::help_nickname();
         $this->template->contents = View_Smarty::forge('orerss/404', $data);
         $this->template->js = array('jquery-2.1.1.min.js', 'bootstrap.min.js');
-        $this->template->css = array('bootstrap.min.css', 'bootstrap.min.css', 'rss.css', '404.css');
+        $this->template->css = array('bootstrap.min.css', '404.css');
     }
 
 // --- help ---------------------------------------------------------------------

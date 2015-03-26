@@ -7,7 +7,7 @@
                 <li>
                     <div class="link-panel">
                         <a href="/orerss/user/{$user.id}">
-                            <img class="thumbnail-user-small" src="{$user.thumbnail}" alt="{$user.nickname}" title="{$user.nickname}" />
+                            {Asset::img("user/`$user.thumbnail`", ["alt"=>"{$user.nickname}", "class"=>"thumbnail-user-small", "title"=>"{$user.nickname}"])}
                         </a>
                     </div>
                 </li>

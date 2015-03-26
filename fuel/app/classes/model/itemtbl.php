@@ -1,6 +1,7 @@
 <?php
 
 define('TABLE_ITEM', 'item');
+define('THUMBNAIL_NOTHING', 'thumbnail_nothing.png');
 
 class Model_Itemtbl extends \Model
 {
@@ -173,7 +174,11 @@ class Model_Itemtbl extends \Model
         if(count($query) <= 0){
             return null;
         }else{
-            return $query[0]['thumbnail'];
+            $thumb = $query[0]['thumbnail'];
+            if($thumb == null)
+                return Uri::create('/assets/img/'.THUMBNAIL_NOTHING);
+            else
+                return $thumb;
         }
     }
 

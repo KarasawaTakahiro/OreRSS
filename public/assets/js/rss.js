@@ -7,10 +7,15 @@ $(function(){
   feedRefresh();
   // 購読解除用ボタンのリスナ登録
   unpull();
+  //
+  smartpull();
+  // フィードリストを隠す
+  hideFeedlist();
+  //
+  removeHideFeedlistBtn();
 });
 
-function info(text){
-}
+var MAXNUM_READFEEDlISTITEM = 5;
 
 
 // 既読をつける
@@ -139,3 +144,68 @@ var unpull = function(){
 
 };
 
+/*
+ * smart pull
+ */
+var smartpull = function(){
+    $(".smart-pull").submit(function(evt){
+        var feedid = $(this).find("input").attr("value");
+
+        $.ajax({
+            url: '/orerss/smartpull',
+            async: true,
+            type: 'POST',
+            data: {'feedid' : feedid},
+            dataType: 'json',
+        }).done(function(data){
+            if(Array.isArray(data) == false){       // 配列の時は登録失敗している
+                append_feed(data.id, data.title, data.unread_num);
+            }
+        });
+
+        return false;
+    });
+};
+
+/*
+ * 未視聴リストにフィードを追加する
+ */
+var append_feed = function(id, title, unread_num){
+    var div = $("<div>").addClass("link-panel");
+    var a = $("<a>").attr("href", "/orerss/feed/" + id);
+    var title = $("<span>").addClass("unread").addClass("feed-title").text(title);
+    var num = $("<span>").addClass("badge").text(unread_num);
+    a.append(title).append(num).appendTo(div);
+    $("#feed-list-unread").append(div);
+};
+
+/*
+ * 視聴済みフィードリストを隠す機能がいらない場合は，ボタンを削除する
+ */
+var removeHideFeedlistBtn = function(){
+    if($("#feed-list-read").children().length <= MAXNUM_READFEEDlISTITEM){
+        $("#hide button").remove();
+    }
+};
+
+/*
+ * フィードリストを隠す
+ */
+var hideFeedlist = function(){
+    var button = $("#hide button").click(function(evt){
+        // リストのトグル
+        var item = $("#feed-list-read").children().slice(MAXNUM_READFEEDlISTITEM);
+        for(var i=0; i<item.length; i++){
+            $(item[i]).slideToggle(1000);
+        }
+        // まだあるよアイコンのトグル
+        $("#option").slideToggle(1000);
+        // ボタンのアイコンのトグル
+        var icons = $("#hide button").children();
+        for(var i=0; i<icons.length; i++){
+            $(icons[i]).toggle();
+        }
+
+        return false;
+    });
+};

@@ -30,10 +30,6 @@ class Model_Index extends \Model
             if($latest){
                 $item['thumbnail'] = Model_Itemtbl::get_thumbnail_from_id($latest['id']);   // サムネイル
                 $item['users'] = Model_Pull::get_all_pull_users($id, $latest);              // PULLユーザ情報
-                foreach($item['users'] as &$user){
-                    $user['thumbnail'] = Uri::create(IMG_USER_THUMBNAIL.DS.$user['thumbnail']); // URIに変換
-                }
-                unset($user);
             }else{
                 $item['thumbnail'] = '';
                 $item['users'] = array();

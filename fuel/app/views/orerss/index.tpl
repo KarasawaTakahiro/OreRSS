@@ -1,8 +1,10 @@
 <div class="jumbotron">
-    <p>マイリストの更新をチェック<br>
-    ＋<br>
-    新しいマイリストの発見</p>
-    <h1>俺RSS</h1>
+    <div class="container">
+        <h1>俺RSS</h1>
+        <p>マイリストの更新をチェック<br>
+        ＋<br>
+        新しいマイリストの発見</p>
+    </div>
 </div>
 
 <div class="container">
@@ -12,18 +14,14 @@
         {foreach $updates as $item}
         <div class="col-md-4">
             <div class="update-item">
-                <h3>{$item.mylistname}</h3>
                 <div class="item-container">
+                <h3>{$item.mylistname}</h3>
                     <div class="update-item-thumbnail">
                         <img src="{$item.thumbnail}" />
                     </div>
-                    <div class="item-info">
-                        <ul class="list-inline">
-                            <li class="movie-name">{$item.moviename}</li>
-                            <li class="movie-datetime">{$item.datetime}</li>
-                        </ul>
-                    </div>
+                    <div class="item-info">{$item.moviename}</div>
                     <div class="clear"></div>
+                    <h3 class="movie-datetime">{$item.datetime}</h3>
                 </div>
             </div>
         </div>
@@ -47,7 +45,7 @@
                         <div class="pullusers">
                             <ul class="list-inline">
                                 {foreach $item.users as $user}
-                                <li><img class="thumbnail-user-small" src="{$user.thumbnail}" alt="{$user.nickname}" title="{$user.nickname}" /></li>
+                                <li>{Asset::img("user/`$user.thumbnail`", ["alt"=>"{$user.nickname}", "class"=>"thumbnail-user-small", "title"=>"{$user.nickname}"])}</li>
                                 {/foreach}
                                 <li><span class="badge">{$item.pullnum}</span></li>
                             </ul>
@@ -61,23 +59,38 @@
 
         <div class="col-md-4">
             <!-- 右半分 -->
-            <h4>ログイン</h4>
+            {if $nickname == null}
+            <h2>ログイン</h2>
             {include file='orerss/login_form.tpl'}
+            {else}
+            <h2>ユーザ</h2>
+            <div id="user">
+                <div class="inline-block">
+                    {Asset::img("user/`$userdata.thumbnail`", ['class'=>'thumbnail-user-normal'])}
+                </div>
+                <div class="inline-block">
+                    <div class="font-lg">
+                        {$userdata.name}
+                    </div>
+                    <div id="dashboard" class="link-panel">
+                        <a href="/orerss/dashboard">Dash Board</a>
+                    </div>
+                </div>
+            </div>
+            {/if}
 
-            <h4>初めての方へ</h4>
+            <h2>初めての方へ</h2>
             <ul class="list">
-                <li>チュートリアル</li>
-                <li>チュートリアル</li>
-                <li>チュートリアル</li>
+                <li><a href="/orerss/tutor/whatis">何ができるの？</a></li>
+                <li><a href="/orerss/tutor/rss">更新チェック機能</a></li>
+                <li><a href="/orerss/tutor/find">フィード発見機能</a></li>
             </ul>
 
-            <h4>お知らせ</h4>
+            <h2>お知らせ</h2>
             <ul class="list">
-                <li>サイトリニューアル</li>
-                <li>サイトリニューアル</li>
-                <li>サイトリニューアル</li>
+                <li><a href="/orerss/announce">お知らせ</a></li>
             </ul>
         </div>
     </div>
-
 </div>
+
