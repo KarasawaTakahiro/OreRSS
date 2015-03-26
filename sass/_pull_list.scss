@@ -1,0 +1,125 @@
+@import "compass";
+@import "compass/css3/deprecated-support";
+@import "basic";
+@import "base";
+
+$thumbnail-width: 130px;
+$thumbnail-height: 100px;
+
+$width-list-text-info: 77%;
+
+.user-info {
+
+    .nickname {
+        color: $color-text;
+    }
+}
+
+.list-header {
+    .thumb {
+        @include font-list-header($thumbnail-width);
+    }
+
+    .text-info {
+            @include font-list-header(72%);
+
+        .title {
+        }
+    }
+
+    .circle-info {
+        @include font-list-header(9%);
+        padding-right: 0px;
+        text-align: right;
+
+        .pullnum {
+        }
+
+        .info {
+        }
+
+        .pull {
+        }
+    }
+}
+
+.list-body {
+    height: 100%;
+
+    .list-item {
+        width: 100%;
+        height: 100%;
+        margin-bottom: $margin-inner;
+
+        .thumb {
+            width: $thumbnail-width;
+            height: $thumbnail-height+4px;
+            float: left;
+
+            img {
+                width: $thumbnail-width;
+                height: $thumbnail-height+4px;
+            }
+        }
+
+        .text-info {
+            width: $width-list-text-info;
+            height: 100%;
+            float: left;
+
+            .title {
+                width: 100%;
+                padding-left: $margin-small;
+            }
+
+            .description {
+                height: 47px;
+                width: 100%;
+                color: $color-text;
+                padding-left: $margin-small;
+                word-break: break-all;
+                @include line-clamp(3);
+            }
+
+            .pullusers {
+                width: 100%;
+                padding-left: $margin-small;
+                @include ellipsis();
+
+                .link-panel {
+                    display: inline-block;
+                    width: auto;
+                    margin-bottom: 0px;
+                }
+
+            }
+        }
+
+        .circle-info {
+            width: 5%;
+            height: 100%;
+            float: left;
+
+            .pull {
+                text-align: center;
+            }
+
+            .info {
+                text-align: center;
+                color: $color-text;
+                margin-top: 32px;
+            }
+
+            .pullnum {
+                height: 50%;
+                text-align: center;
+                margin-top: 10px;
+            }
+        }
+
+        .clear-left {
+            clear: left;
+        }
+    }
+}
+

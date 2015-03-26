@@ -4,6 +4,8 @@ include_once('itemtbl.php');
 
 define('RSSURL_FRONT', 'http://www.nicovideo.jp/mylist/');
 define('RSSURL_BACK', '?rss=2.0');
+define('FEED_TITLE_PREFIX', 'マイリスト ');                 // フィードのタイトルの接頭語
+define('FEED_TITLE_SUFFIX', '-ニコニコ動画');                 // フィードのタイトルの接尾語
 
 class Model_Rss extends \Model
 {
@@ -17,34 +19,25 @@ class Model_Rss extends \Model
         if(self::is_registered_feed($mylist_url) == false){
             // 未登録の時
             $feed = self::get_feed(self::convert_url($mylist_url));     // 問い合わせ
-            $feed_channel = self::parse($feed);
-            \Model_Feedtbl::set($mylist_url, $feed_channel->title);
+            $feed_channel = self::parse($feed);                         // channelを抽出
+            $feed_title = self::parse_title($feed_channel->title);      // マイリストのタイトルを抽出
+            \Model_Feedtbl::set($mylist_url, $feed_title);          // feed登録
             $id = \Model_Feedtbl::get_id_from_url($mylist_url);     // feedのidを取得
             if($id == null) return null;                            // DBから参照失敗
 
-            Model_Pull::add($id, $userId);
+            self::pull($id, $userId);                               // 購読
+            Model_Feedtbl::set_description($id, $feed_channel->description);    // 説明文を登録する
             foreach($feed_channel->item as $item){
                 // itemの新規登録
                 $itemId = self::regist_item($id, $item->title, $item->link, $item->pubDate, $item->guid);
                 // 視聴情報の登録
                 Model_Watch::add($itemId, $userId);
             }
-            return array('title' => $feed_channel->title, 'id' => $id);
+            return array('title' => $feed_title, 'id' => $id);
         }else{      // マイリストがシステムに登録済み
             $id = \Model_Feedtbl::get_id_from_url($mylist_url);     // feedのidを取得
             if($id == null) return null;                            // DBから参照失敗
-            if(Model_Pull::is_pull($userId, $id))return  array();   // 購読済みかどうか
-
-            $feed_channel = \Model_Rss::get_localdata_channel_format($id);  // ローカルのデータを取得
-            if($feed_channel == null) return null;                  // 参照失敗
-            Model_Pull::add($id, $userId);                          // 購読
-            foreach($feed_channel['item'] as $item){                // 動画情報を登録
-                // itemの新規登録
-                $itemId = self::regist_item($id, $item['title'], $item['link'], $item['pub_date'], $item['guid']);
-                // 視聴情報の登録
-                Model_Watch::add($itemId, $userId);
-            }
-            return array('title' => array($feed_channel['title']), 'id' => $id);
+            return self::pull_feed($id, $userId);                   // 購読処理
         }
 
     }
@@ -57,7 +50,7 @@ class Model_Rss extends \Model
         $num = 0;   // 新規総数
         // DBから全てのフィードのidを取得
         foreach(\Model_Feedtbl::get_all_feed_ids() as $feed_id){
-            $res = self::update_feed($feed_id);     // フィードを更新
+            $num += self::update_feed($feed_id);     // フィードを更新
         }
 
         return $num;
@@ -76,9 +69,12 @@ class Model_Rss extends \Model
             return 0;
         }
 
-        $res = self::get_feed($url);        // フィードの全itemを取得
-        if($res == null) return 0;          // フィードが404
-        $items = self::get_items($res);     // フィードの取得が成功
+        $furl = self::convert_url($url);        // RSSフィードURLに変換
+        $res = self::get_feed($furl);           // フィードの全itemを取得
+        if($res == null) return 0;              // フィードが404
+        $channel = self::parse($res);           // パース
+        Model_Feedtbl::set_description($feed_id, $channel->description);    // 動画説明文更新
+        $items = self::get_items($channel);     // フィードの取得が成功
 
         foreach($items as $item){
             if(self::is_registered_item_at($url, $item->guid)){
@@ -86,8 +82,11 @@ class Model_Rss extends \Model
                 continue;
             }else{
                 // 未登録により新規登録
-                self::regist_item($feed_id, $item->title, $item->link, $item->pubDate, $item->guid);
-                $update_num += 1;
+                $itemid = self::regist_item($feed_id, $item->title, $item->link, $item->pubDate, $item->guid);
+                if($itemid != null){            // 更新成功
+                    $update_num += 1;           // 更新数++
+                    self::add_update_watch($itemid);    // 視聴情報の新規登録
+                }
             }
         }
         return $update_num;
@@ -131,12 +130,13 @@ class Model_Rss extends \Model
             return false;
         }
 
-        if(0 < count($query->execute())){
+        if(0 < count($query->execute()->as_array())){
             return true;
         }else{
             return false;
         }
     }
+
     /*
         マイリストのURLからRSSのURLに変換する
     */
@@ -203,9 +203,9 @@ class Model_Rss extends \Model
     /*
         
     */
-    private function get_items($feed_data){
+    private function get_items($channel){
         $items = array();
-        foreach(self::parse($feed_data)->item as $item){
+        foreach($channel->item as $item){
             array_push($items, $item);
         }
         array_reverse($items);
@@ -220,8 +220,10 @@ class Model_Rss extends \Model
     private function regist_item($feed_id, $title, $link, $pubDate, $guid){
         // itemを新規登録
         if(\Model_Itemtbl::set($title, $link, self::convert_datetime($pubDate), $feed_id, $guid)){
+            $itemid = Model_Itemtbl::get_id_from_guid($guid);
+            Model_Latest::set($itemid);         // 新規テーブルに登録
 
-            return \Model_Itemtbl::get_id_from_guid($guid);     // idを返す
+            return $itemid;     // idを返す
         }else{
             return null;
         }
@@ -237,6 +239,65 @@ class Model_Rss extends \Model
         return $res;
     }
 
+    /*
+     * feedを購読する
+     */
+    public static function pull($feedid, $userid)
+    {
+        if(Model_Pull::add($feedid, $userid)){                          // 購読
+            Model_Feedtbl::inc_pull_num($feedid);                       // 購読数を増やす
+        }
+    }
+
+    /*
+     * 新規に登録されたitemに対してpullしているユーザのwatchを追加
+     */
+    public static function add_update_watch($itemid)
+    {
+        // itemidが所属するfeedを購読している全ユーザを得る
+        $users = DB::select('user_id')->from('pull')
+            ->join('item')->on('pull.feed_id', '=', 'item.feed_id')
+            ->where('item.id', '=', $itemid)
+            ->execute()
+            ->as_array();
+
+        // 取得したユーザに対してitemidのwatchを追加
+        foreach($users as $user){
+            Model_Watch::add($itemid, $user['user_id']);
+        }
+    }
+
+    /*
+     * フィードのタイトルからマイリストのタイトル部分を抽出する
+     */
+    private static function parse_title($title)
+    {
+        $rear = mb_substr($title, mb_strlen(FEED_TITLE_PREFIX));        // 接頭語を削除
+        $len = mb_strlen($rear);
+        $mylisttitle =  mb_substr($rear, 0, $len-mb_strlen(FEED_TITLE_SUFFIX)); // 接尾語を削除
+
+        return $mylisttitle;
+    }
+
+    /*
+     * フィード内の動画に対する視聴情報の登録を行う
+     */
+    public static function pull_feed($feedid, $userid)
+    {
+        if(Model_Pull::is_pull($userid, $feedid))return  array();   // 購読済み
+
+        $feed_channel = self::get_localdata_channel_format($feedid);  // ローカルのデータを取得
+        if($feed_channel == null) return array();               // 参照失敗
+        self::pull($feedid, $userid);                           // 購読
+        foreach($feed_channel['item'] as $item){                // 動画情報を登録
+            Model_Watch::add($item['id'], $userid);             // 視聴情報の登録
+        }
+        $unread_num = Model_Feedtbl::get_num_feed_list_unread($userid, $feedid);    // 未視聴数
+
+        return array('title' => $feed_channel['title'], 
+            'id' => $feedid, 
+            'unread_num' => $unread_num);
+    }
 
 }
 

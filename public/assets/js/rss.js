@@ -5,11 +5,17 @@ $(function(){
   registNewFeed();
   // 更新用ボタンのリスナを登録
   feedRefresh();
-
+  // 購読解除用ボタンのリスナ登録
+  unpull();
+  //
+  smartpull();
+  // フィードリストを隠す
+  hideFeedlist();
+  //
+  removeHideFeedlistBtn();
 });
 
-function info(text){
-}
+var MAXNUM_READFEEDlISTITEM = 5;
 
 
 // 既読をつける
@@ -21,7 +27,7 @@ function mark_read(obj, item_id){
     method: 'POST',
   });
 
-  $(obj).css('fontWeight', 'normal'); // フォントの変更
+  $(obj).attr('class', 'read'); // フォントの変更
 }
 
 // automark
@@ -35,7 +41,7 @@ function autoMark(feed_id, item_id){
     dataType: 'json',
     success: function(list){
       for(var i=0; i<list.length; i++){
-        $("#"+list[i]).css('fontWeight', 'normal');   // フォントを変更
+        $("#"+list[i]).attr('class', 'read');   // フォントを変更
       }
     },
   });
@@ -58,7 +64,7 @@ var registNewFeed = function(){
           success: function(data){
             // リスト一覧に追加
             if(data !== null){
-              $("#feed-list-unread").append('<p><a class="unread" href="/orerss/feed/' + data.id + '" >' + data.title[0] + '</a></p>');
+              $("#feed-list-unread").append('<p><a class="unread" href="/orerss/feed/' + data.id + '" >' + data.title + '</a></p>');
               tbox.val("");
             }
           },
@@ -100,3 +106,106 @@ var feedRefresh = function(){
   });
 };
 
+/*
+ * 購読解除ボタンのバインド
+ */
+var unpull = function(){
+    $("a.unpull").click(function(){         // クリックイベントにバインド
+
+        // 削除の確認
+        if(confirm("購読を解除しますか？") == false){
+            return false;
+        }
+
+        var feedid = $(this).attr("name");  // フィードID取得
+        var parent = $(this).parent();      // 一覧から削除のために行全体を取得
+
+        // ajaxでPOST
+        $.ajax({
+            url: '/orerss/unpullFeed',
+            async: true,
+            method: 'POST',
+            data: {fid:feedid}
+        }).done(function(){                 // 成功
+            parent.remove();                // 一覧から削除
+            // フィードページにいたらダッシュボードに移動
+            var isfeed = location.href.match(/feed.[0-9]+/);    // フィードページかどうか
+            if(isfeed != null){
+                var pfeedid = isfeed[0].match(/[0-9]+/)[0];      // フィードIDを取得
+                if(parseInt(pfeedid) == parseInt(feedid)){      // 削除したフィードのフィードページにいる
+                    window.location.href = "/orerss/dashboard"; // dashboardにジャンプ
+                }
+            }
+        }).fail(function(){                 // 失敗
+        });
+
+        return false;                       // ジャンプを無効化
+    });
+
+};
+
+/*
+ * smart pull
+ */
+var smartpull = function(){
+    $(".smart-pull").submit(function(evt){
+        var feedid = $(this).find("input").attr("value");
+
+        $.ajax({
+            url: '/orerss/smartpull',
+            async: true,
+            type: 'POST',
+            data: {'feedid' : feedid},
+            dataType: 'json',
+        }).done(function(data){
+            if(Array.isArray(data) == false){       // 配列の時は登録失敗している
+                append_feed(data.id, data.title, data.unread_num);
+            }
+        });
+
+        return false;
+    });
+};
+
+/*
+ * 未視聴リストにフィードを追加する
+ */
+var append_feed = function(id, title, unread_num){
+    var div = $("<div>").addClass("link-panel");
+    var a = $("<a>").attr("href", "/orerss/feed/" + id);
+    var title = $("<span>").addClass("unread").addClass("feed-title").text(title);
+    var num = $("<span>").addClass("badge").text(unread_num);
+    a.append(title).append(num).appendTo(div);
+    $("#feed-list-unread").append(div);
+};
+
+/*
+ * 視聴済みフィードリストを隠す機能がいらない場合は，ボタンを削除する
+ */
+var removeHideFeedlistBtn = function(){
+    if($("#feed-list-read").children().length <= MAXNUM_READFEEDlISTITEM){
+        $("#hide button").remove();
+    }
+};
+
+/*
+ * フィードリストを隠す
+ */
+var hideFeedlist = function(){
+    var button = $("#hide button").click(function(evt){
+        // リストのトグル
+        var item = $("#feed-list-read").children().slice(MAXNUM_READFEEDlISTITEM);
+        for(var i=0; i<item.length; i++){
+            $(item[i]).slideToggle(1000);
+        }
+        // まだあるよアイコンのトグル
+        $("#option").slideToggle(1000);
+        // ボタンのアイコンのトグル
+        var icons = $("#hide button").children();
+        for(var i=0; i<icons.length; i++){
+            $(icons[i]).toggle();
+        }
+
+        return false;
+    });
+};

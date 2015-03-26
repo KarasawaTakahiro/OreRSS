@@ -1,0 +1,34 @@
+@import "compass";
+@import "basic";
+
+.navbar-brand {
+    @include font-main;
+    font-size: x-large;
+}
+
+#brand-arrow{
+    margin-right: 0px;
+    margin-left: 0px;
+    padding-right: 0px;
+    padding-left: 0px;
+    font-size: $fontsz-middle;
+}
+
+.navbar-default {
+    background-color: $color-main;
+    margin-bottom: 0px;
+}
+
+.nav-btn-text {
+    padding: 0px;
+    margin: 0px;
+    font-size: xx-small;
+    text-align: center;
+}
+
+.nav-btn-icon {
+    padding: 0px;
+    margin: 0px;
+    text-align: center;
+}
+

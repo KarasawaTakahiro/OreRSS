@@ -1,0 +1,71 @@
+@import "compass";
+
+@import "navbar";
+@import "feed_list";
+@import "item_list";
+@import "user_list";
+@import "footer";
+
+$thumb-width: 130px;
+$thumb-height: 100px;
+$text-margin: 3px;
+
+h2 {
+    @include font-main;
+    text-align: center;
+}
+
+.randomfeed {
+    width: 100%;
+
+    .frame {
+        margin-top: $margin-inner;
+
+        .item {
+            position: relative;
+            width: $thumb-width * 2;
+            height: $thumb-height * 2;
+            text-align: center;
+
+            .huge-thumbnail {
+                margin: 0;
+                padding: 0;
+                font-size: 0px;
+                width: 100%;
+                height: 100%;
+                @include line-top();
+                @include line-bottom();
+                @include line-right();
+                @include line-left();
+
+                img {
+                    width: 50%;
+                    height: 50%;
+                    margin: 0px;
+                }
+            }
+
+            .title {
+                display: inline;
+                position: absolute;
+                top: $text-margin;
+                left: $text-margin;
+                background-color: $color-bg;
+                color: $color-text;
+            }
+
+            .pull {
+                display: inline;
+                position: absolute;
+                right: $text-margin;
+                bottom: $text-margin;
+                background-color: $color-bg;
+                text-align: center;
+
+                button {
+                    color: $color-accent;
+                }
+            }
+        }
+    }
+}

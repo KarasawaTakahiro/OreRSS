@@ -1,0 +1,113 @@
+@import "compass";
+@import "base";
+
+$color-main: #f39c12;//desaturate(#f39c12, 10%);
+$color-accent: adjust-hue($color-main, 200);
+$color-bg: #ecf0f1;
+$color-text: #727272;
+$color-header: #d6d6d6;
+
+$fontsz-middle: 15px;
+$fontsz-large: $fontsz-middle * 1.2;
+$fontsz-small: $fontsz-middle * 0.8;
+
+$margin: 40px;
+$margin-inner: 20px;
+$margin-small: 10px;
+
+$padding: 40px;
+$padding-inner: 20px;
+$padding-small: 10px;
+
+@font-face {
+    font-family: "nicomoji+";
+    src: url("../fonts/nicomoji-plus.ttf") format("TrueType");
+}
+
+@mixin background {
+    background-image: url(../img/geometry2.png);
+    background-color: $color-bg;
+}
+
+@mixin font-main {
+    font-family: "nicomoji+";
+}
+
+@mixin thumbnail-normal {
+    width: 64px;
+    height: 64px;
+}
+
+@mixin thumbnail-small {
+    width: 32px;
+    height: 32px;
+}
+
+@mixin thumbnail-xsmall {
+    width:  16px;
+    height: 16px;
+}
+
+@mixin font-list-header($width){
+    width: $width;
+    color: $color-header;
+}
+
+@mixin list-dot-original(){
+    list-style-image: url('../img/free_triangle_005_peachpuff.gif');
+}
+
+body {
+    @include background;
+    height: 100%;
+}
+
+.link-panel {
+    width: 100%;
+    height: 100%;
+    margin-bottom: 3px;
+    @include line-bottom();
+
+    &:hover {
+        background-color: #ffffff;
+    }
+
+    a {
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
+}
+
+.thumbnail-user-normal {
+    @include thumbnail-normal;
+    border-radius: 32px;
+}
+
+.thumbnail-user-small {
+    @include thumbnail-small;
+    border-radius: 16px;
+}
+
+.thumbnail-user-xsmall {
+    @include thumbnail-xsmall;
+    border-radius: 8px;
+}
+
+.fontsz-middle {
+    font-size: $fontsz-middle;
+}
+
+#contents {
+    margin-top: 20px;
+    height: 100%;
+    min-height: 300px;
+}
+
+.clear-left {
+    clear: left;
+}

@@ -1,6 +1,7 @@
 <?php
 
 define('TABLE_ITEM', 'item');
+define('THUMBNAIL_NOTHING', 'thumbnail_nothing.png');
 
 class Model_Itemtbl extends \Model
 {
@@ -158,5 +159,69 @@ class Model_Itemtbl extends \Model
             return $query[0]['id'];
         }
     }
+
+    /*
+     * 指定IDのサムネイルを取得する
+     */
+    public static function get_thumbnail_from_id($id)
+    {
+        $query = DB::select('thumbnail')->from(TABLE_ITEM)
+            ->where('id', '=', $id)
+            ->execute()
+            ->as_array();
+
+        // no match
+        if(count($query) <= 0){
+            return null;
+        }else{
+            $thumb = $query[0]['thumbnail'];
+            if($thumb == null)
+                return Uri::create('/assets/img/'.THUMBNAIL_NOTHING);
+            else
+                return $thumb;
+        }
+    }
+
+    /*
+     * URLからsmIDを取得する
+     * smIDの数字部分のみを抜き出す
+     */
+    private static function pickup_smid($str)
+    {
+        // watch/sm0000を抜き出す
+        if(preg_match('/watch\/sm\d+/', $str, $matches) != True){
+            return null;            // マッチせず終了
+        }
+
+        // 更に0000を抜き出す
+        if(preg_match('/\d+/', $matches[0], $m) != True){
+            return null;            // マッチせず終了
+        }
+
+        return $m[0];
+    }
+
+    /*
+     * URLにアクセス
+     * アクセス結果を返す
+     */
+    private static function get_action($url){
+        $context = stream_context_create(array(
+            'http'=>array(
+                'user_agent' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.143 Safari/537.36',
+                'ignore_errors' => true,
+                )
+            )
+        );
+        $content = file_get_contents($url, false, $context);
+
+        $pos = strpos($http_response_header[0], '404');
+        if($pos !== false){     // 404
+            return null;
+        }else{                  // 404じゃない時
+            return $content;
+        }
+    }
+
 
 }

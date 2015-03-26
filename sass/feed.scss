@@ -1,0 +1,15 @@
+@import "compass";
+@import "base";
+@import "basic";
+
+@import "navbar";
+@import "feed_list";
+@import "item_list";
+@import "user_list";
+@import "footer";
+
+h2 {
+    @include font-main;
+    text-align: center;
+}
+

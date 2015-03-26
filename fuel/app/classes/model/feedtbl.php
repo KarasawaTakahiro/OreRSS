@@ -58,7 +58,7 @@ class Model_Feedtbl extends \Model
     }
 
     // 未読を含むフィードリストを返す
-    public static function get_feed_list_unread($userid)
+    public static function get_unread_list($userid)
     {
         $query = \DB::select('feed.id', 'feed.title')->from('feed')
                                                      ->join('item')
@@ -104,7 +104,7 @@ class Model_Feedtbl extends \Model
                                                      ->where('watched', '=', true)
                                                      ->where('user.id', '=', $userid)
                                                      ->group_by('feed.id')
-                                                     ->order_by('watch.modified_at')
+                                                     ->order_by('watch.modified_at', 'desc')
                                                      ->execute()
                                                      ->as_array();
 
@@ -152,7 +152,8 @@ class Model_Feedtbl extends \Model
      */
     public static function get_user_pull($userid)
     {
-        $query = \DB::select('feed.id', 'feed.title', 'feed.url')->from('feed')
+        $query = \DB::select('feed.id', 'feed.title', 'feed.url', 'feed.pull_num', 'feed.description')
+            ->from('feed')
             ->join('pull')->on('feed.id', '=', 'pull.feed_id')
             ->join('user')->on('user.id', '=', 'pull.user_id')
             ->where('user.id', '=', $userid)
@@ -162,7 +163,136 @@ class Model_Feedtbl extends \Model
         return $query;
     }
 
+    /*
+     * フィードの購読数を１だけ増やす
+     */
+    public static function inc_pull_num($id)
+    {
+        // 現在の値を取得
+        $query = DB::select('pull_num')->from(TABLE_FEED)
+                                       ->where('id', '=', $id)
+                                       ->execute();
+        $num = $query->as_array()[0]['pull_num'];
+        // 更新
+        $query = DB::update(TABLE_FEED)->value('pull_num', $num+1)
+                                       ->where('id', '=', $id)
+                                       ->execute();
+        return $query;
+    }
 
+    /*
+     * マイリスト説明文を登録
+     */
+    public static function set_description($id, $description)
+    {
+        return DB::update(TABLE_FEED)
+            ->value('description', $description)
+            ->where('id', '=', $id)
+            ->execute();
+    }
+
+    /*
+     * マイリストの説明文を取得する
+     */
+    public static function get_description($id)
+    {
+        $query = DB::select('description')->from(TABLE_FEED)
+            ->where('id', '=', $id)
+            ->execute()
+            ->as_array();
+
+        if(0 < count($query)){
+            return $query[0]['description'];
+        }else{
+            return null;
+        }
+    }
+
+    /*
+     * 指定フィードの最新itemを取得する
+     */
+    public static function get_latest_item($id, $limit=1)
+    {
+        $query = DB::select()->from('item')
+            ->where('feed_id', '=', $id)
+            ->order_by('pub_date', 'desc')
+            ->limit($limit)
+            ->execute()
+            ->as_array();
+
+        if(0 < count($query)){
+            return $query[0];
+        }else{
+            return null;
+        }
+    }
+
+    /*
+     * 指定フィードのitemを新しい順に取得する
+     */
+    public static function get_later_item($id, $limit=1)
+    {
+        $query = DB::select()->from('item')
+            ->where('feed_id', '=', $id)
+            ->order_by('pub_date', 'desc')
+            ->limit($limit)
+            ->execute()
+            ->as_array();
+
+        if(0 < count($query)){
+            return $query;
+        }else{
+            return null;
+        }
+    }
+
+    /*
+     * フィードの未読数を得る
+     */
+    public static function get_num_feed_list_unread($userid, $feedid)
+    {
+        $query = \DB::select()->from('feed')
+            ->join('item')
+            ->on('feed.id', '=', 'item.feed_id')
+            ->join('watch')
+            ->on('watch.item_id', '=', 'item.id')
+            ->join('user')
+            ->on('user.id', '=', 'watch.user_id')
+            ->join('pull')
+            ->on('pull.feed_id', '=', 'feed.id')
+            ->on('pull.user_id', '=', 'user.id')
+            ->where('watched', '=', false)
+            ->where('user.id', '=', $userid)
+            ->where('feed.id', '=', $feedid)
+            ->execute();
+
+        return count($query);
+    }
+
+    /*
+     * フィードのリストを未読数とともに取得する
+     */
+    public static function get_feed_list_unread($userid)
+    {
+        $list = Model_Feedtbl::get_unread_list($userid);
+        foreach($list as &$feed){
+            $feed['unread_num'] = self::get_num_feed_list_unread($userid, $feed['id']);
+            unset($feed);
+        }
+
+        return $list;
+    }
+
+    /*
+     * 登録されたフィードの中からランダムに指定数取得
+     */
+    public static function get_random($limit=1)
+    {
+        return DB::query('SELECT * FROM '.TABLE_FEED.' ORDER BY rand() limit :lim')
+            ->bind('lim', $limit)
+            ->execute()
+            ->as_array();
+    }
 }
 
 

@@ -1,0 +1,23 @@
+@import "compass";
+@import "basic";
+
+#btn_submit {
+    margin-top: $margin-inner;
+}
+
+.container {
+    text-align: center;
+    width: 60%;
+}
+
+h2 {
+    @include font-main;
+}
+
+p {
+    margin: 0px;
+}
+
+input {
+    margin-bottom: 3px;
+}

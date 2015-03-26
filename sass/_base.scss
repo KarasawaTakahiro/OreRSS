@@ -1,0 +1,50 @@
+@import "compass";
+
+// ズルい罫線
+@mixin line-top($black:.1, $white:.5){
+    border-top: 1px solid rgba(0, 0, 0, $black);
+    @include box-shadow(rgba(255, 255, 255, $white) 0 1px 0 inset);
+}
+
+@mixin line-left($black:.1, $white:.5){
+    border-left: 1px solid rgba(0, 0, 0, $black);
+    @include box-shadow(rgba(255, 255, 255, $white) -1px 0 0);
+}
+
+@mixin line-right($black:.1, $white:.5){
+    border-right: 1px solid rgba(0, 0, 0, $black);
+    @include box-shadow(rgba(255, 255, 255, $white) -1px 0 0 inset);
+}
+
+@mixin line-bottom($black:.1, $white:.5){
+    border-bottom: 1px solid rgba(0, 0, 0, $black);
+    @include box-shadow(rgba(255, 255, 255, $white) 0 1px 0);
+}
+
+// ズルいtext-shadow
+@mixin ts-000($op:.2){
+    text-shadow: 1px -1px rgba(0, 0, 0, $op);
+}
+
+@mixin ts-fff($op:.5){
+    text-shadow: -1px 1px rgba(0, 0, 0, $op);
+}
+
+// line-clamp 指定行からはみ出た時に...を表示 ブロック要素のみ
+@mixin line-clamp($line:3){
+    -webkit-line-clamp: $line;  // 指定行数
+    -moz-line-clamp: $line;
+    -ms-line-clamp: $line;
+    line-clamp: $line;
+    -webkit-box-orient: vertical;  // 領域内の子要素を、上から下へ垂直に積み重ねて表示
+    -moz-box-orient: vertical;
+    -ms-box-orient: vertical;
+    box-orient: vertical;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-box;
+    display: box;
+    overflow: hidden;
+    white-space: normal;  // 領域に応じて自動的に改行する
+    text-overflow: ellipsis;
+}

@@ -1,0 +1,34 @@
+@import "compass";
+@import "basic";
+
+@import "navbar";
+@import "footer";
+
+h2 {
+    @include font-main;
+    text-align: center;
+}
+
+dd {
+    margin-left: 3px;
+}
+
+#dashboard {
+    text-align: center;
+
+    a {
+        font-weight: bold;
+        color: $color-accent;
+    }
+}
+
+#thumbnail {
+    width: 100%;
+
+    .current {
+    }
+
+    .future {
+    }
+
+}
