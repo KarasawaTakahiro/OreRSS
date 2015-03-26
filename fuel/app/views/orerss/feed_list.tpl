@@ -1,6 +1,6 @@
 
 <div id="dashboard" class="link-panel">
-    <a href="/orerss/dashboard">DASHBOARD</a>
+    <a href="/dashboard">DASHBOARD</a>
 </div>
 
 <dl>
@@ -9,7 +9,7 @@
     <div id="feed-list-unread">
         {foreach $feed_list_unread as $feed}
         <div class="link-panel">
-            <a href="/orerss/feed/{$feed.id}">
+            <a href="/feed/{$feed.id}">
                 <span class="unread feed-title">{$feed.title}</span>
                 <span class="badge">{$feed.unread_num}</span>
             </a>
@@ -34,7 +34,7 @@
         {foreach $feed_list_read as $feed}
         <div class="item">
             <div class="link-panel feed-title">
-                <a href="/orerss/feed/{$feed.id}">{$feed.title}</a>
+                <a href="/feed/{$feed.id}">{$feed.title}</a>
             </div>
             <div class="feed-unpull">
                 <a class="unpull" href="#" name="{$feed.id}"><span class="glyphicon glyphicon-remove"></span></a>

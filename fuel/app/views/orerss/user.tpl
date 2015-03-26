@@ -14,9 +14,3 @@
             </div>
         </div>
 
-        <!-- footer -->
-        <footer>
-        </footer>
-
-
-
