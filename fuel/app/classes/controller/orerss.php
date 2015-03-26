@@ -164,6 +164,8 @@ class Controller_Orerss extends Controller_Template
      */
     public function get_settings()
     {
+        self::help_isLogin();
+
         $data = array();
         $data['thumbnail'] = Model_User::get_thumbnail(self::help_userid());
         $this->template->nickname = self::help_nickname();
@@ -207,7 +209,7 @@ class Controller_Orerss extends Controller_Template
     public function get_logout()
     {
         Session::delete('userid');
-        Response::redirect('/orerss/login');
+        Response::redirect('/orerss');
     }
 
 // --- post -----------------------------------------------------------------------------
