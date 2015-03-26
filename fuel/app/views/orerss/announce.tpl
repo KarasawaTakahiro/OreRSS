@@ -20,8 +20,8 @@
                     <div class="attribute">
                         <div class="auther">管理人</div>
                         <div class="datetime">
-                            <span class="date">2015-03-23</span>
-                            <span class="time">0:06</span>
+                            <span class="date">2015-03-26</span>
+                            <span class="time">16:53</span>
                         </div>
                     </div>
                 </div>
