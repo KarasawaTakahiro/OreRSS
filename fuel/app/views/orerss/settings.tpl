@@ -15,12 +15,19 @@
                 <dl id="thumb">
                     <dt>サムネイル</dt>
                     <dd>
-                    <form action="/orerss/settings" method="post" enctype="multipart/form-data">
-                        <div class="input-group">
-                            <input class="form-control" name="thumbnail" type="file" placeholder="ファイルを選択" />
-                            <span class="input-group-addon"><input type="submit"></span>
+                    <div id="thumbnail">
+                        <div class="current">
+                            {Asset::img("user/`$thumbnail`", ["class"=>"thumbnail-user-normal", "alt"=>"サムネイル"])}
                         </div>
-                    </form>
+                        <div class="future">
+                            <form action="/orerss/settings" method="post" enctype="multipart/form-data">
+                                <div class="input-group">
+                                    <input class="form-control" name="thumbnail" type="file" placeholder="ファイルを選択" />
+                                    <span class="input-group-addon"><input type="submit"></span>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                     </dd>
                 </dl>
             </div>

@@ -1,4 +1,5 @@
 @import "compass";
+@import "basic";
 
 @import "navbar";
 @import "footer";
@@ -6,6 +7,10 @@
 h2 {
     @include font-main;
     text-align: center;
+}
+
+dd {
+    margin-left: 3px;
 }
 
 #dashboard {
@@ -17,3 +22,13 @@ h2 {
     }
 }
 
+#thumbnail {
+    width: 100%;
+
+    .current {
+    }
+
+    .future {
+    }
+
+}
