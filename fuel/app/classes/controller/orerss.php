@@ -264,9 +264,9 @@ class Controller_Orerss extends Controller_Template
         $userid = self::help_userid();
         $thumbnail = self::help_userThumbnailUpload();  // サムネイルを取得
         if(0 < count($thumbnail['success'])){           // アップロード成功
-            // 先に登録されているものを削除
+            // 先に登録されているものかつ，デフォルトでないものを削除
             $thumb = Model_User::get_thumbnail($userid);
-            if($thumb != null){
+            if(($thumb != null) && (mb_substr($thumb, 0, 7) != 'default')){
                 unlink(DIR_THUMBNAIL.DS.$thumb);
             }
             // サムネイルをDBに保存
