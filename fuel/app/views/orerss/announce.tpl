@@ -3,7 +3,7 @@
         <div class="col-md-3">
             <h2>メニュー</h2>
             <div id="dashboard" class="link-panel">
-                <a href="/orerss/dashboard">DASHBOARD</a>
+                <a href="/dashboard">DASHBOARD</a>
             </div>
         </div>
 

@@ -11,7 +11,7 @@ var description_default_height = 0;
  */
 var smartPush = function(mylistUrl){
     $.ajax({
-        url:'/orerss/registNewFeed',
+        url:'/registNewFeed',
         async: true,
         type: 'POST',
         data: {'url':mylistUrl},
@@ -19,7 +19,7 @@ var smartPush = function(mylistUrl){
     }).done(function(data){
         // リスト一覧に追加
         if(data !== null){
-            $("#feed-list-unread").append('<p><a class="unread" href="/orerss/feed/' + data.id + '" >' + data.title[0] + '</a></p>');
+            $("#feed-list-unread").append('<p><a class="unread" href="/feed/' + data.id + '" >' + data.title[0] + '</a></p>');
         }
     }).fail(function(data){
     });
