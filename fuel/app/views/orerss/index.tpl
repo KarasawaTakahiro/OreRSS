@@ -73,7 +73,7 @@
                         {$userdata.name}
                     </div>
                     <div id="dashboard" class="link-panel">
-                        <a href="/orerss/dashboard">Dash Board</a>
+                        <a href="/dashboard">Dash Board</a>
                     </div>
                 </div>
             </div>
@@ -81,14 +81,14 @@
 
             <h2>初めての方へ</h2>
             <ul class="list">
-                <li><a href="/orerss/tutor/whatis">何ができるの？</a></li>
-                <li><a href="/orerss/tutor/rss">更新チェック機能</a></li>
-                <li><a href="/orerss/tutor/find">フィード発見機能</a></li>
+                <li><a href="/tutor/whatis">何ができるの？</a></li>
+                <li><a href="/tutor/rss">更新チェック機能</a></li>
+                <li><a href="/tutor/find">フィード発見機能</a></li>
             </ul>
 
             <h2>お知らせ</h2>
             <ul class="list">
-                <li><a href="/orerss/announce">お知らせ</a></li>
+                <li><a href="/announce">お知らせ</a></li>
             </ul>
         </div>
     </div>
