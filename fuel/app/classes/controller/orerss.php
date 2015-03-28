@@ -209,7 +209,7 @@ class Controller_Orerss extends Controller_Template
     public function get_logout()
     {
         Session::delete('userid');
-        Response::redirect('/orerss');
+        Response::redirect('/');
     }
 
 // --- post -----------------------------------------------------------------------------
@@ -225,7 +225,7 @@ class Controller_Orerss extends Controller_Template
 
         // DB問い合わせ
         if(Model_User::isUnique($nickname) == false){                    // ユニークか
-            Response::redirect('/orerss/signup');
+            Response::redirect('/signup');
         }
 
         Model_User::add($nickname, $passwd);                // 新規登録
@@ -234,9 +234,9 @@ class Controller_Orerss extends Controller_Template
         if($userid != null){    // ログイン成功
             Session::set('userid', $userid);
             Session::set('nickname', $nickname);
-            Response::redirect('/orerss/dashboard');
+            Response::redirect('/dashboard');
         }else{                  // ログイン失敗
-            Response::redirect('/orerss/signup');
+            Response::redirect('/signup');
         }
     }
 
@@ -252,9 +252,9 @@ class Controller_Orerss extends Controller_Template
         if($userid){    // ログイン成功
             Session::set('userid', $userid);
             Session::set('nickname', $nickname);
-            Response::redirect('/orerss/dashboard');
+            Response::redirect('dashboard');
         }else{                  // ログイン失敗
-            Response::redirect('/orerss/login');
+            Response::redirect('/login');
         }
 
     }
@@ -276,7 +276,7 @@ class Controller_Orerss extends Controller_Template
             Model_User::set_thumbnail(self::help_userid(), $thumbnail['success'][0]['saved_as']);
         }
 
-        Response::redirect('/orerss/settings');
+        Response::redirect('/settings');
     }
 
 // --- ajax ---------------------------------------------------------------------------
@@ -394,7 +394,7 @@ class Controller_Orerss extends Controller_Template
     private function help_isLogin()
     {
         if(Session::get('userid') == null){
-            Response::redirect('/orerss/login');
+            Response::redirect('/login');
         }
     }
 
@@ -404,7 +404,7 @@ class Controller_Orerss extends Controller_Template
     private function help_isLogout()
     {
         if(Session::get('userid') != null){
-            Response::redirect('/orerss/logout');
+            Response::redirect('/logout');
         }
     }
 
