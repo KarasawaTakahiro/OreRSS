@@ -44,9 +44,11 @@ desktop.ini
 *.swp
 *.txt
 composer.phar
+/node_modules/
 
 # 
 !/fuel/core/classes/controller/template.php
+!/fuel/app/config/routes.php
 !/public/assets/img/user/default1.png
 !/public/assets/img/user/default2.png
 !/public/assets/img/user/default3.png

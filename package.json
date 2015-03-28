@@ -1,0 +1,29 @@
+{
+  "name": "OreRSS",
+  "version": "0.0.2",
+  "description": "OreRSS",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/KarasawaTakahiro/OreRSS.git"
+  },
+  "author": "tkhr",
+  "bugs": {
+    "url": "https://github.com/KarasawaTakahiro/OreRSS/issues"
+  },
+  "homepage": "https://github.com/KarasawaTakahiro/OreRSS",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-autoprefixer": "^2.2.0",
+    "grunt-contrib-cssmin": "^0.12.2",
+    "grunt-contrib-imagemin": "^0.9.4",
+    "grunt-contrib-uglify": "^0.8.0",
+    "grunt-contrib-watch": "^0.6.1"
+  }
+}

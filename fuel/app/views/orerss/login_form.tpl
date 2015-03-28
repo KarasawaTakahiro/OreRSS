@@ -10,7 +10,7 @@
             <p id="wornPassword" class="text-danger"></p>
 
             <button id="btn_submit" class="btn btn-lg btn-primary btn-block" type="submit">ログイン</button>
-            <a href="/orerss/signup">
+            <a href="/signup">
                 <button class="btn btn-sm btn-primary btn-block" type="button" name="signup">新規登録</button>
             </a>
         </form>
