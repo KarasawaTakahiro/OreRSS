@@ -304,3 +304,8 @@ h2 {
 .list {
   list-style-image: url("../img/free_triangle_005_peachpuff.gif");
 }
+
+/* line 134, ../../../sass/index.scss */
+.twitter {
+  margin-left: 23px;
+}

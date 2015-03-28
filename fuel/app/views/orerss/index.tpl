@@ -90,6 +90,14 @@
             <ul class="list">
                 <li><a href="/announce">お知らせ</a></li>
             </ul>
+
+            <h2>Twitter</h2>
+            <div class="twitter">
+                {literal}
+                <a class="twitter-timeline" href="https://twitter.com/OreRSS" data-widget-id="581717197770240000">@OreRSSさんのツイート</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+                {/literal}
+            </div>
         </div>
     </div>
 </div>
