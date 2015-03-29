@@ -20,9 +20,5 @@
         </ul>
     </div>
 
-    <div class="list-body">
-        {foreach $pulllists as $feed}
-            {include './feed_item_expand.tpl' feed=$feed}
-        {/foreach}
-    </div>
+    {include './feed_item_expand.tpl' feeds=$pulllists}
 </div>
