@@ -44,6 +44,7 @@ class Model_Index extends \Model
             if($expand == true){
                 $item['id'] = $col['id'];
                 $item['url'] = $col['url'];
+                $item['pull_num'] = $col['pull_num'];
             }
 
             array_push($pickups, $item);

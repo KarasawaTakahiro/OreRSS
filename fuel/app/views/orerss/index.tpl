@@ -33,28 +33,11 @@
             <!-- 左半分 -->
             <h2>Pickup</h2>
             <hr />
-            {foreach $pickups as $item}
-            <div class="pickup-item">
-                <div class="item-container">
-                    <div class="pickup-item-thumbnail">
-                        <img src="{$item.thumbnail}" />
-                    </div>
-                    <div class="item-info">
-                        <div class="title">{$item.title}</div>
-                        <div class="description">{$item.description}</div>
-                        <div class="pullusers">
-                            <ul class="list-inline">
-                                {foreach $item.users as $user}
-                                <li>{Asset::img("user/`$user.thumbnail`", ["alt"=>"{$user.nickname}", "class"=>"thumbnail-user-small", "title"=>"{$user.nickname}"])}</li>
-                                {/foreach}
-                                <li><span class="badge">{$item.pullnum}</span></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="clear"></div>
-                </div>
-            </div>
-            {/foreach}
+            {if $login}
+                {include file='./feed_item_expand.tpl' feeds=$pickups}
+            {else}
+                {include file='./feed_item.tpl' feeds=$pickups}
+            {/if}
         </div>
 
         <div class="col-md-4">

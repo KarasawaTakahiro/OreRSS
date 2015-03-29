@@ -15,12 +15,15 @@ class Controller_Orerss extends Controller_Template
         $data = array();
 
         if(self::help_userid() != null){            // ログイン時
+            $data['login'] = true;
             $data['pickups'] = Model_Index::pickup(true);
+            $data['updates'] = Model_Index::update();
             $data['userdata'] = array(
                 'name' => self::help_nickname(),
                 'thumbnail'    => Model_User::get_thumbnail(self::help_userid()),
             );
         }else{
+            $data['login'] = false;
             $data['updates'] = Model_Index::update();
             $data['pickups'] = Model_Index::pickup();
         }
@@ -28,7 +31,7 @@ class Controller_Orerss extends Controller_Template
         $this->template->nickname = self::help_nickname();
         $this->template->contents = View_Smarty::forge('orerss/index', $data);
         $this->template->js = array('jquery-2.1.1.min.js', 'bootstrap.min.js', 'rss.min.js');
-        $this->template->css = array('bootstrap.min.css', 'index.min.css');
+        $this->template->css = array('bootstrap.min.css', 'index.min.css', 'user.min.css');
     }
 
     /*
