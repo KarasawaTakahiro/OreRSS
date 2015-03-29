@@ -12,15 +12,17 @@ class Controller_Orerss extends Controller_Template
      */
     public function get_index()
     {
-        $data = array(
-            'updates'   => Model_Index::update(),
-            'pickups'   => Model_Index::pickup(),
-        );
+        $data = array();
 
-        if(self::help_userid() != null){
-            $data['userdata'] = array('name' => self::help_nickname(),
+        if(self::help_userid() != null){            // ログイン時
+            $data['pickups'] = Model_Index::pickup(true);
+            $data['userdata'] = array(
+                'name' => self::help_nickname(),
                 'thumbnail'    => Model_User::get_thumbnail(self::help_userid()),
             );
+        }else{
+            $data['updates'] = Model_Index::update();
+            $data['pickups'] = Model_Index::pickup();
         }
 
         $this->template->nickname = self::help_nickname();

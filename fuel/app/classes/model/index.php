@@ -5,7 +5,12 @@ define('IMG_USER_THUMBNAIL', 'assets'.DS.'img'.DS.'user');          // ユーザ
 
 class Model_Index extends \Model
 {
-    public static function pickup()
+    /*
+     * Pickup部分に表示する情報を取得・整形
+     *
+     * $expand: trueの時，idとurlの情報を付与する
+     */
+    public static function pickup($expand=false)
     {
         // フィードの中からランダムにPICKUP_NUMだけを選ぶ
         $allids = Model_Feedtbl::get_all_feed_ids();                    // 全ID取得
@@ -34,6 +39,13 @@ class Model_Index extends \Model
                 $item['thumbnail'] = '';
                 $item['users'] = array();
             }
+
+            // 追加情報を付与
+            if($expand == true){
+                $item['id'] = $col['id'];
+                $item['url'] = $col['url'];
+            }
+
             array_push($pickups, $item);
         }
 
