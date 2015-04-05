@@ -23,6 +23,17 @@
         {Html::meta('msapplication-TileImage', Asset::get_file('favicons/mstile-144x144.png', 'img'))}
         {Html::meta('theme-color', '#ffffff')}
         {* /favicon *}
+
+        {foreach $js as $i}
+        {Asset::js($i)}
+        {/foreach}
+        {Asset::js('jquery.jgrowl.min.js')}
+
+        {foreach $css as $i}
+        {Asset::css($i)}
+        {/foreach}
+        {Asset::css('jquery.jgrowl.min.css')}
+
     </head>
 
     <body>
@@ -102,14 +113,6 @@
         <footer>
             {include file='./orerss/footer.tpl'}
         </footer>
-
-        {foreach $js as $i}
-        {Asset::js($i)}
-        {/foreach}
-
-        {foreach $css as $i}
-        {Asset::css($i)}
-        {/foreach}
 
     </body>
 </html>
