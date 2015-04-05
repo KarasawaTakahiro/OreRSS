@@ -30,7 +30,7 @@ class Controller_Orerss extends Controller_Template
 
         $this->template->nickname = self::help_nickname();
         $this->template->contents = View_Smarty::forge('orerss/index', $data);
-        $this->template->js = array('jquery-2.1.1.min.js', 'bootstrap.min.js', 'rss.min.js');
+        $this->template->js = array('jquery.min.js', 'bootstrap.min.js', 'rss.min.js', 'user.min.js');
         $this->template->css = array('bootstrap.min.css', 'index.min.css');
     }
 
@@ -68,7 +68,7 @@ class Controller_Orerss extends Controller_Template
 
         $this->template->nickname = $this->help_nickname();
         $this->template->contents = View_Smarty::forge('orerss/dashboard', $data);
-        $this->template->js = array('jquery-2.1.1.min.js', 'bootstrap.min.js', 'rss.min.js');
+        $this->template->js = array('jquery.min.js', 'bootstrap.min.js', 'rss.min.js');
         $this->template->css = array('bootstrap.min.css', 'dashboard.min.css');
 
     }
@@ -102,7 +102,7 @@ class Controller_Orerss extends Controller_Template
 
         $this->template->nickname = $this->help_nickname();
         $this->template->contents = View_Smarty::forge('orerss/feed', $data);
-        $this->template->js = array('jquery-2.1.1.min.js', 'bootstrap.min.js', 'rss.min.js');
+        $this->template->js = array('jquery.min.js', 'bootstrap.min.js', 'rss.min.js');
         $this->template->css = array('bootstrap.min.css', 'feed.min.css');
     }
 
@@ -116,7 +116,7 @@ class Controller_Orerss extends Controller_Template
 
         $this->template->nickname = $this->help_nickname();
         $this->template->contents = View_Smarty::forge('orerss/login', $data);
-        $this->template->js = array('jquery-2.1.1.min.js', 'bootstrap.min.js', 'sign-form.min.js', 'login.min.js');
+        $this->template->js = array('jquery.min.js', 'bootstrap.min.js', 'sign-form.min.js', 'login.min.js');
         $this->template->css = array('bootstrap.min.css', 'login.min.css');
     }
 
@@ -130,7 +130,7 @@ class Controller_Orerss extends Controller_Template
 
         $this->template->nickname = $this->help_nickname();
         $this->template->contents = View_Smarty::forge('orerss/signup', $data);
-        $this->template->js = array('jquery-2.1.1.min.js', 'bootstrap.min.js', 'sign-form.min.js', 'signup.min.js');
+        $this->template->js = array('jquery.min.js', 'bootstrap.min.js', 'sign-form.min.js', 'signup.min.js');
         $this->template->css = array('bootstrap.min.css', 'signup.min.css');
     }
 
@@ -160,7 +160,7 @@ class Controller_Orerss extends Controller_Template
 
         $this->template->nickname = self::help_nickname();
         $this->template->contents = View_Smarty::forge('orerss/user', $data);
-        $this->template->js = array('jquery-2.1.1.min.js', 'bootstrap.min.js', 'rss.min.js', 'user.min.js');
+        $this->template->js = array('jquery.min.js', 'bootstrap.min.js', 'rss.min.js', 'user.min.js');
         $this->template->css = array('bootstrap.min.css', 'user.min.css');
     }
 
@@ -175,7 +175,7 @@ class Controller_Orerss extends Controller_Template
         $data['thumbnail'] = Model_User::get_thumbnail(self::help_userid());
         $this->template->nickname = self::help_nickname();
         $this->template->contents = View_Smarty::forge('orerss/settings', $data);
-        $this->template->js = array('jquery-2.1.1.min.js', 'bootstrap.min.js', 'rss.min.js');
+        $this->template->js = array('jquery.min.js', 'bootstrap.min.js', 'rss.min.js');
         $this->template->css = array('bootstrap.min.css', 'settings.min.css');
     }
 
@@ -192,7 +192,7 @@ class Controller_Orerss extends Controller_Template
         $data = array('page'    => $page);
         $this->template->contents = View_Smarty::forge('orerss/tutor', $data);
         $this->template->nickname = self::help_nickname();
-        $this->template->js = array('jquery-2.1.1.min.js', 'bootstrap.min.js', 'rss.min.js');
+        $this->template->js = array('jquery.min.js', 'bootstrap.min.js', 'rss.min.js');
         $this->template->css = array('bootstrap.min.css', 'tutor.min.css');
     }
 
@@ -204,7 +204,7 @@ class Controller_Orerss extends Controller_Template
         $data = array();
         $this->template->contents = View_Smarty::forge('orerss/announce', $data);
         $this->template->nickname = self::help_nickname();
-        $this->template->js = array('jquery-2.1.1.min.js', 'bootstrap.min.js', 'rss.min.js');
+        $this->template->js = array('jquery.min.js', 'bootstrap.min.js', 'rss.min.js');
         $this->template->css = array('bootstrap.min.css', 'announce.min.css');
     }
 
@@ -366,7 +366,7 @@ class Controller_Orerss extends Controller_Template
         $data = array();
         $this->template->nickname = self::help_nickname();
         $this->template->contents = View_Smarty::forge('orerss/404', $data);
-        $this->template->js = array('jquery-2.1.1.min.js', 'bootstrap.min.js');
+        $this->template->js = array('jquery.min.js', 'bootstrap.min.js');
         $this->template->css = array('bootstrap.min.css', '404.min.css');
     }
 
