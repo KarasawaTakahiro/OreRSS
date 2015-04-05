@@ -1,18 +1,18 @@
 
 // ページ読み込み時に実行
 $(function(){
-  // 新規登録用ボタンのリスナを登録
-  registNewFeed();
-  // 更新用ボタンのリスナを登録
-  feedRefresh();
-  // 購読解除用ボタンのリスナ登録
-  unpull();
-  //
-  smartpull();
-  // フィードリストを隠す
-  hideFeedlist();
-  //
-  removeHideFeedlistBtn();
+    // 新規登録用ボタンのリスナを登録
+    registNewFeed();
+    // 更新用ボタンのリスナを登録
+    feedRefresh();
+    // 購読解除用ボタンのリスナ登録
+    unpull();
+    //
+    smartpull();
+    // フィードリストを隠す
+    hideFeedlist();
+    //
+    removeHideFeedlistBtn();
 });
 
 var MAXNUM_READFEEDlISTITEM = 5;
@@ -20,90 +20,95 @@ var MAXNUM_READFEEDlISTITEM = 5;
 
 // 既読をつける
 function mark_read(obj, item_id){
-  // 対象を既読にする
-  $.ajax({
-    url: '/markRead/'+item_id,
-    async: true,
-    method: 'POST',
-  });
+    // 対象を既読にする
+    $.ajax({
+        url: '/markRead/'+item_id,
+        async: true,
+        method: 'POST',
+    });
 
-  $(obj).attr('class', 'read'); // フォントの変更
+    $(obj).attr('class', 'read'); // フォントの変更
 }
 
 // automark
 function autoMark(feed_id, item_id){
-  //console.log('autoMark');
-  //
-  $.ajax({
-    url: '/automarkRead/'+feed_id+'/'+item_id,
-    async: true,
-    method: 'POST',
-    dataType: 'json',
-    success: function(list){
-      for(var i=0; i<list.length; i++){
-        $("#"+list[i]).attr('class', 'read');   // フォントを変更
-      }
-    },
-  });
+    //console.log('autoMark');
+    //
+    $.ajax({
+        url: '/automarkRead/'+feed_id+'/'+item_id,
+        async: true,
+        method: 'POST',
+        dataType: 'json',
+        success: function(list){
+            for(var i=0; i<list.length; i++){
+                $("#"+list[i]).attr('class', 'read');   // フォントを変更
+            }
+        },
+    });
 
 }
 
 // feed新規登録
 var registNewFeed = function(){
-  $("#registNewFeed").submit(function(){    // submitにバインド
-      var tbox = $(this).find("input[id=new-feed-url]");
-      var newFeedUrl = tbox.val();    // テキストボックスの値を取得
+    $("#registNewFeed").submit(function(){    // submitにバインド
+        var tbox = $(this).find("input[id=new-feed-url]");
+        var newFeedUrl = tbox.val();    // テキストボックスの値を取得
 
-      if(0 < newFeedUrl.length){
-        $.ajax({
-          url: '/registNewFeed/',
-          async: true,
-          type: 'POST',
-          data: {'url':newFeedUrl},   // feedのURLを引数にする
-          dataType: 'json',
-          success: function(data){
-            // リスト一覧に追加
-            if(data !== null){
-              $("#feed-list-unread").append('<p><a class="unread" href="/feed/' + data.id + '" >' + data.title + '</a></p>');
-              tbox.val("");
-            }
-          },
-        });  // ajax
-      }
+        if(0 < newFeedUrl.length){
+            $.ajax({
+                url: '/registNewFeed/',
+                async: true,
+                type: 'POST',
+                data: {'url':newFeedUrl},   // feedのURLを引数にする
+                dataType: 'json',
+            }).done(function(data){
+                // リスト一覧に追加
+                if(data.id != undefined){
+                    $("#feed-list-unread").append('<div class="link-panel"><a href="/feed/' + data.id + '" >' + data.title + '</a></div>');
+                    tbox.val("");
+                    $.jGrowl(data.title + "をPULLしました", {header : "PULL成功", life: 5000});
+                }else{
+                    $.jGrowl("PULLを失敗しました", {header : "PULL失敗", life: 50000});
+                    tbox.val("");
+                }
+            }).fail(function(data){
+                $.jGrowl("データの取得に失敗しました．<br />もう一度試してください", {header : "PULL失敗", life: 5000});
+            });
+        }
 
-      return false;   // submitの動作を無効化
-  });
+        return false;   // submitの動作を無効化
+    });
 };
 
 var feedRefresh = function(){
-  $("#btn-refresh").click( function(){
-    var btn = $("#btn-refresh");    // ボタンオブジェクトを取得
-    var icon = btn.children();      // ボタンの中身を退避
-    var load_gif = '<img src="/assets/img/feed_refresh.gif" />';   // 更新中の中身
+    $("#btn-refresh").click( function(){
+        var btn = $("#btn-refresh");    // ボタンオブジェクトを取得
+        var icon = btn.children();      // ボタンの中身を退避
+        var load_gif = '<img src="/assets/img/feed_refresh.gif" />';   // 更新中の中身
 
-    btn.attr("disabled", true);   // ボタンを無効化
-    btn.empty();                  // ボタンの中身を消す
-    btn.append(load_gif);         // 中身を差し替え
+        btn.attr("disabled", true);   // ボタンを無効化
+        btn.empty();                  // ボタンの中身を消す
+        btn.append(load_gif);         // 中身を差し替え
 
-    // ajaxでfeedのデータを取得
-    $.ajax({
-      url: '/updateFeed',
-      async: true,
-      type: 'POST',
-      dataType: 'json',
-    }).done(function(data){
-      console.log("success: " + data.update_num);
-      location.reload();
-    }).fail(function(){
-      btn.empty();                  // ボタンの中身を消す
-      btn.append(icon);             // 中身を差し替え
-    }).always(function(){
-      $("#btn-refresh").attr("disabled", false);
-      console.log("complete");
-    });   // ajax
+        // ajaxでfeedのデータを取得
+        $.ajax({
+            url: '/updateFeed',
+            async: true,
+            type: 'POST',
+            dataType: 'json',
+        }).done(function(data){
+            console.log("success: " + data.update_num);
+            location.reload();
+        }).fail(function(){
+            btn.empty();                  // ボタンの中身を消す
+            btn.append(icon);             // 中身を差し替え
+        }).always(function(){
+            $("#btn-refresh").attr("disabled", false);
+            console.log("complete");
+        });   // ajax
 
 
-  });
+    });
 };
 
 /*
