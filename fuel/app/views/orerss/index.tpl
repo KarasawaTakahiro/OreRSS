@@ -44,7 +44,9 @@
             <!-- 右半分 -->
             {if $nickname == null}
             <h2>ログイン</h2>
-            {include file='orerss/login_form.tpl'}
+            <div class="container">
+                {include file='orerss/login_form.tpl'}
+            </div>
             {else}
             <h2>ユーザ</h2>
             <div id="user">
