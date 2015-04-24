@@ -23,7 +23,7 @@ var wornNicknameMore = function(){ };
  */
 var bind_checkNickname = function(){
     var preString = "";                     // 比較対象文字列
-    $("#btn_submmit").attr("disabled", true); // 登録ボタンを無効化
+    $("#btn_submit").attr("disabled", true); // 登録ボタンを無効化
     $("#inputNickname").keyup(function(){   // すべてのキー操作にバインド
         var string = $(this).val();         // テキストボックスの値取得
         if(string != preString){            // 文字列比較
