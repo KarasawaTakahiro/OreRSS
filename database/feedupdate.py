@@ -8,7 +8,7 @@ import time
 class FeedUpdate():
     def __init__(self):
         os.environ["TZ"] = "Asia/Tokyo"                     # タイムゾーンの設定
-        self.url = "http://211.120.198.187/orerss/updateFeed"     # フィード更新API
+        self.url = "http://orerss.orz.hm/updateFeed"     # フィード更新API
         self.headers = {"pragma":"no-cache"}                # HTTPヘッダ
         self.delay = 60                                     # 更新時間のチェックの間隔[sec]
         self.delayminute = 30                               # feedの更新間隔[min]

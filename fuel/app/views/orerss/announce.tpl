@@ -15,13 +15,14 @@
                     <h3 id="topic-1">リリース</h3>
                     <div class="text">
                         俺RSSをリリースしました<br />
-                        よろしくおねがいします
+			ベータ版につき，不具合など多々あるかと思いますが，できる限りの対応をしていきたいと思っております．<br />
+                        どうぞよろしくおねがいします
                     </div>
                     <div class="attribute">
                         <div class="auther">管理人</div>
                         <div class="datetime">
-                            <span class="date">2015-03-26</span>
-                            <span class="time">16:53</span>
+                            <span class="date">2015-03-29</span>
+                            <span class="time">2:09</span>
                         </div>
                     </div>
                 </div>
